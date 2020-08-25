@@ -3,13 +3,27 @@
         $('.select2').select2()
     }
     let _ListStudent = function () {
-        $("#tblStudent").DataTable({
+        var table = $("#tblStudent").DataTable({
             "processing": true, // for show progress bar
             "serverSide": true, // for process server side
             "filter": true, // this is for disable filter (search box)
             "orderMulti": false, // for disable multiple column at once
             "pageLength": 10,
             "searching": false,
+            "lengthChange": false,
+            'dom': 'Bfrtip',
+            'buttons': [
+                {
+                    text: 'Excel',
+                    extend: 'excel',
+                    className:'form-control',
+                    exportOptions: {
+                        modifier: {
+                            page: 'current'
+                        }
+                    }
+                }
+            ],
             "ajax": {
                 "url": "/Home/GetListStudent",
                 "type": "POST",
@@ -68,9 +82,15 @@
                             return '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>'
                         }
                     },
-                ]
+                ],
+            initComplete: function () {
+                var api = this.api();
+                api.buttons().container().appendTo($('#tblStudent_wrapper .col-sm-6:eq(1)'))
+            },
         })
-
+        let contne = table.buttons().container()
+        console.log({ contne })
+        //table.buttons().container().appendTo($('.col-sm-6:eq(1)', table.table().container()));
         $('#btnrefresh, #btnSearch').on('click', function () {
             $('#tblStudent').DataTable().ajax.reload();;
         })
@@ -90,7 +110,7 @@
             const arrs = data.arrs
             console.log({ arrs })
 
-            let newOption = new Option(textHolder, true, true)
+            let newOption = new Option(textHolder,'', true, true)
             $(selectControl).append(newOption).trigger('change')
             arrs.forEach(function (data) {
                 var newOption = new Option(data.value_1, data.Id, false, false)
@@ -120,11 +140,3 @@
 document.addEventListener('DOMContentLoaded', function () {
     ListStudent.init()
 })
-$(document).ready(function () {
-    $('#tblStudent').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    });
-});
