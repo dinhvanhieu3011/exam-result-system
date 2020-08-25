@@ -1,0 +1,391 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLDTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DienUuTien">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+    <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+    <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Exam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="hoi_dong_thi" Type="nvarchar" MaxLength="350" />
+    <Property Name="khoa_thi" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_1" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_2" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_3" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="nam_thi" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="ID_PT_VALUE_NAME" Type="int" Nullable="false" />
+    <Property Name="ID_MT_VALUE_NAME" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExamRoom">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="value_1" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_2" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_3" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_4" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_5" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_6" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_7" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_8" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_9" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_10" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_11" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_12" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_13" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_14" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_15" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_16" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_17" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_18" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_19" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_20" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_21" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_22" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_23" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_24" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_25" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_26" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_27" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_28" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_29" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_30" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_31" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_32" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_33" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_34" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_35" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_36" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_37" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_38" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_39" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_40" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_41" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_42" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_43" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_44" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_45" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_46" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_47" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_48" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_49" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_50" Type="nvarchar" MaxLength="250" />
+    <Property Name="ID_Exam" Type="int" Nullable="false" />
+    <Property Name="create_date" Type="nchar" MaxLength="50" />
+    <Property Name="create_user" Type="nchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GioiTinh">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+    <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+    <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="value_1" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_2" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_3" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_4" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_5" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_6" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_7" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_8" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_9" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_10" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_11" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_12" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_13" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_14" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_15" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_16" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_17" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_18" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_19" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_20" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_21" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_22" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_23" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_24" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_25" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_26" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_27" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_28" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_29" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_30" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_31" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_32" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_33" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_34" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_35" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_36" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_37" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_38" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_39" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_40" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_41" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_42" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_43" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_44" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_45" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_46" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_47" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_48" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_49" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_50" Type="nvarchar" MaxLength="250" />
+    <Property Name="ID_Student" Type="int" Nullable="false" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ID_ExamRoom" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_Exam" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Hoi_dong_thi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="value_1" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_2" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_3" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_4" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_5" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_6" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_7" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_8" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_9" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_10" Type="nvarchar" MaxLength="350" />
+    <Property Name="value_11" Type="nvarchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="KetQua">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+    <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+    <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MenuItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Url" Type="nvarchar" MaxLength="500" />
+    <Property Name="OrderIndex" Type="int" />
+    <Property Name="Icon" Type="varchar" MaxLength="200" />
+    <Property Name="ParentId" Type="int" />
+  </EntityType>
+  <EntityType Name="MT_VALUE_NAME">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="mo_ta" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_MT_VALUE_NAME" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PT_VALUE_NAME">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="50" />
+    <Property Name="mo_ta" Type="nvarchar" MaxLength="50" />
+    <Property Name="status" Type="nvarchar" MaxLength="50" />
+    <Property Name="type" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_PT_VALUE_NAME" Type="nvarchar" MaxLength="250" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="CreatedDate" Type="date" />
+    <Property Name="UpdatedDate" Type="date" />
+  </EntityType>
+  <EntityType Name="Role_MenuItem">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="MenuItemId" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+    <Property Name="MenuItemId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID_Settings" Type="nvarchar" MaxLength="350" />
+    <Property Name="Loai" Type="nvarchar" MaxLength="350" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="tt" Type="nvarchar" MaxLength="50" />
+    <Property Name="sbd" Type="nvarchar" MaxLength="50" />
+    <Property Name="ho_ten" Type="nvarchar" MaxLength="150" />
+    <Property Name="ngay_sinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="gioi_tinh" Type="nvarchar" MaxLength="50" />
+    <Property Name="coquan_congtac" Type="nvarchar" MaxLength="250" />
+    <Property Name="truong_hoc" Type="nvarchar" MaxLength="250" />
+    <Property Name="xeploai_hanhkiem" Type="nvarchar" MaxLength="50" />
+    <Property Name="xeploai_hocluc" Type="nvarchar" MaxLength="50" />
+    <Property Name="dien_uudai" Type="nvarchar" MaxLength="50" />
+    <Property Name="tong_so" Type="nvarchar" MaxLength="50" />
+    <Property Name="ketqua_thi" Type="nvarchar" MaxLength="50" />
+    <Property Name="xeploai_totnghiep" Type="nvarchar" MaxLength="50" />
+    <Property Name="ghichu" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID_Exam_Room" Type="int" Nullable="false" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="pdf" Type="nvarchar" MaxLength="150" />
+    <Property Name="dantoc" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Truong">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+    <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+    <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+    <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="CMND" Type="varchar" MaxLength="100" />
+    <Property Name="Image" Type="varchar" MaxLength="200" />
+    <Property Name="IsAdmin" Type="bit" />
+    <Property Name="UnitId" Type="int" />
+  </EntityType>
+  <EntityType Name="XepLoaiHanhKiem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+    <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+    <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+  </EntityType>
+  <EntityType Name="XepLoaiHocLuc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+    <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+    <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+  </EntityType>
+  <EntityType Name="XepLoaiTotNghiep">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+    <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+    <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+    <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+    <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ReportIdValue11">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role_MenuItem">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportIdValue112">
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="1" />
+    <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role_MenuItem">
+        <PropertyRef Name="MenuItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLDTModelStoreContainer">
+    <EntitySet Name="DienUuTien" EntityType="Self.DienUuTien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ExamRoom" EntityType="Self.ExamRoom" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GioiTinh" EntityType="Self.GioiTinh" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Hoi_dong_thi" EntityType="Self.Hoi_dong_thi" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KetQua" EntityType="Self.KetQua" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuItem" EntityType="Self.MenuItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MT_VALUE_NAME" EntityType="Self.MT_VALUE_NAME" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="PT_VALUE_NAME" EntityType="Self.PT_VALUE_NAME" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role_MenuItem" EntityType="Self.Role_MenuItem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Truong" EntityType="Self.Truong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XepLoaiHanhKiem" EntityType="Self.XepLoaiHanhKiem" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XepLoaiHocLuc" EntityType="Self.XepLoaiHocLuc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="XepLoaiTotNghiep" EntityType="Self.XepLoaiTotNghiep" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_ReportIdValue11" Association="Self.FK_ReportIdValue11">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportIdValue112" Association="Self.FK_ReportIdValue112">
+      <End Role="MenuItem" EntitySet="MenuItem" />
+      <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

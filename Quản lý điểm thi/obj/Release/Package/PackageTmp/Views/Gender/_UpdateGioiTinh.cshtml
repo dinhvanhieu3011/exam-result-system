@@ -1,0 +1,53 @@
+﻿@model Quản_lý_điểm_thi.Models.GenderModel
+@using Quản_lý_điểm_thi.Common;
+@{
+    Layout = null;
+}
+<div class="modal fade in" id="updateModal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="label-model">Cập nhật thông tin giới tính</h4><h4 class="modal-title" style="color:red" id="myModalLabel"></h4>
+                <input type="hidden" value="">
+            </div>
+            <div class="modal-body">
+                <div class="no-print margin-bottom" id="err-update-message" style="display:none">
+                    <div class="callout callout-danger" style="margin-bottom: 0!important;">
+                        <h4><i class="fa fa-info"></i> Error:</h4>
+                        <p id="err-update-message-content"></p>
+                    </div>
+                </div>
+                <form action="/" method="post" id="frmUpdateGender">
+                    <div class="row">
+                        <fieldset>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Name">Tên giới tính</label>
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control text-input", @placeholder = "Tên giới tính", @id = "txtUpdateName" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="Name">Mô tả</label>
+                                    @Html.TextAreaFor(m => m.Description, new { @class = "form-control text-input", @placeholder = "Mô tả giới tính", @id = "txtUpdateDes" })
+                                </div>
+                                <div class="form-group">
+                                    <label for="Name">Ghi chú</label>
+                                    @Html.TextAreaFor(m => m.Note, new { @class = "form-control text-input", @placeholder = "Ghi chú giới tính", @id = "txtUpdateNote" })
+                                </div>
+                            </div>
+                            <div id="tokenUpdateGender">
+                                @Html.AntiForgeryToken()
+                            </div>
+                            @Html.HiddenFor(m => m.Id, new { @id = "hdUpdateId" })
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-left" id="btnUpdateGender"><i class="fa fa-save"></i> Lưu</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-window-close-o"></i> Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,1175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QLDTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="DienUuTien">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+          <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="hoi_dong_thi" Type="nvarchar" MaxLength="350" />
+          <Property Name="khoa_thi" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_1" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_2" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_3" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="nam_thi" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="ID_PT_VALUE_NAME" Type="int" Nullable="false" />
+          <Property Name="ID_MT_VALUE_NAME" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExamRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="value_1" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_2" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_3" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_4" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_5" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_6" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_7" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_8" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_9" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_10" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_11" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_12" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_13" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_14" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_15" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_16" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_17" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_18" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_19" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_20" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_21" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_22" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_23" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_24" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_25" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_26" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_27" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_28" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_29" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_30" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_31" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_32" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_33" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_34" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_35" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_36" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_37" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_38" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_39" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_40" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_41" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_42" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_43" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_44" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_45" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_46" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_47" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_48" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_49" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_50" Type="nvarchar" MaxLength="250" />
+          <Property Name="ID_Exam" Type="int" Nullable="false" />
+          <Property Name="create_date" Type="nchar" MaxLength="50" />
+          <Property Name="create_user" Type="nchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="GioiTinh">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+          <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="value_1" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_2" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_3" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_4" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_5" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_6" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_7" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_8" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_9" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_10" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_11" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_12" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_13" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_14" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_15" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_16" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_17" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_18" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_19" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_20" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_21" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_22" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_23" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_24" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_25" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_26" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_27" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_28" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_29" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_30" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_31" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_32" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_33" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_34" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_35" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_36" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_37" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_38" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_39" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_40" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_41" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_42" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_43" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_44" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_45" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_46" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_47" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_48" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_49" Type="nvarchar" MaxLength="250" />
+          <Property Name="value_50" Type="nvarchar" MaxLength="250" />
+          <Property Name="ID_Student" Type="int" Nullable="false" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID_ExamRoom" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Exam" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Hoi_dong_thi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="value_1" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_2" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_3" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_4" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_5" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_6" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_7" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_8" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_9" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_10" Type="nvarchar" MaxLength="350" />
+          <Property Name="value_11" Type="nvarchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="KetQua">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+          <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="500" />
+          <Property Name="OrderIndex" Type="int" />
+          <Property Name="Icon" Type="varchar" MaxLength="200" />
+          <Property Name="ParentId" Type="int" />
+        </EntityType>
+        <EntityType Name="MT_VALUE_NAME">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="mo_ta" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_MT_VALUE_NAME" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PT_VALUE_NAME">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="mo_ta" Type="nvarchar" MaxLength="50" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+          <Property Name="type" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_PT_VALUE_NAME" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="UpdatedDate" Type="date" />
+        </EntityType>
+        <EntityType Name="Role_MenuItem">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="MenuItemId" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+          <Property Name="MenuItemId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Settings" Type="nvarchar" MaxLength="350" />
+          <Property Name="Loai" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tt" Type="nvarchar" MaxLength="50" />
+          <Property Name="sbd" Type="nvarchar" MaxLength="50" />
+          <Property Name="ho_ten" Type="nvarchar" MaxLength="150" />
+          <Property Name="ngay_sinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="gioi_tinh" Type="nvarchar" MaxLength="50" />
+          <Property Name="coquan_congtac" Type="nvarchar" MaxLength="250" />
+          <Property Name="truong_hoc" Type="nvarchar" MaxLength="250" />
+          <Property Name="xeploai_hanhkiem" Type="nvarchar" MaxLength="50" />
+          <Property Name="xeploai_hocluc" Type="nvarchar" MaxLength="50" />
+          <Property Name="dien_uudai" Type="nvarchar" MaxLength="50" />
+          <Property Name="tong_so" Type="nvarchar" MaxLength="50" />
+          <Property Name="ketqua_thi" Type="nvarchar" MaxLength="50" />
+          <Property Name="xeploai_totnghiep" Type="nvarchar" MaxLength="50" />
+          <Property Name="ghichu" Type="nvarchar" MaxLength="50" />
+          <Property Name="ID_Exam_Room" Type="int" Nullable="false" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="pdf" Type="nvarchar" MaxLength="150" />
+          <Property Name="dantoc" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Truong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+          <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="100" />
+          <Property Name="Birthday" Type="date" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="500" />
+          <Property Name="CMND" Type="varchar" MaxLength="100" />
+          <Property Name="Image" Type="varchar" MaxLength="200" />
+          <Property Name="IsAdmin" Type="bit" />
+          <Property Name="UnitId" Type="int" />
+        </EntityType>
+        <EntityType Name="XepLoaiHanhKiem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+          <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="XepLoaiHocLuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+          <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <EntityType Name="XepLoaiTotNghiep">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="350" />
+          <Property Name="Mo Ta" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ghi chu" Type="nvarchar" MaxLength="350" />
+          <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ReportIdValue11">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Role_MenuItem">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportIdValue112">
+          <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="1" />
+          <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Role_MenuItem">
+              <PropertyRef Name="MenuItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLDTModelStoreContainer">
+          <EntitySet Name="DienUuTien" EntityType="Self.DienUuTien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Exam" EntityType="Self.Exam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamRoom" EntityType="Self.ExamRoom" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GioiTinh" EntityType="Self.GioiTinh" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Grade" EntityType="Self.Grade" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Hoi_dong_thi" EntityType="Self.Hoi_dong_thi" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KetQua" EntityType="Self.KetQua" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuItem" EntityType="Self.MenuItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MT_VALUE_NAME" EntityType="Self.MT_VALUE_NAME" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PT_VALUE_NAME" EntityType="Self.PT_VALUE_NAME" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role_MenuItem" EntityType="Self.Role_MenuItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Truong" EntityType="Self.Truong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XepLoaiHanhKiem" EntityType="Self.XepLoaiHanhKiem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XepLoaiHocLuc" EntityType="Self.XepLoaiHocLuc" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="XepLoaiTotNghiep" EntityType="Self.XepLoaiTotNghiep" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ReportIdValue11" Association="Self.FK_ReportIdValue11">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportIdValue112" Association="Self.FK_ReportIdValue112">
+            <End Role="MenuItem" EntitySet="MenuItem" />
+            <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QLDTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="DienUuTien">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Exam">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="hoi_dong_thi" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="khoa_thi" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_1" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_2" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_3" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="nam_thi" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_PT_VALUE_NAME" Type="Int32" Nullable="false" />
+          <Property Name="ID_MT_VALUE_NAME" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ExamRoom">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="value_1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_5" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_6" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_7" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_8" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_9" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_10" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_11" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_12" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_13" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_14" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_15" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_16" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_17" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_18" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_19" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_20" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_21" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_22" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_23" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_24" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_25" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_26" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_27" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_28" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_29" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_30" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_31" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_32" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_33" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_34" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_35" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_36" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_37" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_38" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_39" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_40" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_41" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_42" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_43" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_44" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_45" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_46" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_47" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_48" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_49" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_50" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Exam" Type="Int32" Nullable="false" />
+          <Property Name="create_date" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="create_user" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GioiTinh">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Grade">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="value_1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_5" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_6" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_7" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_8" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_9" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_10" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_11" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_12" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_13" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_14" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_15" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_16" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_17" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_18" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_19" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_20" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_21" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_22" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_23" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_24" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_25" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_26" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_27" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_28" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_29" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_30" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_31" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_32" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_33" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_34" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_35" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_36" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_37" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_38" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_39" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_40" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_41" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_42" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_43" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_44" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_45" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_46" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_47" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_48" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_49" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="value_50" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Student" Type="Int32" Nullable="false" />
+          <Property Name="create_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ID_ExamRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Exam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Hoi_dong_thi">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="value_1" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_2" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_3" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_4" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_5" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_6" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_7" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_8" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_9" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_10" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="value_11" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="KetQua">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MenuItem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="OrderIndex" Type="Int32" />
+          <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <NavigationProperty Name="Role_MenuItem" Relationship="Self.FK_ReportIdValue112" FromRole="MenuItem" ToRole="Role_MenuItem" />
+        </EntityType>
+        <EntityType Name="MT_VALUE_NAME">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mo_ta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_MT_VALUE_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PT_VALUE_NAME">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="mo_ta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_PT_VALUE_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Role_MenuItem" Relationship="Self.FK_ReportIdValue11" FromRole="Role" ToRole="Role_MenuItem" />
+        </EntityType>
+        <EntityType Name="Role_MenuItem">
+          <Key>
+            <PropertyRef Name="RoleId" />
+            <PropertyRef Name="MenuItemId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <Property Name="MenuItemId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="MenuItem" Relationship="Self.FK_ReportIdValue112" FromRole="Role_MenuItem" ToRole="MenuItem" />
+          <NavigationProperty Name="Role" Relationship="Self.FK_ReportIdValue11" FromRole="Role_MenuItem" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Setting">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Settings" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Loai" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="sbd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ho_ten" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ngay_sinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="gioi_tinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="coquan_congtac" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="truong_hoc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="xeploai_hanhkiem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xeploai_hocluc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dien_uudai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="tong_so" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ketqua_thi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="xeploai_totnghiep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ghichu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Exam_Room" Type="Int32" Nullable="false" />
+          <Property Name="create_date" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="pdf" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="dantoc" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Truong">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Birthday" Type="DateTime" Precision="0" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CMND" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="IsAdmin" Type="Boolean" />
+          <Property Name="UnitId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="XepLoaiHanhKiem">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="XepLoaiHocLuc">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="XepLoaiTotNghiep">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ReportIdValue112">
+          <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="1" />
+          <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MenuItem">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Role_MenuItem">
+              <PropertyRef Name="MenuItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ReportIdValue11">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Role_MenuItem">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QLDTEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="DienUuTiens" EntityType="Self.DienUuTien" />
+          <EntitySet Name="Exams" EntityType="Self.Exam" />
+          <EntitySet Name="ExamRooms" EntityType="Self.ExamRoom" />
+          <EntitySet Name="GioiTinhs" EntityType="Self.GioiTinh" />
+          <EntitySet Name="Grades" EntityType="Self.Grade" />
+          <EntitySet Name="Hoi_dong_thi" EntityType="Self.Hoi_dong_thi" />
+          <EntitySet Name="KetQuas" EntityType="Self.KetQua" />
+          <EntitySet Name="MenuItems" EntityType="Self.MenuItem" />
+          <EntitySet Name="MT_VALUE_NAME" EntityType="Self.MT_VALUE_NAME" />
+          <EntitySet Name="PT_VALUE_NAME" EntityType="Self.PT_VALUE_NAME" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Role_MenuItem" EntityType="Self.Role_MenuItem" />
+          <EntitySet Name="Settings" EntityType="Self.Setting" />
+          <EntitySet Name="Students" EntityType="Self.Student" />
+          <EntitySet Name="Truongs" EntityType="Self.Truong" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="XepLoaiHanhKiems" EntityType="Self.XepLoaiHanhKiem" />
+          <EntitySet Name="XepLoaiHocLucs" EntityType="Self.XepLoaiHocLuc" />
+          <EntitySet Name="XepLoaiTotNghieps" EntityType="Self.XepLoaiTotNghiep" />
+          <AssociationSet Name="FK_ReportIdValue112" Association="Self.FK_ReportIdValue112">
+            <End Role="MenuItem" EntitySet="MenuItems" />
+            <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ReportIdValue11" Association="Self.FK_ReportIdValue11">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QLDTModelStoreContainer" CdmEntityContainer="QLDTEntities1">
+          <EntitySetMapping Name="DienUuTiens">
+            <EntityTypeMapping TypeName="QLDTModel.DienUuTien">
+              <MappingFragment StoreEntitySet="DienUuTien">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+                <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Exams">
+            <EntityTypeMapping TypeName="QLDTModel.Exam">
+              <MappingFragment StoreEntitySet="Exam">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="hoi_dong_thi" ColumnName="hoi_dong_thi" />
+                <ScalarProperty Name="khoa_thi" ColumnName="khoa_thi" />
+                <ScalarProperty Name="value_1" ColumnName="value_1" />
+                <ScalarProperty Name="value_2" ColumnName="value_2" />
+                <ScalarProperty Name="value_3" ColumnName="value_3" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+                <ScalarProperty Name="nam_thi" ColumnName="nam_thi" />
+                <ScalarProperty Name="ID_PT_VALUE_NAME" ColumnName="ID_PT_VALUE_NAME" />
+                <ScalarProperty Name="ID_MT_VALUE_NAME" ColumnName="ID_MT_VALUE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExamRooms">
+            <EntityTypeMapping TypeName="QLDTModel.ExamRoom">
+              <MappingFragment StoreEntitySet="ExamRoom">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="value_1" ColumnName="value_1" />
+                <ScalarProperty Name="value_2" ColumnName="value_2" />
+                <ScalarProperty Name="value_3" ColumnName="value_3" />
+                <ScalarProperty Name="value_4" ColumnName="value_4" />
+                <ScalarProperty Name="value_5" ColumnName="value_5" />
+                <ScalarProperty Name="value_6" ColumnName="value_6" />
+                <ScalarProperty Name="value_7" ColumnName="value_7" />
+                <ScalarProperty Name="value_8" ColumnName="value_8" />
+                <ScalarProperty Name="value_9" ColumnName="value_9" />
+                <ScalarProperty Name="value_10" ColumnName="value_10" />
+                <ScalarProperty Name="value_11" ColumnName="value_11" />
+                <ScalarProperty Name="value_12" ColumnName="value_12" />
+                <ScalarProperty Name="value_13" ColumnName="value_13" />
+                <ScalarProperty Name="value_14" ColumnName="value_14" />
+                <ScalarProperty Name="value_15" ColumnName="value_15" />
+                <ScalarProperty Name="value_16" ColumnName="value_16" />
+                <ScalarProperty Name="value_17" ColumnName="value_17" />
+                <ScalarProperty Name="value_18" ColumnName="value_18" />
+                <ScalarProperty Name="value_19" ColumnName="value_19" />
+                <ScalarProperty Name="value_20" ColumnName="value_20" />
+                <ScalarProperty Name="value_21" ColumnName="value_21" />
+                <ScalarProperty Name="value_22" ColumnName="value_22" />
+                <ScalarProperty Name="value_23" ColumnName="value_23" />
+                <ScalarProperty Name="value_24" ColumnName="value_24" />
+                <ScalarProperty Name="value_25" ColumnName="value_25" />
+                <ScalarProperty Name="value_26" ColumnName="value_26" />
+                <ScalarProperty Name="value_27" ColumnName="value_27" />
+                <ScalarProperty Name="value_28" ColumnName="value_28" />
+                <ScalarProperty Name="value_29" ColumnName="value_29" />
+                <ScalarProperty Name="value_30" ColumnName="value_30" />
+                <ScalarProperty Name="value_31" ColumnName="value_31" />
+                <ScalarProperty Name="value_32" ColumnName="value_32" />
+                <ScalarProperty Name="value_33" ColumnName="value_33" />
+                <ScalarProperty Name="value_34" ColumnName="value_34" />
+                <ScalarProperty Name="value_35" ColumnName="value_35" />
+                <ScalarProperty Name="value_36" ColumnName="value_36" />
+                <ScalarProperty Name="value_37" ColumnName="value_37" />
+                <ScalarProperty Name="value_38" ColumnName="value_38" />
+                <ScalarProperty Name="value_39" ColumnName="value_39" />
+                <ScalarProperty Name="value_40" ColumnName="value_40" />
+                <ScalarProperty Name="value_41" ColumnName="value_41" />
+                <ScalarProperty Name="value_42" ColumnName="value_42" />
+                <ScalarProperty Name="value_43" ColumnName="value_43" />
+                <ScalarProperty Name="value_44" ColumnName="value_44" />
+                <ScalarProperty Name="value_45" ColumnName="value_45" />
+                <ScalarProperty Name="value_46" ColumnName="value_46" />
+                <ScalarProperty Name="value_47" ColumnName="value_47" />
+                <ScalarProperty Name="value_48" ColumnName="value_48" />
+                <ScalarProperty Name="value_49" ColumnName="value_49" />
+                <ScalarProperty Name="value_50" ColumnName="value_50" />
+                <ScalarProperty Name="ID_Exam" ColumnName="ID_Exam" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GioiTinhs">
+            <EntityTypeMapping TypeName="QLDTModel.GioiTinh">
+              <MappingFragment StoreEntitySet="GioiTinh">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+                <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Grades">
+            <EntityTypeMapping TypeName="QLDTModel.Grade">
+              <MappingFragment StoreEntitySet="Grade">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="value_1" ColumnName="value_1" />
+                <ScalarProperty Name="value_2" ColumnName="value_2" />
+                <ScalarProperty Name="value_3" ColumnName="value_3" />
+                <ScalarProperty Name="value_4" ColumnName="value_4" />
+                <ScalarProperty Name="value_5" ColumnName="value_5" />
+                <ScalarProperty Name="value_6" ColumnName="value_6" />
+                <ScalarProperty Name="value_7" ColumnName="value_7" />
+                <ScalarProperty Name="value_8" ColumnName="value_8" />
+                <ScalarProperty Name="value_9" ColumnName="value_9" />
+                <ScalarProperty Name="value_10" ColumnName="value_10" />
+                <ScalarProperty Name="value_11" ColumnName="value_11" />
+                <ScalarProperty Name="value_12" ColumnName="value_12" />
+                <ScalarProperty Name="value_13" ColumnName="value_13" />
+                <ScalarProperty Name="value_14" ColumnName="value_14" />
+                <ScalarProperty Name="value_15" ColumnName="value_15" />
+                <ScalarProperty Name="value_16" ColumnName="value_16" />
+                <ScalarProperty Name="value_17" ColumnName="value_17" />
+                <ScalarProperty Name="value_18" ColumnName="value_18" />
+                <ScalarProperty Name="value_19" ColumnName="value_19" />
+                <ScalarProperty Name="value_20" ColumnName="value_20" />
+                <ScalarProperty Name="value_21" ColumnName="value_21" />
+                <ScalarProperty Name="value_22" ColumnName="value_22" />
+                <ScalarProperty Name="value_23" ColumnName="value_23" />
+                <ScalarProperty Name="value_24" ColumnName="value_24" />
+                <ScalarProperty Name="value_25" ColumnName="value_25" />
+                <ScalarProperty Name="value_26" ColumnName="value_26" />
+                <ScalarProperty Name="value_27" ColumnName="value_27" />
+                <ScalarProperty Name="value_28" ColumnName="value_28" />
+                <ScalarProperty Name="value_29" ColumnName="value_29" />
+                <ScalarProperty Name="value_30" ColumnName="value_30" />
+                <ScalarProperty Name="value_31" ColumnName="value_31" />
+                <ScalarProperty Name="value_32" ColumnName="value_32" />
+                <ScalarProperty Name="value_33" ColumnName="value_33" />
+                <ScalarProperty Name="value_34" ColumnName="value_34" />
+                <ScalarProperty Name="value_35" ColumnName="value_35" />
+                <ScalarProperty Name="value_36" ColumnName="value_36" />
+                <ScalarProperty Name="value_37" ColumnName="value_37" />
+                <ScalarProperty Name="value_38" ColumnName="value_38" />
+                <ScalarProperty Name="value_39" ColumnName="value_39" />
+                <ScalarProperty Name="value_40" ColumnName="value_40" />
+                <ScalarProperty Name="value_41" ColumnName="value_41" />
+                <ScalarProperty Name="value_42" ColumnName="value_42" />
+                <ScalarProperty Name="value_43" ColumnName="value_43" />
+                <ScalarProperty Name="value_44" ColumnName="value_44" />
+                <ScalarProperty Name="value_45" ColumnName="value_45" />
+                <ScalarProperty Name="value_46" ColumnName="value_46" />
+                <ScalarProperty Name="value_47" ColumnName="value_47" />
+                <ScalarProperty Name="value_48" ColumnName="value_48" />
+                <ScalarProperty Name="value_49" ColumnName="value_49" />
+                <ScalarProperty Name="value_50" ColumnName="value_50" />
+                <ScalarProperty Name="ID_Student" ColumnName="ID_Student" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+                <ScalarProperty Name="ID_ExamRoom" ColumnName="ID_ExamRoom" />
+                <ScalarProperty Name="ID_Exam" ColumnName="ID_Exam" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Hoi_dong_thi">
+            <EntityTypeMapping TypeName="QLDTModel.Hoi_dong_thi">
+              <MappingFragment StoreEntitySet="Hoi_dong_thi">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="value_1" ColumnName="value_1" />
+                <ScalarProperty Name="value_2" ColumnName="value_2" />
+                <ScalarProperty Name="value_3" ColumnName="value_3" />
+                <ScalarProperty Name="value_4" ColumnName="value_4" />
+                <ScalarProperty Name="value_5" ColumnName="value_5" />
+                <ScalarProperty Name="value_6" ColumnName="value_6" />
+                <ScalarProperty Name="value_7" ColumnName="value_7" />
+                <ScalarProperty Name="value_8" ColumnName="value_8" />
+                <ScalarProperty Name="value_9" ColumnName="value_9" />
+                <ScalarProperty Name="value_10" ColumnName="value_10" />
+                <ScalarProperty Name="value_11" ColumnName="value_11" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KetQuas">
+            <EntityTypeMapping TypeName="QLDTModel.KetQua">
+              <MappingFragment StoreEntitySet="KetQua">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+                <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuItems">
+            <EntityTypeMapping TypeName="QLDTModel.MenuItem">
+              <MappingFragment StoreEntitySet="MenuItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="OrderIndex" ColumnName="OrderIndex" />
+                <ScalarProperty Name="Icon" ColumnName="Icon" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MT_VALUE_NAME">
+            <EntityTypeMapping TypeName="QLDTModel.MT_VALUE_NAME">
+              <MappingFragment StoreEntitySet="MT_VALUE_NAME">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="ID_MT_VALUE_NAME" ColumnName="ID_MT_VALUE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PT_VALUE_NAME">
+            <EntityTypeMapping TypeName="QLDTModel.PT_VALUE_NAME">
+              <MappingFragment StoreEntitySet="PT_VALUE_NAME">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="ID_PT_VALUE_NAME" ColumnName="ID_PT_VALUE_NAME" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="QLDTModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role_MenuItem">
+            <EntityTypeMapping TypeName="QLDTModel.Role_MenuItem">
+              <MappingFragment StoreEntitySet="Role_MenuItem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="QLDTModel.Setting">
+              <MappingFragment StoreEntitySet="Setting">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ID_Settings" ColumnName="ID_Settings" />
+                <ScalarProperty Name="Loai" ColumnName="Loai" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Students">
+            <EntityTypeMapping TypeName="QLDTModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="tt" ColumnName="tt" />
+                <ScalarProperty Name="sbd" ColumnName="sbd" />
+                <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
+                <ScalarProperty Name="ngay_sinh" ColumnName="ngay_sinh" />
+                <ScalarProperty Name="gioi_tinh" ColumnName="gioi_tinh" />
+                <ScalarProperty Name="coquan_congtac" ColumnName="coquan_congtac" />
+                <ScalarProperty Name="truong_hoc" ColumnName="truong_hoc" />
+                <ScalarProperty Name="xeploai_hanhkiem" ColumnName="xeploai_hanhkiem" />
+                <ScalarProperty Name="xeploai_hocluc" ColumnName="xeploai_hocluc" />
+                <ScalarProperty Name="dien_uudai" ColumnName="dien_uudai" />
+                <ScalarProperty Name="tong_so" ColumnName="tong_so" />
+                <ScalarProperty Name="ketqua_thi" ColumnName="ketqua_thi" />
+                <ScalarProperty Name="xeploai_totnghiep" ColumnName="xeploai_totnghiep" />
+                <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+                <ScalarProperty Name="ID_Exam_Room" ColumnName="ID_Exam_Room" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+                <ScalarProperty Name="pdf" ColumnName="pdf" />
+                <ScalarProperty Name="dantoc" ColumnName="dantoc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Truongs">
+            <EntityTypeMapping TypeName="QLDTModel.Truong">
+              <MappingFragment StoreEntitySet="Truong">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+                <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="QLDTModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CMND" ColumnName="CMND" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XepLoaiHanhKiems">
+            <EntityTypeMapping TypeName="QLDTModel.XepLoaiHanhKiem">
+              <MappingFragment StoreEntitySet="XepLoaiHanhKiem">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+                <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XepLoaiHocLucs">
+            <EntityTypeMapping TypeName="QLDTModel.XepLoaiHocLuc">
+              <MappingFragment StoreEntitySet="XepLoaiHocLuc">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+                <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="XepLoaiTotNghieps">
+            <EntityTypeMapping TypeName="QLDTModel.XepLoaiTotNghiep">
+              <MappingFragment StoreEntitySet="XepLoaiTotNghiep">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+                <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="create_user" ColumnName="create_user" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

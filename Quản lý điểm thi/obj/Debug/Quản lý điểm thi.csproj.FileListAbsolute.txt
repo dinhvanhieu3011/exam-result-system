@@ -1,0 +1,59 @@
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\ApplicationInsights.config
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\csc.exe
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\System.Collections.Immutable.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\System.Reflection.Metadata.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\vbc.exe
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\VBCSCompiler.exe
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\roslyn\VBCSCompiler.exe.config
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Quản lý điểm thi.dll.config
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Quản lý điểm thi.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Quản lý điểm thi.pdb
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\EntityFramework.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\EntityFramework.SqlServer.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\ExcelDataReader.DataSet.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\ExcelDataReader.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.Agent.Intercept.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.DependencyCollector.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.Web.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.WindowsServer.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.ApplicationInsights.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.Web.Infrastructure.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Newtonsoft.Json.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Linq.Dynamic.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Helpers.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Mvc.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Razor.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Webpages.Deployment.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Webpages.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Webpages.Razor.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\EntityFramework.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\EntityFramework.SqlServer.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\ExcelDataReader.pdb
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\ExcelDataReader.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\ExcelDataReader.DataSet.pdb
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\ExcelDataReader.DataSet.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.DependencyCollector.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.Web.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.AI.WindowsServer.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.ApplicationInsights.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\Newtonsoft.Json.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Razor.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Webpages.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Webpages.Deployment.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Webpages.Razor.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Helpers.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Mvc.xml
+D:\quan-li-diem-thi-2\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.dll
+D:\quan-li-diem-thi-2\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.pdb
+D:\quan-li-diem-thi-2\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.csprojResolveAssemblyReference.cache

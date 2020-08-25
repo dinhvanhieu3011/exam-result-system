@@ -1,0 +1,395 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLDTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DienUuTien">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Exam">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="hoi_dong_thi" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="khoa_thi" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_1" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_2" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_3" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="nam_thi" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_PT_VALUE_NAME" Type="Int32" Nullable="false" />
+    <Property Name="ID_MT_VALUE_NAME" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExamRoom">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="value_1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_5" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_6" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_7" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_8" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_9" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_10" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_11" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_12" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_13" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_14" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_15" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_16" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_17" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_18" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_19" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_20" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_21" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_22" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_23" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_24" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_25" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_26" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_27" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_28" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_29" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_30" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_31" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_32" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_33" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_34" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_35" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_36" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_37" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_38" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_39" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_40" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_41" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_42" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_43" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_44" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_45" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_46" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_47" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_48" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_49" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_50" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Exam" Type="Int32" Nullable="false" />
+    <Property Name="create_date" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+    <Property Name="create_user" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GioiTinh">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Grade">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="value_1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_5" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_6" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_7" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_8" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_9" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_10" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_11" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_12" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_13" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_14" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_15" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_16" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_17" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_18" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_19" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_20" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_21" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_22" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_23" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_24" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_25" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_26" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_27" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_28" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_29" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_30" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_31" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_32" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_33" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_34" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_35" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_36" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_37" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_38" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_39" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_40" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_41" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_42" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_43" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_44" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_45" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_46" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_47" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_48" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_49" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_50" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Student" Type="Int32" Nullable="false" />
+    <Property Name="create_date" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ID_ExamRoom" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Exam" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Hoi_dong_thi">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="value_1" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_2" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_3" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_4" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_5" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_6" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_7" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_8" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_9" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_10" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="value_11" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="KetQua">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MenuItem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Url" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="OrderIndex" Type="Int32" />
+    <Property Name="Icon" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <NavigationProperty Name="Role_MenuItem" Relationship="Self.FK_ReportIdValue112" FromRole="MenuItem" ToRole="Role_MenuItem" />
+  </EntityType>
+  <EntityType Name="MT_VALUE_NAME">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mo_ta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_MT_VALUE_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PT_VALUE_NAME">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="mo_ta" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_PT_VALUE_NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="Role_MenuItem" Relationship="Self.FK_ReportIdValue11" FromRole="Role" ToRole="Role_MenuItem" />
+  </EntityType>
+  <EntityType Name="Role_MenuItem">
+    <Key>
+      <PropertyRef Name="RoleId" />
+      <PropertyRef Name="MenuItemId" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <Property Name="MenuItemId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="MenuItem" Relationship="Self.FK_ReportIdValue112" FromRole="Role_MenuItem" ToRole="MenuItem" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_ReportIdValue11" FromRole="Role_MenuItem" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ID_Settings" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Loai" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Student">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="sbd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ho_ten" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ngay_sinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="gioi_tinh" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="coquan_congtac" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="truong_hoc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="xeploai_hanhkiem" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="xeploai_hocluc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dien_uudai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tong_so" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ketqua_thi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="xeploai_totnghiep" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ghichu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID_Exam_Room" Type="Int32" Nullable="false" />
+    <Property Name="create_date" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="pdf" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="dantoc" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Truong">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CMND" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <Property Name="UnitId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="XepLoaiHanhKiem">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="XepLoaiHocLuc">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="XepLoaiTotNghiep">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ten" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Mo_Ta" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ReportIdValue112">
+    <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="1" />
+    <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MenuItem">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role_MenuItem">
+        <PropertyRef Name="MenuItemId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ReportIdValue11">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Role_MenuItem">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLDTEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DienUuTiens" EntityType="Self.DienUuTien" />
+    <EntitySet Name="Exams" EntityType="Self.Exam" />
+    <EntitySet Name="ExamRooms" EntityType="Self.ExamRoom" />
+    <EntitySet Name="GioiTinhs" EntityType="Self.GioiTinh" />
+    <EntitySet Name="Grades" EntityType="Self.Grade" />
+    <EntitySet Name="Hoi_dong_thi" EntityType="Self.Hoi_dong_thi" />
+    <EntitySet Name="KetQuas" EntityType="Self.KetQua" />
+    <EntitySet Name="MenuItems" EntityType="Self.MenuItem" />
+    <EntitySet Name="MT_VALUE_NAME" EntityType="Self.MT_VALUE_NAME" />
+    <EntitySet Name="PT_VALUE_NAME" EntityType="Self.PT_VALUE_NAME" />
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Role_MenuItem" EntityType="Self.Role_MenuItem" />
+    <EntitySet Name="Settings" EntityType="Self.Setting" />
+    <EntitySet Name="Students" EntityType="Self.Student" />
+    <EntitySet Name="Truongs" EntityType="Self.Truong" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="XepLoaiHanhKiems" EntityType="Self.XepLoaiHanhKiem" />
+    <EntitySet Name="XepLoaiHocLucs" EntityType="Self.XepLoaiHocLuc" />
+    <EntitySet Name="XepLoaiTotNghieps" EntityType="Self.XepLoaiTotNghiep" />
+    <AssociationSet Name="FK_ReportIdValue112" Association="Self.FK_ReportIdValue112">
+      <End Role="MenuItem" EntitySet="MenuItems" />
+      <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ReportIdValue11" Association="Self.FK_ReportIdValue11">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

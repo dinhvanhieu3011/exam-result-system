@@ -1,0 +1,93 @@
+﻿@{
+    Layout = null;
+}
+
+<style>
+    .modal-message {
+        text-align: center;
+        padding: 0 !important;
+    }
+
+    .modal-message:before {
+         content: '';
+         display: inline-block;
+         height: 100%;
+         vertical-align: middle;
+     }
+
+    .modal-message .modal-dialog {
+        display: inline-block;
+        text-align: left;
+        vertical-align: middle;
+    }
+</style>
+
+<div class="modal modal-message" tabindex="-1" role="dialog" id="modalAlertDelete">
+    <div class="modal-dialog  modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger" style="color:white!important">
+                <h5 class="modal-title">Thông báo</h5>
+            </div>
+            <div class="modal-body">
+                <p>Bạn có chắc muốn xác thông tin này không?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="btnDeleteAccess" class="btn btn-danger pull-left">Xóa</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-message" tabindex="-1" role="dialog" id="modalSuccessMess">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-success" style="color:white!important">
+                <h5 class="modal-title">Thông báo</h5>
+            </div>
+            <div class="modal-body">
+                <p class="message-content">Cập nhật thông tin thành công</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal modal-message" tabindex="-1" role="dialog" id="modalErroMess">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger" style="color:white!important;">
+                <h5 class="modal-title">Thông báo</h5>
+            </div>
+            <div class="modal-body">
+                <p class="message-content">Cập nhật thông tin thất bại</p>
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-info" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form action="/" method="post" id="formDelete">
+    <input type="hidden" value="" name="id" id="deleteId" />
+    @Html.AntiForgeryToken()
+</form>
+
+<script>
+    function showSuccessMessage(mess) {
+        $('#modalSuccessMess').modal('show')
+        $('#modalSuccessMess .message-content').text(mess)
+    }
+
+    function showAlterMessage(mess) {
+        $('#modalErroMess').modal('show')
+        $('#modalErroMess .message-content').text(mess)
+    }
+
+    function hideMessage() {
+        $('#success-message').modal('hide')
+        $('#success-message .message-content').text('')
+        $('#modalErroMess').modal('hide')
+        $('#modalErroMess .message-content').text('')
+    }
+</script>

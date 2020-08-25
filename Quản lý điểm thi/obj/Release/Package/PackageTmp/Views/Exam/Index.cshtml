@@ -1,0 +1,539 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var lst_MT = (List<string>)ViewBag.lst_MT;
+    var lst_PT = (List<string>)ViewBag.lst_PT;
+    List<Quản_lý_điểm_thi.Models.Setting> lst_PT_1 = (List<Quản_lý_điểm_thi.Models.Setting>)ViewBag.lst_PT_1;
+    List<Quản_lý_điểm_thi.Models.Setting> lst_MT_1 = (List<Quản_lý_điểm_thi.Models.Setting>)ViewBag.lst_MT_1;
+}
+@section Styles
+{
+    <link href="~/Content/select2.css" rel="stylesheet" />
+    <style>
+        .dataTables_info {
+            font-size: 10px;
+        }
+
+        a {
+            font-size: 15px;
+        }
+    </style>
+}
+@section script
+{
+    <script src="~/dist/js/jquery.dataTables.js"></script>
+    <script src="~/dist/js/dataTables.bootstrap4.js"></script>
+    <!-- #region RELOAD -->
+    <script>
+        function reload() {
+            location.reload();
+            document.getElementById('search').value = "";
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region Tạo bảng dữ liệu -->
+    <script>
+
+        var arr1 = [11];
+        $(document).ready(function () {
+            var t = $("#demoGrid").DataTable({
+                initComplete: function () {
+                    $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
+                },
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "pageLength": 50,
+                "ajax": {
+                    "url": "/Exam/LoadData",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+
+                "columnDefs":
+ [
+     {
+         "searchable": false,
+         "orderable": false,
+         "targets": 0
+     },
+    {
+        "targets": [6, 3],
+        "visible": false,
+    },
+              { "width": "50px", "targets": 0 },
+    { "width": "50px", "targets": 1 },
+    { "width": "200px", "targets": 7 },
+ {
+     "targets": [1],
+     "searchable": false,
+     "orderable": false,
+
+ },
+ {
+     "targets": [7, 1],
+     "searchable": false,
+     "orderable": false,
+     "className": 'text-center'
+ }
+ ],
+
+
+                "columns": [
+                                { "data": "Id", "name": "Id", "width": "10px" },
+                       {
+                           "render": function (data, type, full, meta) {
+                               return '<a href="/HoiDongThi/index/' + full.Id + '"><img src="/Content/img/icons8-folder-240.png"  alt="hoi-dong-thii-dong-do-2019" style="width:30px;height:30px;margin-left:20px;cursor:pointer"></a>';
+                           }
+                       },
+                       {
+                           "render": function (data, type, full, meta) {
+                               return '<a  href="/HoiDongThi/index/' + full.Id + '">' + full.khoa_thi + '</a>';
+                           }
+                       },
+                      { "data": "hoi_dong_thi", "name": "hoi_dong_thi", "autoWidth": true },
+                      { "data": "nam_thi", "name": "nam_thi", "autoWidth": true },
+                      { "data": "value_1", "name": "value_1", "autoWidth": true },
+                      { "data": "value_2", "name": "value_2", "autoWidth": true },
+
+
+                      {
+                          "render": function (data, type, full, meta) {
+                              return '<button type="button" data-toggle="modal" onclick = "EditData(' + full.Id + ')" data-target="#createModal" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></button>' +
+                                    '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>' +
+                                     '<button type="button" data-toggle="modal" data-target="#createModal" onclick = "Detail(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-success"><i class="fa fa-eye"></i></button>';
+                          }
+                      },
+                ]
+            });
+            t.on('draw.dt', function () {
+                var PageInfo = $('#demoGrid').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("input[type='search']").wrap("<form>");
+            $("input[type='search']").closest("form").attr("autocomplete", "off");
+        });
+    </script>
+    <!-- #endregion -->
+    <!-- #region Lưu chỉnh sửa khóa thi -->
+    <script>
+        function SaveorCreate() {
+
+            if (document.getElementById('txtID').value == "") {
+                CreateNew();
+            }
+            else {
+                Save();
+            }
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region REset form để tạo mới -->
+    <script>
+        function ResetForm() {
+            //$('#txtCauHinhPhongThi').select2({ disabled: false });
+            //$('#txtCauHinhMonThi').select2({ disabled: false });
+            document.getElementById('txtID').readOnly = false;
+
+
+            document.getElementById('txtHoiDongThi').readOnly = false;
+            document.getElementById('txtHoiDongThi').value = "";
+
+
+            document.getElementById('txtKhoaThi').readOnly = false;
+            document.getElementById('txtKhoaThi').value = "";
+
+            document.getElementById('txtNamThi').readOnly = false;
+            document.getElementById('txtNamThi').value = "";
+
+            document.getElementById('txtvalue_1').readOnly = false;
+            document.getElementById('txtvalue_1').value = "";
+            document.getElementById('txtvalue_2').readOnly = false;
+            document.getElementById('txtvalue_2').value = "";
+
+            //$("#txtCauHinhPhongThi").select2("val", "-1");
+            document.getElementById('txtID').value = "";
+
+            //$("#txtCauHinhMonThi").select2("val", "-1");
+
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region Lưu chỉnh sửa khóa thi -->
+    <script>
+        function Save() {
+
+            $.post("@Url.Action("saveJS", "Exam")",
+        {
+            id: document.getElementById('txtID').value,
+            hoi_dong_thi: document.getElementById('txtHoiDongThi').value,
+            khoa_thi: document.getElementById('txtKhoaThi').value,
+            nam_thi: document.getElementById('txtNamThi').value,
+            value_1: document.getElementById('txtvalue_1').value,
+            value_2: document.getElementById('txtvalue_2').value,
+        },
+        function (data) {
+            if (data == -1) {
+
+            }
+            else {
+                document.getElementById('myModalLabel').value = "Lưu thành công";
+                showSuccessMessage("Lưu thông tin thành công");
+                $("#demoGrid").DataTable().ajax.reload();
+                $('#createModal').modal('hide')
+            }
+        });
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region Tạo mới khóa thi -->
+    <script>
+        function CreateNew() {
+
+            $.post("@Url.Action("CreateNewJS", "Exam")",
+        {
+            hoi_dong_thi: document.getElementById('txtHoiDongThi').value,
+            khoa_thi: document.getElementById('txtKhoaThi').value,
+            nam_thi: document.getElementById('txtNamThi').value,
+            ID_PT: $("#txtCauHinhPhongThi").val(),
+            ID_MT: $("#txtCauHinhMonThi").val(),
+            value_1: document.getElementById('txtvalue_1').value,
+            value_2: document.getElementById('txtvalue_2').value,
+        },
+        function (data) {
+            if (data == -1) {
+
+            }
+            else {
+                document.getElementById('myModalLabel').value = "Lưu thành công";
+                showSuccessMessage("Lưu thông tin thành công");
+                $("#demoGrid").DataTable().ajax.reload();
+                $('#createModal').modal('hide')
+            }
+        });
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region Xóa khóa thi -->
+    <script>
+        function DeleteData(id) {
+            $("#deleteId").val(id)
+            $('#modalAlertDelete').modal('show')
+        }
+        $('#modalAlertDelete').on('hide.bs.modal', function (event) {
+            $("#deleteId").val('')
+            hideMessage();
+        })
+
+        $('#btnDeleteAccess').on('click', function () {
+            hideMessage();
+            $.ajax({
+                url: '/Exam/deleteJS',
+                type: "POST",
+                data: $("#formDelete").serialize(),
+                success: function (result) {
+                    if (result != -1) {
+                        showSuccessMessage('Xóa thông tin kì thi hoàn tất.')
+                        $("#demoGrid").DataTable().ajax.reload();
+                    } else {
+                        showAlterMessage('Xóa thông tin kì thi thất bại.')
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+            $('#modalAlertDelete').modal('hide')
+        })
+    </script>
+
+    <!-- #endregion -->
+    <!-- #region Sửa khóa thi -->
+    <script>
+        function EditData(id) {
+
+            $.post("@Url.Action("getDataJS", "Exam")",
+        {
+            id: id
+        },
+        function (data) {
+            if (data == -1) {
+            }
+            else {
+                //console.log(data);
+
+                document.getElementById('txtID').readOnly = false;
+                document.getElementById('txtHoiDongThi').readOnly = false;
+                document.getElementById('txtKhoaThi').readOnly = false;
+                document.getElementById('txtNamThi').readOnly = false;
+                $('#txtCauHinhPhongThi').select2({ disabled: false });
+                $('#txtCauHinhMonThi').select2({ disabled: false });
+                document.getElementById('txtID').value = data.id;
+                document.getElementById('txtHoiDongThi').value = data.hoi_dong_thi;
+                document.getElementById('txtKhoaThi').value = data.khoa_thi;
+                document.getElementById('txtNamThi').value = data.nam_thi;
+                document.getElementById('txtvalue_1').value = data.value_1;
+                document.getElementById('txtvalue_2').value = data.value_2;
+
+                $("#txtCauHinhPhongThi").select2("val", data.ID_PT + "");
+                $('#txtCauHinhPhongThi').select2({ disabled: true });
+
+
+                $("#txtCauHinhMonThi").select2("val", data.ID_MT + "");
+                $('#txtCauHinhMonThi').select2({ disabled: true });
+               
+            }
+        });
+        }
+    </script>
+
+    <!-- #endregion -->
+    <!-- #region Chi tiết khóa thi -->
+    <script>
+        function Detail(id) {
+            $.post("@Url.Action("getDataJS", "Exam")",
+        {
+            id: id
+        },
+        function (data) {
+            if (data == -1) {
+            }
+            else {
+                //console.log(data);
+                document.getElementById('txtID').readOnly = false;
+                document.getElementById('txtCauHinhMonThi').readOnly = false;
+                document.getElementById('txtCauHinhPhongThi').readOnly = false;
+                document.getElementById('txtHoiDongThi').readOnly = false;
+                document.getElementById('txtKhoaThi').readOnly = false;
+                document.getElementById('txtNamThi').readOnly = false;
+                document.getElementById('txtvalue_1').readOnly = false;
+                document.getElementById('txtvalue_2').readOnly = false;
+                document.getElementById('txtID').value = data.id;
+
+
+
+                document.getElementById('txtHoiDongThi').value = data.hoi_dong_thi;
+
+
+
+                document.getElementById('txtKhoaThi').value = data.khoa_thi;
+
+
+
+                document.getElementById('txtNamThi').value = data.nam_thi;
+                document.getElementById('txtvalue_1').value = data.value_1;
+                document.getElementById('txtvalue_2').value = data.value_2;
+
+                $("#txtCauHinhPhongThi").select2("val", data.ID_PT + "");
+
+
+
+                $("#txtCauHinhMonThi").select2("val", data.ID_MT + "");
+
+
+                document.getElementById('txtHoiDongThi').readOnly = true;
+                document.getElementById('txtNamThi').readOnly = true;
+                document.getElementById('txtKhoaThi').readOnly = true;
+                document.getElementById('txtID').readOnly = true;
+                document.getElementById('txtvalue_1').readOnly = true;
+                document.getElementById('txtvalue_2').readOnly = true;
+                $('#txtCauHinhPhongThi').select2({ disabled: true });
+                $('#txtCauHinhMonThi').select2({ disabled: true });
+
+            }
+        });
+        }
+    </script>
+    <!-- #endregion -->
+}
+
+@section path{
+    <li><a href="/Home/Index"><i class="fa fa-home"></i> Trang chủ</a></li>
+    <li><a href="/exam/Index">Danh sách khoá thi</a></li>
+    <li class="active" id=""></li>
+}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="nav-tabs-custom" style="border-top:1px solid #f9fafc">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a style="font-weight:bold" data-toggle="tab" href="#tab_1" aria-expanded="true" id="zoneTong1">Danh sách khoá thi</a></li>
+                </ul>
+            </div>
+            <div class="box-body" style="padding:0px !important; margin-bottom:5px;text-align:right">
+
+                <button type="button" class="btn btn-primary" onclick="ResetForm()" style="border-radius:10px;" data-toggle="modal" data-target="#createModal">
+                    <i class="fa fa-plus"></i> Thêm khoá thi
+                </button>
+                <a class="btn btn-default" onclick="reload();" id="btnrefresh" title="Tải lại dữ liệu mới"><i class="fa fa-refresh"></i> Tải lại</a>
+
+            </div>
+
+            <div class="tab-content">
+                <div id="tab_1" class="tab-pane active">
+                    <div class="box">
+
+
+                        <div class="box-body" style="padding:0px !important; margin-bottom:10px">
+                            <div id="tbldata_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row">
+                                    <div class="col-sm-12">
+
+                                        <table id="demoGrid" class="table table-bordered table-hover dataTable" role="grid">
+                                            <thead>
+                                                <tr role="row">
+
+                                                    <th></th>
+                                                    <th>Thư mục</th>
+                                                    <th>Khóa thi</th>
+                                                    <th>Hội đồng thi</th>
+                                                    <th>Năm thi</th>
+                                                    <th>Mô tả</th>
+                                                    <th>Ghi chú</th>
+                                                    <th></th>
+
+
+
+                                                </tr>
+                                            </thead>
+
+                                        </table><div id="tbldata_processing" class="dataTables_processing" style="display: none;">Đang tải dữ liệu...</div>
+                                    </div>
+                                </div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Model thêm mới ki` thi-->
+<div class="modal fade in" id="createModal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="">Thêm mới kỳ thi</h4><h4 class="modal-title" style="color:red" id="myModalLabel"></h4>
+                <input type="hidden" value="">
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <!-- row -->
+                        <div style="width:100%" class="hidden">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">ID :</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <input type="text" id="txtID" class="form-control" placeholder="" value="" autocomplete="off">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!-- row -->
+                        <div style="width:100%" hidden>
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Hội đồng thi :</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <input type="text" id="txtHoiDongThi" class="form-control" placeholder="Nhập tên hội đồng thi" value="">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <!-- row -->
+                        <div style="width:100%">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Khóa thi :</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <input type="text" id="txtKhoaThi" placeholder="Nhập tên khóa thi" value="" class="form-control">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                        <!-- row -->
+                        <div style="width:100%">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Năm thi:</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <input type="date" id="txtNamThi" placeholder="Nhập năm thi" value="" class="form-control">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!-- row -->
+                        <div style="width:100%">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Mô tả:</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <input type="text" id="txtvalue_1" placeholder="Nhập mô tả" value="" class="form-control">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!-- row -->
+                        <div style="width:100%">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Ghi chú:</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <input type="text" id="txtvalue_2" placeholder="Nhập ghi chú" value="" class="form-control">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!---------------------------------------------------------------------------------------->
+                        @*row*@
+                        <div style="width:100%">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Cấu hình TTPT (*):</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <select id="txtCauHinhPhongThi" data-placeholder="Chọn cấu hình thông tin phòng thi..." class="select-opt" tabindex="-1" aria-hidden="true">
+                                    <option value="-1"> --Cấu hình phòng thi-- </option>
+                                    @foreach (var item in lst_PT_1)
+                                    {
+                                        <option value="@item.Id">@item.Ten  </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        @*row*@
+                        <div style="width:100%">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Cấu hình MT (*):</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <select id="txtCauHinhMonThi" data-placeholder="Chọn cấu hình thông tin thí sinh ..." class="select-opt" tabindex="-1" aria-hidden="true">
+                                    <option value="-1"> --Cấu hình thông tin thí sinh-- </option>
+                                    @foreach (var item in lst_MT_1)
+                                    {
+                                        <option value="@item.Id">@item.Ten  </option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div id="notify"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-window-close-o"></i> Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="SaveorCreate();" id="btnSave"><i class="fa fa-save"></i> Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("MessageBox", "Common")

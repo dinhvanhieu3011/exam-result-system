@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "_SideBarBox";
+    Layout = null;
+}
+
+<div class="boxs">
+    <div class="box-body" style="min-height: 600px;">
+        <div class="sidebar" style="height: auto;">
+            <!-- sidebar menu: : style can be found in sidebar.less -->
+            <ul class="sidebar-menu tree" data-widget="tree">
+                <li class="header"><i class="fa fa-bar-chart text-yellow " style="margin-right:2px"></i><span>Thống kê tài liệu</span></li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-file text-yellow"></i>
+                        <span>Khóa thi</span>
+                        <span class="pull-right-container">
+                            <p class="pull-right">
+                                @ViewBag.TotalExam khóa thi
+                            </p>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-tag text-yellow"></i>
+                        <span>Phòng thi</span>
+                        <span class="pull-right-container">
+                            <p class="pull-right">
+                                @ViewBag.TotalExamRoom phòng
+                            </p>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user-circle text-yellow"></i>
+                        <span>Thí sinh</span>
+                        <span class="pull-right-container">
+                            <p class="pull-right">
+                                @ViewBag.TotalStudent thí sinh
+                            </p>
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fa fa-user text-yellow"></i>
+                        <span>Người dùng</span>
+                        <span class="pull-right-container">
+                            <p class="pull-right">
+                                @ViewBag.TotalUser người
+                            </p>
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

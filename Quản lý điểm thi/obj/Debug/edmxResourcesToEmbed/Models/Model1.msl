@@ -1,0 +1,358 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLDTModelStoreContainer" CdmEntityContainer="QLDTEntities1">
+    <EntitySetMapping Name="DienUuTiens">
+      <EntityTypeMapping TypeName="QLDTModel.DienUuTien">
+        <MappingFragment StoreEntitySet="DienUuTien">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+          <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Exams">
+      <EntityTypeMapping TypeName="QLDTModel.Exam">
+        <MappingFragment StoreEntitySet="Exam">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="hoi_dong_thi" ColumnName="hoi_dong_thi" />
+          <ScalarProperty Name="khoa_thi" ColumnName="khoa_thi" />
+          <ScalarProperty Name="value_1" ColumnName="value_1" />
+          <ScalarProperty Name="value_2" ColumnName="value_2" />
+          <ScalarProperty Name="value_3" ColumnName="value_3" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+          <ScalarProperty Name="nam_thi" ColumnName="nam_thi" />
+          <ScalarProperty Name="ID_PT_VALUE_NAME" ColumnName="ID_PT_VALUE_NAME" />
+          <ScalarProperty Name="ID_MT_VALUE_NAME" ColumnName="ID_MT_VALUE_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamRooms">
+      <EntityTypeMapping TypeName="QLDTModel.ExamRoom">
+        <MappingFragment StoreEntitySet="ExamRoom">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="value_1" ColumnName="value_1" />
+          <ScalarProperty Name="value_2" ColumnName="value_2" />
+          <ScalarProperty Name="value_3" ColumnName="value_3" />
+          <ScalarProperty Name="value_4" ColumnName="value_4" />
+          <ScalarProperty Name="value_5" ColumnName="value_5" />
+          <ScalarProperty Name="value_6" ColumnName="value_6" />
+          <ScalarProperty Name="value_7" ColumnName="value_7" />
+          <ScalarProperty Name="value_8" ColumnName="value_8" />
+          <ScalarProperty Name="value_9" ColumnName="value_9" />
+          <ScalarProperty Name="value_10" ColumnName="value_10" />
+          <ScalarProperty Name="value_11" ColumnName="value_11" />
+          <ScalarProperty Name="value_12" ColumnName="value_12" />
+          <ScalarProperty Name="value_13" ColumnName="value_13" />
+          <ScalarProperty Name="value_14" ColumnName="value_14" />
+          <ScalarProperty Name="value_15" ColumnName="value_15" />
+          <ScalarProperty Name="value_16" ColumnName="value_16" />
+          <ScalarProperty Name="value_17" ColumnName="value_17" />
+          <ScalarProperty Name="value_18" ColumnName="value_18" />
+          <ScalarProperty Name="value_19" ColumnName="value_19" />
+          <ScalarProperty Name="value_20" ColumnName="value_20" />
+          <ScalarProperty Name="value_21" ColumnName="value_21" />
+          <ScalarProperty Name="value_22" ColumnName="value_22" />
+          <ScalarProperty Name="value_23" ColumnName="value_23" />
+          <ScalarProperty Name="value_24" ColumnName="value_24" />
+          <ScalarProperty Name="value_25" ColumnName="value_25" />
+          <ScalarProperty Name="value_26" ColumnName="value_26" />
+          <ScalarProperty Name="value_27" ColumnName="value_27" />
+          <ScalarProperty Name="value_28" ColumnName="value_28" />
+          <ScalarProperty Name="value_29" ColumnName="value_29" />
+          <ScalarProperty Name="value_30" ColumnName="value_30" />
+          <ScalarProperty Name="value_31" ColumnName="value_31" />
+          <ScalarProperty Name="value_32" ColumnName="value_32" />
+          <ScalarProperty Name="value_33" ColumnName="value_33" />
+          <ScalarProperty Name="value_34" ColumnName="value_34" />
+          <ScalarProperty Name="value_35" ColumnName="value_35" />
+          <ScalarProperty Name="value_36" ColumnName="value_36" />
+          <ScalarProperty Name="value_37" ColumnName="value_37" />
+          <ScalarProperty Name="value_38" ColumnName="value_38" />
+          <ScalarProperty Name="value_39" ColumnName="value_39" />
+          <ScalarProperty Name="value_40" ColumnName="value_40" />
+          <ScalarProperty Name="value_41" ColumnName="value_41" />
+          <ScalarProperty Name="value_42" ColumnName="value_42" />
+          <ScalarProperty Name="value_43" ColumnName="value_43" />
+          <ScalarProperty Name="value_44" ColumnName="value_44" />
+          <ScalarProperty Name="value_45" ColumnName="value_45" />
+          <ScalarProperty Name="value_46" ColumnName="value_46" />
+          <ScalarProperty Name="value_47" ColumnName="value_47" />
+          <ScalarProperty Name="value_48" ColumnName="value_48" />
+          <ScalarProperty Name="value_49" ColumnName="value_49" />
+          <ScalarProperty Name="value_50" ColumnName="value_50" />
+          <ScalarProperty Name="ID_Exam" ColumnName="ID_Exam" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GioiTinhs">
+      <EntityTypeMapping TypeName="QLDTModel.GioiTinh">
+        <MappingFragment StoreEntitySet="GioiTinh">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+          <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Grades">
+      <EntityTypeMapping TypeName="QLDTModel.Grade">
+        <MappingFragment StoreEntitySet="Grade">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="value_1" ColumnName="value_1" />
+          <ScalarProperty Name="value_2" ColumnName="value_2" />
+          <ScalarProperty Name="value_3" ColumnName="value_3" />
+          <ScalarProperty Name="value_4" ColumnName="value_4" />
+          <ScalarProperty Name="value_5" ColumnName="value_5" />
+          <ScalarProperty Name="value_6" ColumnName="value_6" />
+          <ScalarProperty Name="value_7" ColumnName="value_7" />
+          <ScalarProperty Name="value_8" ColumnName="value_8" />
+          <ScalarProperty Name="value_9" ColumnName="value_9" />
+          <ScalarProperty Name="value_10" ColumnName="value_10" />
+          <ScalarProperty Name="value_11" ColumnName="value_11" />
+          <ScalarProperty Name="value_12" ColumnName="value_12" />
+          <ScalarProperty Name="value_13" ColumnName="value_13" />
+          <ScalarProperty Name="value_14" ColumnName="value_14" />
+          <ScalarProperty Name="value_15" ColumnName="value_15" />
+          <ScalarProperty Name="value_16" ColumnName="value_16" />
+          <ScalarProperty Name="value_17" ColumnName="value_17" />
+          <ScalarProperty Name="value_18" ColumnName="value_18" />
+          <ScalarProperty Name="value_19" ColumnName="value_19" />
+          <ScalarProperty Name="value_20" ColumnName="value_20" />
+          <ScalarProperty Name="value_21" ColumnName="value_21" />
+          <ScalarProperty Name="value_22" ColumnName="value_22" />
+          <ScalarProperty Name="value_23" ColumnName="value_23" />
+          <ScalarProperty Name="value_24" ColumnName="value_24" />
+          <ScalarProperty Name="value_25" ColumnName="value_25" />
+          <ScalarProperty Name="value_26" ColumnName="value_26" />
+          <ScalarProperty Name="value_27" ColumnName="value_27" />
+          <ScalarProperty Name="value_28" ColumnName="value_28" />
+          <ScalarProperty Name="value_29" ColumnName="value_29" />
+          <ScalarProperty Name="value_30" ColumnName="value_30" />
+          <ScalarProperty Name="value_31" ColumnName="value_31" />
+          <ScalarProperty Name="value_32" ColumnName="value_32" />
+          <ScalarProperty Name="value_33" ColumnName="value_33" />
+          <ScalarProperty Name="value_34" ColumnName="value_34" />
+          <ScalarProperty Name="value_35" ColumnName="value_35" />
+          <ScalarProperty Name="value_36" ColumnName="value_36" />
+          <ScalarProperty Name="value_37" ColumnName="value_37" />
+          <ScalarProperty Name="value_38" ColumnName="value_38" />
+          <ScalarProperty Name="value_39" ColumnName="value_39" />
+          <ScalarProperty Name="value_40" ColumnName="value_40" />
+          <ScalarProperty Name="value_41" ColumnName="value_41" />
+          <ScalarProperty Name="value_42" ColumnName="value_42" />
+          <ScalarProperty Name="value_43" ColumnName="value_43" />
+          <ScalarProperty Name="value_44" ColumnName="value_44" />
+          <ScalarProperty Name="value_45" ColumnName="value_45" />
+          <ScalarProperty Name="value_46" ColumnName="value_46" />
+          <ScalarProperty Name="value_47" ColumnName="value_47" />
+          <ScalarProperty Name="value_48" ColumnName="value_48" />
+          <ScalarProperty Name="value_49" ColumnName="value_49" />
+          <ScalarProperty Name="value_50" ColumnName="value_50" />
+          <ScalarProperty Name="ID_Student" ColumnName="ID_Student" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+          <ScalarProperty Name="ID_ExamRoom" ColumnName="ID_ExamRoom" />
+          <ScalarProperty Name="ID_Exam" ColumnName="ID_Exam" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Hoi_dong_thi">
+      <EntityTypeMapping TypeName="QLDTModel.Hoi_dong_thi">
+        <MappingFragment StoreEntitySet="Hoi_dong_thi">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="value_1" ColumnName="value_1" />
+          <ScalarProperty Name="value_2" ColumnName="value_2" />
+          <ScalarProperty Name="value_3" ColumnName="value_3" />
+          <ScalarProperty Name="value_4" ColumnName="value_4" />
+          <ScalarProperty Name="value_5" ColumnName="value_5" />
+          <ScalarProperty Name="value_6" ColumnName="value_6" />
+          <ScalarProperty Name="value_7" ColumnName="value_7" />
+          <ScalarProperty Name="value_8" ColumnName="value_8" />
+          <ScalarProperty Name="value_9" ColumnName="value_9" />
+          <ScalarProperty Name="value_10" ColumnName="value_10" />
+          <ScalarProperty Name="value_11" ColumnName="value_11" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KetQuas">
+      <EntityTypeMapping TypeName="QLDTModel.KetQua">
+        <MappingFragment StoreEntitySet="KetQua">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+          <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuItems">
+      <EntityTypeMapping TypeName="QLDTModel.MenuItem">
+        <MappingFragment StoreEntitySet="MenuItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="OrderIndex" ColumnName="OrderIndex" />
+          <ScalarProperty Name="Icon" ColumnName="Icon" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MT_VALUE_NAME">
+      <EntityTypeMapping TypeName="QLDTModel.MT_VALUE_NAME">
+        <MappingFragment StoreEntitySet="MT_VALUE_NAME">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="ID_MT_VALUE_NAME" ColumnName="ID_MT_VALUE_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PT_VALUE_NAME">
+      <EntityTypeMapping TypeName="QLDTModel.PT_VALUE_NAME">
+        <MappingFragment StoreEntitySet="PT_VALUE_NAME">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="mo_ta" ColumnName="mo_ta" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="ID_PT_VALUE_NAME" ColumnName="ID_PT_VALUE_NAME" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="QLDTModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role_MenuItem">
+      <EntityTypeMapping TypeName="QLDTModel.Role_MenuItem">
+        <MappingFragment StoreEntitySet="Role_MenuItem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="MenuItemId" ColumnName="MenuItemId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Settings">
+      <EntityTypeMapping TypeName="QLDTModel.Setting">
+        <MappingFragment StoreEntitySet="Setting">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ID_Settings" ColumnName="ID_Settings" />
+          <ScalarProperty Name="Loai" ColumnName="Loai" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Students">
+      <EntityTypeMapping TypeName="QLDTModel.Student">
+        <MappingFragment StoreEntitySet="Student">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="tt" ColumnName="tt" />
+          <ScalarProperty Name="sbd" ColumnName="sbd" />
+          <ScalarProperty Name="ho_ten" ColumnName="ho_ten" />
+          <ScalarProperty Name="ngay_sinh" ColumnName="ngay_sinh" />
+          <ScalarProperty Name="gioi_tinh" ColumnName="gioi_tinh" />
+          <ScalarProperty Name="coquan_congtac" ColumnName="coquan_congtac" />
+          <ScalarProperty Name="truong_hoc" ColumnName="truong_hoc" />
+          <ScalarProperty Name="xeploai_hanhkiem" ColumnName="xeploai_hanhkiem" />
+          <ScalarProperty Name="xeploai_hocluc" ColumnName="xeploai_hocluc" />
+          <ScalarProperty Name="dien_uudai" ColumnName="dien_uudai" />
+          <ScalarProperty Name="tong_so" ColumnName="tong_so" />
+          <ScalarProperty Name="ketqua_thi" ColumnName="ketqua_thi" />
+          <ScalarProperty Name="xeploai_totnghiep" ColumnName="xeploai_totnghiep" />
+          <ScalarProperty Name="ghichu" ColumnName="ghichu" />
+          <ScalarProperty Name="ID_Exam_Room" ColumnName="ID_Exam_Room" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+          <ScalarProperty Name="pdf" ColumnName="pdf" />
+          <ScalarProperty Name="dantoc" ColumnName="dantoc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Truongs">
+      <EntityTypeMapping TypeName="QLDTModel.Truong">
+        <MappingFragment StoreEntitySet="Truong">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+          <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="QLDTModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="XepLoaiHanhKiems">
+      <EntityTypeMapping TypeName="QLDTModel.XepLoaiHanhKiem">
+        <MappingFragment StoreEntitySet="XepLoaiHanhKiem">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+          <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="XepLoaiHocLucs">
+      <EntityTypeMapping TypeName="QLDTModel.XepLoaiHocLuc">
+        <MappingFragment StoreEntitySet="XepLoaiHocLuc">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+          <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="XepLoaiTotNghieps">
+      <EntityTypeMapping TypeName="QLDTModel.XepLoaiTotNghiep">
+        <MappingFragment StoreEntitySet="XepLoaiTotNghiep">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Mo_Ta" ColumnName="Mo Ta" />
+          <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
+          <ScalarProperty Name="create_date" ColumnName="create_date" />
+          <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

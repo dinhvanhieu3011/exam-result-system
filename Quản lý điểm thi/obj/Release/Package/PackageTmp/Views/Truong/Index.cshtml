@@ -1,0 +1,392 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <link href="~/Content/select2.css" rel="stylesheet" />
+    <style>
+        .dataTables_info {
+            font-size: 10px;
+        }
+
+        a {
+            font-size: 15px;
+        }
+    </style>
+}
+@section script
+{
+    <script src="~/dist/js/jquery.dataTables.js"></script>
+    <script src="~/dist/js/dataTables.bootstrap4.js"></script>
+    <!-- #region RELOAD -->
+    <script>
+        function reload() {
+            location.reload();
+            document.getElementById('search').value = "";
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region Tạo bảng dữ liệu -->
+    <script>
+
+        var arr1 = [11];
+        $(document).ready(function () {
+            var t = $("#demoGrid").DataTable({
+                initComplete: function () {
+                    $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
+                },
+                "processing": true, // for show progress bar
+                "serverSide": true, // for process server side
+                "filter": true, // this is for disable filter (search box)
+                "orderMulti": false, // for disable multiple column at once
+                "pageLength": 50,
+                "ajax": {
+                    "url": "/Truong/LoadData",
+                    "type": "POST",
+                    "datatype": "json"
+                },
+
+                "columnDefs":
+ [
+     {
+         "searchable": false,
+         "orderable": false,
+         "targets": 0
+     },
+
+ {
+     "targets": [1],
+     "searchable": false,
+     "orderable": false,
+
+ },
+ {
+     "targets": [4, 1],
+     "searchable": false,
+     "orderable": false,
+     "className": 'text-center'
+ }
+ ],
+
+
+                "columns": [
+                       { "data": "Id", "name": "Id", "width": "10px" },
+                      { "data": "Ten", "name": "Ten", "autoWidth": true },
+                      { "data": "Mo_Ta", "name": "Mo_Ta", "autoWidth": true },
+                      { "data": "Ghi_chu", "name": "Ghi_chu", "autoWidth": true },
+                      {
+                          "render": function (data, type, full, meta) {
+                              return '<button type="button" data-toggle="modal" onclick = "EditData(' + full.Id + ')" data-target="#createModal" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></button>' +
+                                    '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>' +
+                                     '<button type="button" data-toggle="modal" data-target="#createModal" onclick = "Detail(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-success"><i class="fa fa-eye"></i></button>';
+                          }
+                      },
+                ]
+            });
+            t.on('draw.dt', function () {
+                var PageInfo = $('#demoGrid').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("input[type='search']").wrap("<form>");
+            $("input[type='search']").closest("form").attr("autocomplete", "off");
+        });
+    </script>
+    <!-- #endregion -->
+    <!-- #region Lưu chỉnh sửa khóa thi -->
+    <script>
+        function SaveorCreate() {
+
+            if (document.getElementById('txtID').value == "") {
+                CreateNew();
+            }
+            else {
+                Save();
+            }
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region REset form để tạo mới -->
+    <script>
+        function ResetForm() {
+
+            document.getElementById('txtID').readOnly = false;
+
+
+            document.getElementById('Ten').readOnly = false;
+            document.getElementById('Ten').value = "";
+
+
+            document.getElementById('Mo_Ta').readOnly = false;
+            document.getElementById('Mo_Ta').value = "";
+
+            document.getElementById('Ghi_chu').readOnly = false;
+            document.getElementById('Ghi_chu').value = "";
+
+
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region Lưu chỉnh sửa khóa thi -->
+    <script>
+        function Save() {
+
+            $.post("@Url.Action("saveJS", "Truong")",
+        {
+            id: document.getElementById('txtID').value,
+            Ten: document.getElementById('Ten').value,
+            Mo_Ta: document.getElementById('Mo_Ta').value,
+            Ghi_chu: document.getElementById('Ghi_chu').value,
+        },
+        function (data) {
+            if (data == -1) {
+
+            }
+            else {
+                document.getElementById('myModalLabel').value = "Lưu thành công";
+                showSuccessMessage("Lưu thông tin thành công");
+
+            }
+        });
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region Tạo mới khóa thi -->
+    <script>
+        function CreateNew() {
+
+            $.post("@Url.Action("CreateNewJS", "Truong")",
+        {
+            Ten: document.getElementById('Ten').value,
+            Mo_Ta: document.getElementById('Mo_Ta').value,
+            Ghi_chu: document.getElementById('Ghi_chu').value,
+        },
+        function (data) {
+            if (data == -1) {
+
+            }
+            else {
+                document.getElementById('myModalLabel').value = "Lưu thành công";
+                showSuccessMessage("Lưu thông tin thành công");
+                location.reload();
+            }
+        });
+        }
+    </script>
+    <!-- #endregion -->
+    <!-- #region Xóa khóa thi -->
+    <script>
+        function DeleteData(id) {
+            $("#deleteId").val(id)
+            $('#modalAlertDelete').modal('show')
+        }
+        $('#modalAlertDelete').on('hide.bs.modal', function (event) {
+            $("#deleteId").val('')
+            hideMessage();
+        })
+
+        $('#btnDeleteAccess').on('click', function () {
+            hideMessage();
+            $.ajax({
+                url: '/Truong/deleteJS',
+                type: "POST",
+                data: $("#formDelete").serialize(),
+                success: function (result) {
+                    if (result != -1) {
+                        showSuccessMessage('Xóa thông tin  hoàn tất.')
+                    } else {
+                        showAlterMessage('Xóa thông tin  thất bại.')
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+            $('#modalAlertDelete').modal('hide')
+        })
+    </script>
+
+    <!-- #endregion -->
+    <!-- #region Sửa khóa thi -->
+    <script>
+        function EditData(id) {
+
+            $.post("@Url.Action("getDataJS", "Truong")",
+        {
+            id: id
+        },
+        function (data) {
+            if (data == -1) {
+            }
+            else {
+                //console.log(data);
+
+                document.getElementById('Ten').readOnly = false;
+                document.getElementById('txtID').readOnly = false;
+                document.getElementById('Mo_Ta').readOnly = false;
+                document.getElementById('Ghi_chu').readOnly = false;
+
+                document.getElementById('txtID').value = data.id;
+                document.getElementById('Ten').value = data.Ten;
+                document.getElementById('Mo_Ta').value = data.Mo_Ta;
+                document.getElementById('Ghi_chu').value = data.Ghi_chu;
+            }
+        });
+        }
+    </script>
+
+    <!-- #endregion -->
+    <!-- #region Chi tiết khóa thi -->
+    <script>
+        function Detail(id) {
+            $.post("@Url.Action("getDataJS", "Truong")",
+        {
+            id: id
+        },
+        function (data) {
+            if (data == -1) {
+            }
+            else {
+                //console.log(data);
+                document.getElementById('Ten').readOnly = false;
+                document.getElementById('txtID').readOnly = false;
+                document.getElementById('Mo_Ta').readOnly = false;
+                document.getElementById('Ghi_chu').readOnly = false;
+
+                document.getElementById('txtID').value = data.id;
+                document.getElementById('Ten').value = data.khoa_thi;
+                document.getElementById('Mo_Ta').value = data.Mo_Ta;
+                document.getElementById('Ghi_chu').value = data.Ghi_chu;
+
+                document.getElementById('Ten').readOnly = true;
+                document.getElementById('txtID').readOnly = true;
+                document.getElementById('Mo_Ta').readOnly = true;
+                document.getElementById('Ghi_chu').readOnly = true;
+
+
+            }
+        });
+        }
+    </script>
+    <!-- #endregion -->
+}
+
+@section path{
+    <li><a href="/Home/Index"><i class="fa fa-home"></i> Trang chủ</a></li>
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="nav-tabs-custom" style="border-top:1px solid #f9fafc">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a style="font-weight:bold" data-toggle="tab" href="#tab_1" aria-expanded="true" id="zoneTong1">Danh sách trường</a></li>
+                </ul>
+            </div>
+            <div class="box-body" style="padding:0px !important; margin-bottom:5px;text-align:right">
+
+                <button type="button" class="btn btn-primary" onclick="ResetForm()" style="border-radius:10px;" data-toggle="modal" data-target="#createModal">
+                    <i class="fa fa-plus"></i> Thêm bản ghi
+                </button>
+                <a class="btn btn-default" onclick="reload();" id="btnrefresh" title="Tải lại dữ liệu mới"><i class="fa fa-refresh"></i> Tải lại</a>
+
+            </div>
+
+            <div class="tab-content">
+                <div id="tab_1" class="tab-pane active">
+                    <div class="box">
+
+
+                        <div class="box-body" style="padding:0px !important; margin-bottom:10px">
+                            <div id="tbldata_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row">
+                                    <div class="col-sm-12">
+
+                                        <table id="demoGrid" class="table table-bordered table-hover dataTable" role="grid">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th></th>
+                                                    <th>Tên</th>
+                                                    <th>Mô tả</th>
+                                                    <th>Ghi chú</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+
+                                        </table><div id="tbldata_processing" class="dataTables_processing" style="display: none;">Đang tải dữ liệu...</div>
+                                    </div>
+                                </div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Model thêm mới ki` thi-->
+<div class="modal fade in" id="createModal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="">Thêm mới bản ghi</h4><h4 class="modal-title" style="color:red" id="myModalLabel"></h4>
+                <input type="hidden" value="">
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <input id="txtID" hidden />
+                        <!-- row -->
+                        <div style="width:100%">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Tên:</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <input type="text" id="Ten" placeholder="Nhập tên" value="" class="form-control">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!-- row -->
+                        <div style="width:100%">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Mô tả:</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <input type="text" id="Mo_Ta" placeholder="Nhập mô tả" value="" class="form-control">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!-- row -->
+                        <div style="width:100%">
+                            <div style="width:20%; float:left">
+                                <label style="margin-top: 5px">Ghi chú:</label>
+                            </div>
+                            <div style="width:80%; float:left">
+                                <input type="text" id="Ghi_chu" placeholder="Nhập ghi chú" value="" class="form-control">
+                            </div>
+                            <div class="clear"></div>
+                        </div>
+                        <!---------------------------------------------------------------------------------------->
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div id="notify"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-window-close-o"></i> Đóng</button>
+                <button type="button" class="btn btn-primary" onclick="SaveorCreate();" id="btnSave"><i class="fa fa-save"></i> Lưu</button>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("MessageBox", "Common")

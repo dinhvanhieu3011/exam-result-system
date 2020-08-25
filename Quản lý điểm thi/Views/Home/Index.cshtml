@@ -1,0 +1,84 @@
+﻿@{
+
+    ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var rID = (int?)(ViewBag.rID);
+}
+
+@section path{
+    <li><a href="~/Home/Index" style="font-size:15px"><i class="fa fa-home"></i> Trang chủ</a></li>
+    <li class="active" id=""></li>
+}
+<style>
+    .rowIndex{
+        border-bottom:solid;
+    }
+    .row {
+        margin-left: -15px !important;
+        margin-right: -15px !important;
+    }
+
+    div[class^="col"] {
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+    }
+
+    .sidebar-menu > li.header {
+        background-color: #00c0ef !important;
+        color: white !important;
+    }
+
+    .skin-blue .sidebar a {
+        color: black;
+    }
+
+        .skin-blue .sidebar a:hover {
+            background-color: #808080;
+        }
+
+    .control-label {
+        font-weight: 700 !important;
+    }
+
+    .border-box {
+        border: 1px solid #d2d6de;
+        border-top: 1px solid #d2d6de !important;
+    }
+
+    .border-right {
+        border-right: 1px solid #d2d6de !important;
+    }
+
+    .h-100 {
+        height: inherit;
+    }
+
+    .border-top {
+        border-top: 1px solid #d2d6de !important;
+    }
+
+    .box-footer {
+        border-color: #d2d6de;
+    }
+</style>
+
+<div class="row">
+    <div class="col-lg-2 col-md-3 h-100 " style="min-height:600px">
+        <div class="h-100 border-box">
+            @Html.Action("SideBarBox")
+        </div>
+    </div>
+    <div class="col-lg-10 col-md-9" style="padding-left:5px">
+        @Html.Action("StudentList", "Home")
+    </div>
+</div>
+
+@section script
+{
+    <script src="~/dist/js/jquery.dataTables.js"></script>
+    <script src="~/dist/js/dataTables.bootstrap4.js"></script>
+    <script src="~/dist/js/pages/dashboard2.js"></script>
+    <script src="~/scripts/Home/ListStudent.js"></script>
+    <script src="~/bower_components/chart.js/Chart.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+}

@@ -1,0 +1,95 @@
+﻿
+@{
+    ViewBag.Title = "Danh mục giới tính";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles
+{
+    <link href="~/Content/select2.css" rel="stylesheet" />
+    <style>
+        .dataTables_info {
+            font-size: 10px;
+        }
+
+        a {
+            font-size: 15px;
+        }
+        .row {
+            margin-left: -15px !important;
+            margin-right: -15px !important;
+        }
+
+        div[class^="col"] {
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+        }
+
+        .modal-footer {
+            margin-top: 0px !important;
+            border-top-color: #f4f4f4 !important;
+        }
+
+        textarea.form-control {
+            min-height: 60px !important;
+        }
+    </style>
+}
+
+@section path{
+    <li><a href="/Home/Index"><i class="fa fa-home"></i> Trang chủ</a></li>
+
+}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="box-body" style="padding:0px !important; margin-bottom:5px;text-align:right">
+                <a href="/Gender/CreateGioi" class="btn btn-primary" style="border-radius:10px;" data-toggle="modal" data-target="#createModal"><i class="fa fa-plus"></i> Thêm mới</a>
+                <a class="btn btn-default" id="btnrefresh" title="Tải lại dữ liệu mới"><i class="fa fa-refresh"></i> Tải lại</a>
+            </div>
+            <div class="nav-tabs-custom" style="border-top:1px solid #f9fafc">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a style="font-weight:bold" data-toggle="tab" href="#tab_1" aria-expanded="true" id="zoneTong1">Danh sách giới tính</a></li>
+                </ul>
+            </div>
+            <div class="tab-content">
+                <div id="tab_1" class="tab-pane active">
+                    <div class="box">
+                        <div class="box-body" style="padding:0px !important; margin-bottom:10px">
+                            <div id="tbldata_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                                <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row">
+                                    <div class="col-sm-12">
+                                        <table id="tblGender" class="table table-bordered table-hover dataTable" role="grid">
+                                            <thead>
+                                                <tr role="row">
+                                                    <th>Id</th>
+                                                    <th>Tên</th>
+                                                    <th>Mô tả</th>
+                                                    <th>Ghi chú</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+
+                                        </table><div id="tbldata_processing" class="dataTables_processing" style="display: none;">Đang tải dữ liệu...</div>
+                                    </div>
+                                </div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("CreateGioiTinh", "Gender")
+@Html.Action("UpdateGioiTinh", "Gender")
+@Html.Action("MessageBox", "Common")
+
+@section script
+{
+    <script src="~/dist/js/jquery.dataTables.js"></script>
+    <script src="~/dist/js/dataTables.bootstrap4.js"></script>
+    <script src="~/scripts/Gender/ListGender.js"></script>
+    <script src="~/scripts/Gender/UpdateGender.js"></script>
+    <script src="~/scripts/Gender/CreateGender.js"></script>
+    <!-- #region RELOAD -->
+}

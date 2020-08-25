@@ -1,0 +1,116 @@
+﻿@model Quản_lý_điểm_thi.Models.UserModel
+@using Quản_lý_điểm_thi.Common;
+@{
+    Layout = null;
+}
+<div class="modal fade in" id="createModal" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="label-model">Thêm mới người dùng</h4><h4 class="modal-title" style="color:red" id="myModalLabel"></h4>
+                <input type="hidden" value="">
+            </div>
+            <div class="modal-body">
+                <div class="no-print margin-bottom" id="err-message" style="display:none">
+                    <div class="callout callout-danger" style="margin-bottom: 0!important;">
+                        <h4><i class="fa fa-info"></i> Error:</h4>
+                        <p id="err-message-content"></p>
+                    </div>
+                </div>
+                <form action="/" method="post" id="frmCreateUser">
+                    <div class="row">
+                        <fieldset>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Username">Tên đăng nhập</label>
+                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control text-input", @placeholder = "Tên đăng nhập", @id = "txtUsername" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="FullName">Tên đầy đủ</label>
+                                    @Html.TextBoxFor(m => m.FullName, new { @class = "form-control text-input", @placeholder = "Tên đầy đủ", @id = "txtFullName" })
+                                </div>
+                            </div>
+                            <div class="col-sm-8">
+                                <div class="form-group">
+                                    <label for="Mail">Địa chỉ email</label>
+                                    <input type="email" name="Mail" class="form-control text-input" placeholder="Địa chỉ email" id="txtMail" />
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group">
+                                    <label for="Mail">Ngay sinh</label>
+                                    <input type="date" name="Birthday" class="form-control text-input" placeholder="Ngay sinh" id="txtBirthday" />
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="CMND">Số chứng minh nhân dân</label>
+                                    @Html.TextBoxFor(m => m.CMND, new { @class = "form-control text-input", @placeholder = "Số chứng minh nhân dân", @id = "txtCMND" })
+                                </div>
+                            </div>
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="form-group">
+                                    <label for="Phone">Số điện thoại</label>
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control text-input", @placeholder = "Số điện thoại", @id = "txtPhone" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Address">Địa chỉ</label>
+                                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control text-input", @placeholder = "Địa chỉ", @id = "txtAddress" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Password">Mật khẩu</label>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control text-input", @placeholder = "Mật khẩu", @id = "txtPassword" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="ComfirmPassword">Xác nhận mật khẩu</label>
+                                    @Html.PasswordFor(m => m.ComfirmPassword, new { @class = "form-control text-input", @placeholder = "Mật khẩu", @id = "txtComfirmPassword" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <label><strong>Xét quyền</strong></label>
+                                <div class="row">
+                                    @foreach (var item in UserRole.ListRole)
+                                    {
+                                        <div class="col-sm-3 pull-left">
+                                            <div class="form-group">
+                                                <label>
+                                                    <input type="checkbox" name="Role" value="@item.Value" />
+                                                    @item.Name
+                                                </label>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                            <div id="tokenAddEdit">
+                                @Html.AntiForgeryToken()
+                            </div>
+                            <div class="col-sm-12 pull-left">
+                                <div class="form-group">
+                                    <label class="text-bold"><strong>Xét tài khoản là admin</strong></label><br/>
+                                    <label>
+                                        <input type="checkbox" name="IsAdmin" value="" />
+                                        Xét tài khoản là Admin
+                                    </label>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-left" id="btnCreateUser"><i class="fa fa-save"></i> Lưu</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-window-close-o"></i> Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
