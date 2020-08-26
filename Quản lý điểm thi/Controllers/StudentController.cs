@@ -286,17 +286,17 @@ namespace Quản_lý_điểm_thi.Controllers
                                 record.sbd = row[2].ToString();
                                 record.ho_ten = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[3].ToString().ToLower());
                                 record.ngay_sinh = row[4].ToString();
-                                record.gioi_tinh = row[5].ToString();
-                                record.coquan_congtac = FirstLetterToUpper(row[6].ToString());
-                                record.dantoc = row[7].ToString();
-                                record.truong_hoc = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[7 + 1].ToString().ToLower());
+                                record.gioi_tinh = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[5].ToString().ToLower());
+                                record.coquan_congtac =  System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[6].ToString().ToLower());
+                                record.dantoc = row[7].ToString(); 
+                                record.truong_hoc = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[8].ToString());
                                 record.ketqua_thi = row[8 + 1].ToString();
                                 record.ghichu = row[9 + 1].ToString();
 
                                 record.xeploai_hocluc = row[10 + 1].ToString();
                                 record.xeploai_hanhkiem = row[11 + 1].ToString();
                                 record.xeploai_totnghiep = row[12 + 1].ToString();
-                                record.dien_uudai = row[13 + 1].ToString();
+                                record.dien_uudai = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[13 + + 1].ToString().ToLower());
 
                                 record.create_date = DateTime.Now.ToShortDateString();
                                 record.create_user = Session["Username"].ToString();

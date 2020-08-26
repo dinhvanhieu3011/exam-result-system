@@ -141,6 +141,15 @@ namespace Quản_lý_điểm_thi.Controllers
             else
             {
                 Hoi_dong_thi record = db.Hoi_dong_thi.Find(Int32.Parse(id));
+                List<ExamRoom> lst = db.ExamRooms.Where(x => x.ID_Exam == record.Id).ToList();
+                foreach(ExamRoom x in lst)
+                {
+                 
+                    List<Student> student = db.Students.Where(b => b.ID_Exam_Room == x.Id).ToList();
+                    db.ExamRooms.Remove(x);
+                    db.Students.RemoveRange(student);
+                    db.SaveChanges();
+                }
                 db.Hoi_dong_thi.Remove(record);
                 db.SaveChanges();
                 return Json(1, JsonRequestBehavior.AllowGet);

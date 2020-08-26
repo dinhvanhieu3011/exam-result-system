@@ -261,15 +261,17 @@ namespace Quản_lý_điểm_thi.Controllers
 
         public JsonResult deleteJS(string id)
         {
-
+            int Niid = Int32.Parse(id);
             if (id == null)
             {
                 return Json(0, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                ExamRoom record = db.ExamRooms.Find(Int32.Parse(id));
+                ExamRoom record = db.ExamRooms.Find(Niid);
                 db.ExamRooms.Remove(record);
+                List<Student> student = db.Students.Where(x => x.ID_Exam_Room == Niid).ToList();
+                db.Students.RemoveRange(student);
                 db.SaveChanges();
                 return Json(1, JsonRequestBehavior.AllowGet);
             }
