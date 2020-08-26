@@ -32,6 +32,27 @@
 }
 @section script
 {
+    <script src="~/dist/js/jquery.dataTables.js"></script>
+    <script>
+    function showSuccessMessage(mess) {
+        $('#modalSuccessMess').modal('show')
+        $('#modalSuccessMess .message-content').text(mess)
+    }
+</script>
+<script>
+    function showAlterMessage(mess) {
+        $('#modalErroMess').modal('show')
+        $('#modalErroMess .message-content').text(mess)
+    }
+</script>
+<script>
+    function hideMessage() {
+        $('#success-message').modal('hide')
+        $('#success-message .message-content').text('')
+        $('#modalErroMess').modal('hide')
+        $('#modalErroMess .message-content').text('')
+    }
+</script>
 
     <script>
     function myFunction() {
@@ -41,7 +62,6 @@
         document.getElementById("pdf-view").src = "/Student/ByteArrayToImage?fileName="+x+"&type=pdf&id_Room="+@id;
 }
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script>
 $(document).ready(function(){
     $('#btnUpload').click(function () {
@@ -162,7 +182,8 @@ $(document).ready(function(){
         }
         else {
 
-            alert("Lưu thông tin thành công");
+            showSuccessMessage("Lưu thông tin thành công");
+            //$('#createModal').modal('hide');
         }
     });
     }
@@ -196,7 +217,8 @@ $(document).ready(function(){
                 alert('Lưu thông tin thất bại')
             }
             else {
-                alert('Lưu thông tin thành công')
+                //showSuccessMessage("Lưu thông tin thành công");
+                //$('#createModal').modal('hide');
                 SaveDiem(data);
             }
         });
@@ -589,4 +611,4 @@ $(document).ready(function(){
         </div>
     </div>
 </div>
-@*@Html.Action("MessageBox", "Common")*@
+@Html.Action("MessageBox", "Common")

@@ -917,7 +917,7 @@ namespace Quản_lý_điểm_thi.Controllers
         #region Lưu thông tin
         public JsonResult saveThongTin(string id, string tt, string sbd, string hoten, string ngaysinh, string gioitinh, string coquancongtac,
     string truonghoc, string xeploaihanhkiem, string xeploaihocluc, string dienuudai, string tongso,
-    string ketquathi, string xeploaitotnghiep, string ghichu, string dantoc)
+    string ketquathi, string xeploaitotnghiep, string ghichu, string dantoc, string pdf)
         {
 
             if (id == null)
@@ -944,6 +944,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 record.ketqua_thi = ketquathi;
                 record.xeploai_totnghiep = xeploaitotnghiep;
                 record.ghichu = ghichu;
+                record.pdf = pdf;
                 //record.pdf = pdf;
 
 
