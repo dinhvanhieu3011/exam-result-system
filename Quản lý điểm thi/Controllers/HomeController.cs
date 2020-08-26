@@ -308,7 +308,7 @@ namespace Quản_lý_điểm_thi.Controllers
             Int32.TryParse(examRoom, out idExamRoom);
             context.ExamRooms.Load();
             return context.ExamRooms.Local.Where(r => (listHDThi == null || !listHDThi.Any() || (listHDThi.Any(e => e.Id == r.ID_Exam)))
-                                                && string.IsNullOrEmpty(examRoom) || r.Id == idExamRoom
+                                                && (string.IsNullOrEmpty(examRoom) || r.Id == idExamRoom)
                                          ).ToList<ExamRoom>();
         }
 
