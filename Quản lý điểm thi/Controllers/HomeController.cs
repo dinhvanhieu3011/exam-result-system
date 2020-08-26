@@ -323,14 +323,14 @@ namespace Quản_lý_điểm_thi.Controllers
                                                   || a.Id == intHDT)).ToList<Hoi_dong_thi>();
         }
 
-        private List<Student> GetListSudent(string exam,string hoiDongThi, List<ExamRoom> listExamRoom, string fullName, string candidateNumber, string toBirthday, string fromBirday,
+        private List<Student> GetListSudent(string exam, string hoiDongThi, List<ExamRoom> listExamRoom, string fullName, string candidateNumber, string toBirthday, string fromBirday,
             string ketQua, string truong, string gioiTinh, string loaiTN, string hanhKiem, string hocLuc, string dienUT, QLDTEntities1 context)
         {
             List<int> listExamRoomId = (listExamRoom != null && listExamRoom.Any()) ? listExamRoom.Select(a => a.Id).ToList() : null;
 
             context.Students.Load();
 
-            return context.Students.Local.Where(a => (listExamRoomId == null&& string.IsNullOrEmpty(exam)&& string.IsNullOrEmpty(hoiDongThi) || (listExamRoom.Any() && listExamRoomId.Contains(a.ID_Exam_Room)))
+            return context.Students.Local.Where(a => (listExamRoomId == null && string.IsNullOrEmpty(exam) && string.IsNullOrEmpty(hoiDongThi) || (listExamRoom.Any() && listExamRoomId.Contains(a.ID_Exam_Room)))
                        && (string.IsNullOrEmpty(fullName) || a.ho_ten.ToLower().Contains(fullName.ToLower()))
                        && (string.IsNullOrEmpty(candidateNumber) || a.sbd.ToLower().Contains(candidateNumber.ToLower()))
                        && (string.IsNullOrEmpty(fromBirday) || (!string.IsNullOrEmpty(a.ngay_sinh) && DateTime.Parse(a.ngay_sinh) > DateTime.Parse(fromBirday)))

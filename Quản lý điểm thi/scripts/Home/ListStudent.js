@@ -16,7 +16,7 @@
                 {
                     text: 'Excel',
                     extend: 'excel',
-                    className:'form-control',
+                    className: 'form-control',
                     exportOptions: {
                         modifier: {
                             page: 'current'
@@ -53,13 +53,13 @@
                 [
                     { "width": "50px", "targets": 1 },
                     { "width": "50px", "targets": 0 },
-                    { "width": "200px", "targets": 6 },
-                    {
-                        "targets": [6],
-                        "searchable": false,
-                        "orderable": false,
-                        "className": 'text-center'
-                    }
+                    //{ "width": "200px", "targets": 6 },
+                    //{
+                    //    "targets": [6],
+                    //    "searchable": false,
+                    //    "orderable": false,
+                    //    "className": 'text-center'
+                    //}
                 ],
             "columns":
                 [
@@ -77,11 +77,11 @@
                     { "data": "sbd", "name": "sbd", "autoWidth": true },
                     { "data": "ngay_sinh", "name": "ngay_sinh", "autoWidth": true },
                     { "data": "ketqua_thi", "name": "ketqua_thi", "autoWidth": true },
-                    {
-                        "render": function (data, type, full, meta) {
-                            return '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>'
-                        }
-                    },
+                    //{
+                    //    "render": function (data, type, full, meta) {
+                    //        return '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>'
+                    //    }
+                    //},
                 ],
             initComplete: function () {
                 var api = this.api();
@@ -113,7 +113,7 @@
             const arrs = data.arrs
             console.log({ arrs })
 
-            let newOption = new Option(textHolder,'', true, true)
+            let newOption = new Option(textHolder, '', true, true)
             $(selectControl).append(newOption).trigger('change')
             arrs.forEach(function (data) {
                 var newOption = new Option(data.value_1, data.Id, false, false)

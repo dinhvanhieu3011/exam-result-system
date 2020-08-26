@@ -2698,6 +2698,7 @@
     <Content Include="Models\Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </Content>
+    <Content Include="PDF\error.pdf" />
     <None Include="Properties\PublishProfiles\vanhieu12.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\Gender\CreateGender.js" />

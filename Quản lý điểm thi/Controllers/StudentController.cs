@@ -288,14 +288,14 @@ namespace Quản_lý_điểm_thi.Controllers
                                 record.ngay_sinh = row[4].ToString();
                                 record.gioi_tinh = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[5].ToString().ToLower());
                                 record.coquan_congtac =  System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[6].ToString().ToLower());
-                                record.dantoc = row[7].ToString(); 
+                                record.dantoc = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[7].ToString());
                                 record.truong_hoc = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[8].ToString());
-                                record.ketqua_thi = row[8 + 1].ToString();
+                                record.ketqua_thi = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[9].ToString());
                                 record.ghichu = row[9 + 1].ToString();
 
-                                record.xeploai_hocluc = row[10 + 1].ToString();
-                                record.xeploai_hanhkiem = row[11 + 1].ToString();
-                                record.xeploai_totnghiep = row[12 + 1].ToString();
+                                record.xeploai_hocluc = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[11].ToString());
+                                record.xeploai_hanhkiem = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[12 ].ToString());
+                                record.xeploai_totnghiep =  System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[12 + 1].ToString());
                                 record.dien_uudai = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[13 + + 1].ToString().ToLower());
 
                                 record.create_date = DateTime.Now.ToShortDateString();
@@ -402,6 +402,10 @@ namespace Quản_lý_điểm_thi.Controllers
             if (fileName == "blank.pdf")
             {
                 path = HttpContext.Server.MapPath("~/PDF/" + fileName);
+            }
+            else if (string.IsNullOrEmpty(fileName)|| fileName == "PDF.pdf")
+            {
+                path = HttpContext.Server.MapPath("~/PDF/error.pdf");
             }
             //18_165_20191005_01_06
             FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
