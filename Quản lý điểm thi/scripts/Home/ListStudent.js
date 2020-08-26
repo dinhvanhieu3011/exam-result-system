@@ -88,9 +88,12 @@
                 api.buttons().container().appendTo($('#tblStudent_wrapper .col-sm-6:eq(1)'))
             },
         })
-        let contne = table.buttons().container()
-        console.log({ contne })
-        //table.buttons().container().appendTo($('.col-sm-6:eq(1)', table.table().container()));
+        table.on('draw.dt', function () {
+            var PageInfo = table.page.info();
+            table.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                cell.innerHTML = i + 1 + PageInfo.start;
+            });
+        });
         $('#btnrefresh, #btnSearch').on('click', function () {
             $('#tblStudent').DataTable().ajax.reload();;
         })
