@@ -272,7 +272,17 @@
     <Property Name="create_date" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="create_user" Type="nvarchar" MaxLength="250" Nullable="false" />
     <Property Name="pdf" Type="nvarchar" MaxLength="150" />
-    <Property Name="dantoc" Type="nvarchar" MaxLength="150" />
+    <Property Name="dantoc" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
   <EntityType Name="Truong">
     <Key>
@@ -374,6 +384,7 @@
     <EntitySet Name="Role_MenuItem" EntityType="Self.Role_MenuItem" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Truong" EntityType="Self.Truong" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="XepLoaiHanhKiem" EntityType="Self.XepLoaiHanhKiem" Schema="dbo" store:Type="Tables" />

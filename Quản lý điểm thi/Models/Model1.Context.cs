@@ -39,6 +39,7 @@ namespace Quản_lý_điểm_thi.Models
         public virtual DbSet<Role_MenuItem> Role_MenuItem { get; set; }
         public virtual DbSet<Setting> Settings { get; set; }
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Truong> Truongs { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<XepLoaiHanhKiem> XepLoaiHanhKiems { get; set; }
