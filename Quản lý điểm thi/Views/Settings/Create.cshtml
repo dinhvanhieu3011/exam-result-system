@@ -65,6 +65,10 @@
             name13: document.getElementById('ten_v13').value,
             type13: document.getElementById('loai_v13').value,
 
+            status13: document.getElementById('st_v13').checked,
+            name13: document.getElementById('ten_v13').value,
+            type13: document.getElementById('loai_v13').value,
+
             status14: document.getElementById('st_v14').checked,
             name14: document.getElementById('ten_v14').value,
             type14: document.getElementById('loai_v14').value,
@@ -88,11 +92,11 @@
             status19: document.getElementById('st_v19').checked,
             name19: document.getElementById('ten_v19').value,
             type19: document.getElementById('loai_v19').value,
-
+            //19----------------------------------------------------------------
             status20: document.getElementById('st_v20').checked,
             name20: document.getElementById('ten_v20').value,
             type20: document.getElementById('loai_v20').value,
-            //20----------------------------------------------------------------
+
             status21: document.getElementById('st_v21').checked,
             name21: document.getElementById('ten_v21').value,
             type21: document.getElementById('loai_v21').value,
@@ -128,11 +132,11 @@
             status29: document.getElementById('st_v29').checked,
             name29: document.getElementById('ten_v29').value,
             type29: document.getElementById('loai_v29').value,
-
+            //-------
             status30: document.getElementById('st_v30').checked,
             name30: document.getElementById('ten_v30').value,
             type30: document.getElementById('loai_v30').value,
-            //-------
+
             status31: document.getElementById('st_v31').checked,
             name31: document.getElementById('ten_v31').value,
             type31: document.getElementById('loai_v31').value,
@@ -168,11 +172,11 @@
             status39: document.getElementById('st_v39').checked,
             name39: document.getElementById('ten_v39').value,
             type39: document.getElementById('loai_v39').value,
-
+            //-------
             status40: document.getElementById('st_v40').checked,
             name40: document.getElementById('ten_v40').value,
             type40: document.getElementById('loai_v40').value,
-            //-------
+
             status41: document.getElementById('st_v41').checked,
             name41: document.getElementById('ten_v41').value,
             type41: document.getElementById('loai_v41').value,
@@ -208,10 +212,6 @@
             status49: document.getElementById('st_v49').checked,
             name49: document.getElementById('ten_v49').value,
             type49: document.getElementById('loai_v49').value,
-
-            status50: document.getElementById('st_v50').checked,
-            name50: document.getElementById('ten_v50').value,
-            type50: document.getElementById('loai_v50').value,
             },
         function (data) {
             if (data == -1) {
@@ -669,6 +669,32 @@
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
+                            13
+                        </span>
+                        <span class="input-group-addon" style="width:0.05%">
+                            <input type="checkbox" id="st_v13">
+                        </span>
+                        <span class="input-group-btn">
+                            <input type="text" id="ten_v13" placeholder="Nhập tên value 13..." class="form-control">
+                        </span>
+                        <span class="input-group-btn">
+                            <select class="form-control" id="loai_v13">
+                                <option value="date">Datetime</option>
+                                <option value="text">Text</option>
+                                <option value="number">Number</option>
+                            </select>
+                        </span>
+
+                    </div>
+                    <!-- /input-group -->
+                </div>
+                <!-- /.col-lg-6 -->
+                <div class="col-lg-1">
+
+                </div>
+                <div class="col-lg-3">
+                    <div class="input-group">
+                        <span class="input-group-addon" style="width:0.05%">
                             14
                         </span>
                         <span class="input-group-addon" style="width:0.05%">
@@ -688,10 +714,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -714,10 +740,8 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <div class="col-lg-1">
-
-                </div>
-                <!-- /.col-lg-6 -->
+            </div>
+            <div class="row" style="margin:5px">
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -740,8 +764,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
+                <div class="col-lg-1">
+
+                </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -764,10 +790,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -790,10 +816,9 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+            </div>
+            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
-                <div class="col-lg-1">
-
-                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -816,9 +841,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
+                <div class="col-lg-1">
+
+                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -841,10 +867,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -867,10 +893,9 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <div class="col-lg-1">
+            </div>
 
-                </div>
-                <!-- /.col-lg-6 -->
+            <div class="row" style="margin:5px">
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -893,9 +918,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
+                <div class="col-lg-1">
 
-            <div class="row" style="margin:5px">
+                </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -918,10 +944,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -944,10 +970,8 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-1">
-
-                </div>
+            </div>
+            <div class="row" style="margin:5px">
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -970,8 +994,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
+                <div class="col-lg-1">
+
+                </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -994,10 +1020,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1020,10 +1046,9 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+            </div>
+            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
-                <div class="col-lg-1">
-
-                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1046,9 +1071,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
+                <div class="col-lg-1">
+
+                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1071,10 +1097,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1097,10 +1123,8 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <div class="col-lg-1">
-
-                </div>
-                <!-- /.col-lg-6 -->
+            </div>
+            <div class="row" style="margin:5px">
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1123,8 +1147,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
+                <div class="col-lg-1">
+
+                </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1147,10 +1173,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1173,10 +1199,9 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+            </div>
+            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
-                <div class="col-lg-1">
-
-                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1199,9 +1224,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
+                <div class="col-lg-1">
+
+                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1224,10 +1250,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1250,10 +1276,9 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <div class="col-lg-1">
+            </div>
 
-                </div>
-                <!-- /.col-lg-6 -->
+            <div class="row" style="margin:5px">
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1276,9 +1301,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
+                <div class="col-lg-1">
 
-            <div class="row" style="margin:5px">
+                </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1301,10 +1327,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1327,10 +1353,9 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+            </div>
+            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
-                <div class="col-lg-1">
-
-                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1353,9 +1378,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
+                <div class="col-lg-1">
+
+                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1378,10 +1404,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1404,10 +1430,8 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <div class="col-lg-1">
-
-                </div>
-                <!-- /.col-lg-6 -->
+            </div>
+            <div class="row" style="margin:5px">
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1430,8 +1454,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
+                <div class="col-lg-1">
+
+                </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1454,10 +1480,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1480,10 +1506,9 @@
                     </div>
                     <!-- /input-group -->
                 </div>
+            </div>
+            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
-                <div class="col-lg-1">
-
-                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1506,9 +1531,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
                 <!-- /.col-lg-6 -->
+                <div class="col-lg-1">
+
+                </div>
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1531,10 +1557,10 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <!-- /.col-lg-6 -->
                 <div class="col-lg-1">
 
                 </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1557,10 +1583,8 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-                <div class="col-lg-1">
-
-                </div>
-                <!-- /.col-lg-6 -->
+            </div>
+            <div class="row" style="margin:5px">
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
@@ -1570,7 +1594,7 @@
                             <input type="checkbox" id="st_v49">
                         </span>
                         <span class="input-group-btn">
-                            <input type="text" id="ten_v49" placeholder="Nhập tên value 49..." class="form-control">
+                            <input type="text" id="ten_v49" placeholder="Nhập tên value 13..." class="form-control">
                         </span>
                         <span class="input-group-btn">
                             <select class="form-control" id="loai_v49">
@@ -1583,12 +1607,14 @@
                     </div>
                     <!-- /input-group -->
                 </div>
-            </div>
-            <div class="row" style="margin:5px">
+                <div class="col-lg-1">
+
+                </div>
+                <!-- /.col-lg-6 -->
                 <div class="col-lg-3">
                     <div class="input-group">
                         <span class="input-group-addon" style="width:0.05%">
-                            50
+                           50
                         </span>
                         <span class="input-group-addon" style="width:0.05%">
                             <input type="checkbox" id="st_v50">
@@ -1598,32 +1624,6 @@
                         </span>
                         <span class="input-group-btn">
                             <select class="form-control" id="loai_v50">
-                                <option value="date">Datetime</option>
-                                <option value="text">Text</option>
-                                <option value="number">Number</option>
-                            </select>
-                        </span>
-
-                    </div>
-                    <!-- /input-group -->
-                </div>
-                <div class="col-lg-1">
-
-                </div>
-                <!-- /.col-lg-6 -->
-                <div class="col-lg-3">
-                    <div class="input-group">
-                        <span class="input-group-addon" style="width:0.05%">
-                            13
-                        </span>
-                        <span class="input-group-addon" style="width:0.05%">
-                            <input type="checkbox" id="st_v13">
-                        </span>
-                        <span class="input-group-btn">
-                            <input type="text" id="ten_v13" placeholder="Nhập tên value 13..." class="form-control">
-                        </span>
-                        <span class="input-group-btn">
-                            <select class="form-control" id="loai_v13">
                                 <option value="date">Datetime</option>
                                 <option value="text">Text</option>
                                 <option value="number">Number</option>

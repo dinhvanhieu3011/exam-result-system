@@ -22,6 +22,7 @@
     List<Quản_lý_điểm_thi.Models.XepLoaiTotNghiep> lstXepLoaiTotNghiep = (List<Quản_lý_điểm_thi.Models.XepLoaiTotNghiep>)ViewBag.lstXepLoaiTotNghiep;
     List<Quản_lý_điểm_thi.Models.DienUuTien> DienUuTien = (List<Quản_lý_điểm_thi.Models.DienUuTien>)ViewBag.DienUuTien;
     List<Quản_lý_điểm_thi.Models.KetQua> KetQua = (List<Quản_lý_điểm_thi.Models.KetQua>)ViewBag.KetQua;
+    List<Quản_lý_điểm_thi.Models.Student> lstStudent = (List<Quản_lý_điểm_thi.Models.Student>)ViewBag.lstStudent;
 }
 
 @section path{
@@ -30,8 +31,20 @@
     <li><a href="/HoiDongThi/Index/@ID_Exam">@TenExam</a></li>
     <li><a href="/ExamRoom/Index/@IDHoiDongThi">@TenHoiDongThi</a></li>
     <li><a href="/Student/Index/@IdPhong">@TenPhong</a></li>
-    <li>@TenTT</li>
-    <li class="active" id=""></li>
+    <li><select style="border-style:none;font-size: 15px;" id="select-student" onchange="myFunction1();">
+    @for (int i = 0; i < lstStudent.Count; i++)
+    {
+        if (lstStudent[i].Id == id_student)
+        {
+            <option value="@lstStudent[i].Id" selected>@lstStudent[i].ho_ten - @lstStudent[i].sbd</option>
+        }
+        else
+        {
+            <option value="@lstStudent[i].Id">@lstStudent[i].ho_ten - @lstStudent[i].sbd</option>
+        }
+
+    }
+</select></li>
 }
 @section script
 {<script>
@@ -97,6 +110,7 @@ $(document).ready(function(){
                 },
                 error: function (err) {
                     alert(err.statusText);
+
                 }
             });
         } else {
@@ -344,6 +358,13 @@ $(document).ready(function(){
     }
     </script>
     <!-- #endregion -->
+    <script>
+        function myFunction1()
+        {
+            var x = document.getElementById("select-student").value;
+            window.location.href = '/Student/detail/' + x;
+        }
+    </script>
 }
 @section Styles
 {
@@ -375,7 +396,7 @@ $(document).ready(function(){
             </div>
             <div class="form-group col-sm-3">
                 <label for="exampleInputFile" style="width:100%">&nbsp;&nbsp;</label>
-                <button id="btnUpload">UPLOAD</button>
+                <button id="btnUpload">Tải lên</button>
             </div>
         </dIV>
 
@@ -397,9 +418,7 @@ $(document).ready(function(){
                 }
             </select>
         </div>
-        <div class="form-group col-sm-3">
 
-        </div>
         <iframe id="pdf-view" src="@Url.Action("ByteArrayToImage","Student",new { fileName = pdf , type = 0,id_Room = @id })" frameborder="0" style="border-width:2px 2px 2px 2px;overflow:hidden;height:800px;width:100%"></iframe>
     </div>
     <div class="col-sm-3">
@@ -654,5 +673,5 @@ $(document).ready(function(){
     </div>
 
 </div>
-@*@Html.Action("MessageBox", "Common")*@
+@Html.Action("MessageBox", "Common")
 

@@ -301,6 +301,7 @@ namespace Quản_lý_điểm_thi.Controllers
                                 record.create_date = DateTime.Now.ToShortDateString();
                                 record.create_user = Session["Username"].ToString();
                                 record.ID_Exam_Room = id;
+                                record.pdf = RemoveUnicode(row[3].ToString().ToLower().Replace(" ","")) + "_" + row[2].ToString().ToLower();
                                 db.Students.Add(record);
                                 db.SaveChanges();
 
@@ -405,7 +406,7 @@ namespace Quản_lý_điểm_thi.Controllers
             }
             else if (string.IsNullOrEmpty(fileName)|| fileName == "PDF.pdf")
             {
-                path = HttpContext.Server.MapPath("~/PDF/error.pdf");
+                    path = HttpContext.Server.MapPath("~/PDF/error.pdf");
             }
             //18_165_20191005_01_06
             FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -416,6 +417,7 @@ namespace Quản_lý_điểm_thi.Controllers
         //id = id thí sinh
         public ActionResult Detail(int id)
         {
+            
             Student a = db.Students.Where(x => x.Id == id).FirstOrDefault();
             List<GioiTinh> Gt = db.GioiTinhs.ToList();
             ViewBag.lstGioiTinh = Gt;
@@ -431,6 +433,8 @@ namespace Quản_lý_điểm_thi.Controllers
             ViewBag.DienUuTien = DienUuTien;
             List<KetQua> KetQua = db.KetQuas.ToList();
             ViewBag.KetQua = KetQua;
+            List<Student> lstStudent = db.Students.Where(x => x.ID_Exam_Room == a.ID_Exam_Room).ToList();
+            ViewBag.lstStudent = lstStudent;
             ExamRoom room = db.ExamRooms.Where(x => x.Id == a.ID_Exam_Room).FirstOrDefault();
             Hoi_dong_thi hdt = db.Hoi_dong_thi.Where(x => x.Id == room.ID_Exam).FirstOrDefault();
 
