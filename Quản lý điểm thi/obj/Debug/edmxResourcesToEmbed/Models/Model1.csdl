@@ -299,23 +299,6 @@
     <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
   </EntityType>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Birthday" Type="DateTime" Precision="0" />
-    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="CMND" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="IsAdmin" Type="Boolean" />
-    <Property Name="UnitId" Type="Int32" />
-  </EntityType>
   <EntityType Name="XepLoaiHanhKiem">
     <Key>
       <PropertyRef Name="Id" />
@@ -390,7 +373,6 @@
     <EntitySet Name="Students" EntityType="Self.Student" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Truongs" EntityType="Self.Truong" />
-    <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="XepLoaiHanhKiems" EntityType="Self.XepLoaiHanhKiem" />
     <EntitySet Name="XepLoaiHocLucs" EntityType="Self.XepLoaiHocLuc" />
     <EntitySet Name="XepLoaiTotNghieps" EntityType="Self.XepLoaiTotNghiep" />
@@ -402,5 +384,25 @@
       <End Role="Role" EntitySet="Roles" />
       <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
     </AssociationSet>
+    <EntitySet Name="Users" EntityType="QLDTModel.User" />
   </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CMND" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <Property Name="UnitId" Type="Int32" />
+    <Property Name="AvatarUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="AvatarFolderPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

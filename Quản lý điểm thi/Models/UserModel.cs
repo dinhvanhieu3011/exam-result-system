@@ -45,5 +45,6 @@ namespace Quản_lý_điểm_thi.Models
 
         public int[] Role { get; set; }
         public int UnitId { get; set; }
+        public HttpPostedFileBase Avatar { get; set; }
     }
 }

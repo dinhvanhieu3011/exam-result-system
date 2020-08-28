@@ -2414,6 +2414,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="plugins\scropper\cropper.min.css" />
+    <Content Include="plugins\scropper\cropper.min.js" />
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
@@ -2876,7 +2878,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Excel\14\" />
-    <Folder Include="plugins\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="bower_components\moment\moment.d.ts" />

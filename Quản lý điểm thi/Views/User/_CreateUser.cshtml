@@ -18,7 +18,7 @@
                         <p id="err-message-content"></p>
                     </div>
                 </div>
-                <form action="/" method="post" id="frmCreateUser">
+                <form action="/" method="post" id="frmCreateUser" enctype="multipart/form-data">
                     <div class="row">
                         <fieldset>
                             <div class="col-sm-12">
@@ -91,6 +91,7 @@
                                     }
                                 </div>
                             </div>
+                          
                             <div id="tokenAddEdit">
                                 @Html.AntiForgeryToken()
                             </div>
@@ -102,6 +103,13 @@
                                         Xét tài khoản là Admin
                                     </label>
                                 </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <label><strong>Chọn ảnh đại diện</strong></label>
+                                <input type="file" id="inputCreateAvatar" accept="image/*" />
+                            </div>  
+                            <div class="col-sm-6">
+                                <img src="https://via.placeholder.com/250" alt="Alternate Text"  class="img-thumbnail" id="imageCreatePreview" style="max-width:300px; max-height:300px" />
                             </div>
                         </fieldset>
                     </div>

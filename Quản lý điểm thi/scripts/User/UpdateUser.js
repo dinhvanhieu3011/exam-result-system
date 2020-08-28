@@ -1,5 +1,49 @@
 ﻿let UpdateUser = function () {
     let _UpdateUser = function () {
+        var image = document.getElementById('imageUpdatePreview');
+        var input = document.getElementById('inputUpdateAvatar');
+        var cropper;
+
+        input.addEventListener('change', function (e) {
+            var files = e.target.files;
+            var done = function (url) {
+                input.value = '';
+                image.src = url;
+            };
+            var reader;
+            var file;
+            var url;
+            if (files && files.length > 0) {
+                file = files[0];
+                if (URL) {
+                    done(URL.createObjectURL(file));
+                } else if (FileReader) {
+                    reader = new FileReader();
+                    reader.onload = function (e) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            cropper = new Cropper(image, {
+                dragMode: 'move',
+                aspectRatio: 1 / 1,
+                autoCropArea: 1,
+                restore: false,
+                guides: false,
+                center: true,
+                highlight: false,
+                cropBoxMovable: false,
+                cropBoxResizable: false,
+                toggleDragModeOnDblclick: false,
+            });
+        });
+
+
         $('#tblUser').on('click', '.btn-edit-user', function () {
             let id = $(this).val()
             getUserById(id)
@@ -10,23 +54,58 @@
         $('#btnUpdateUser').on('click', function () {
             hideMessage()
             if (validateForm()) {
-                $.ajax({
-                    url: '/User/UpdateUser',
-                    type: "POST",
-                    data: $("#frmUpdateUser").serialize(),
-                    success: function (result) {
-                        if (result.IsSuccess) {
-                            $("#updateModal").modal("hide")
-                            $("#tblUser").DataTable().ajax.reload();
-                            showSuccessMessage('Cập nhật thành công')
-                        } else {
-                            showAlterMessage(result.Message)
+                var form = $("#frmUpdateUser")[0]
+                var formData = new FormData(form)
+                if (cropper) {
+                    canvas = cropper.getCroppedCanvas({
+                        width: 160,
+                        height: 160,
+                    });
+                    initialAvatarURL = image.src;
+                    image.src = canvas.toDataURL();
+                    canvas.toBlob(function (blob) {
+                        formData.append('Avatar', blob, 'avatar.jpg');
+                        $.ajax({
+                            url: '/User/UpdateUser',
+                            type: "post",
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (result) {
+                                if (result.IsSuccess) {
+                                    $("#updateModal").modal("hide")
+                                    $("#tblUser").DataTable().ajax.reload();
+                                    showSuccessMessage('Cập nhật thành công')
+                                } else {
+                                    showAlterMessage(result.Message)
+                                }
+                            },
+                            error: function (err) {
+                                alert(err.statusText);
+                            }
+                        });
+                    });
+                } else {
+                    $.ajax({
+                        url: '/User/UpdateUser',
+                        type: "post",
+                        data: $("#frmUpdateUser").serialize(),
+                        success: function (result) {
+                            if (result.IsSuccess) {
+                                $("#updateModal").modal("hide")
+                                $("#tblUser").DataTable().ajax.reload();
+                                showSuccessMessage('Cập nhật thành công')
+                            } else {
+                                showAlterMessage(result.Message)
+                            }
+                        },
+                        error: function (err) {
+                            alert(err.statusText);
                         }
-                    },
-                    error: function (err) {
-                        alert(err.statusText);
-                    }
-                });
+                    });
+                }
+           
             }
         })
 
@@ -63,6 +142,9 @@
         function showAlterMessage(mesg) {
             $('#err-message').show()
             $('#err-message-content').text(mesg)
+            cropper.destroy();
+            cropper = null;
+            image.src = "https://via.placeholder.com/250"
         }
 
         function getUserById(id) {
@@ -103,12 +185,22 @@
             }
             const date = data.Birthday.replace('/Date(','').replace(')/','')
             $('#txtUpdateBirthday').val(new Date(Number(date)).toISOString().slice(0, 10))
-            $('#chkAdmin').prop('checked', data.IsAdmin|| data.IsAdmin == 'true')
+            $('#chkAdmin').prop('checked', data.IsAdmin || data.IsAdmin == 'true')
+            if (data.AvatarUrl) {
+                image.src = data.AvatarUrl
+            } else {
+                image.src = "https://via.placeholder.com/250"
+            }
         }
 
         function resetForm() {
             $('.text-input').val('')
             $("input[type='checkbox']").prop('checked', false)
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+                image.src = "https://via.placeholder.com/250"
+            }
         }
 
         function validateInput(inputText, alertMessage) {
@@ -156,16 +248,18 @@
                 success: function (result) {
                     if (result.IsSuccess) {
                         $("#tblUser").DataTable().ajax.reload();
+                        showSuccessMessage('Xóa người dùng thành công.')
                     } else {
                         showAlterMessage(result.Message)
                     }
                 },
                 error: function (err) {
-                    alert(err.statusText);
+                    showAlterMessage(err.statusText);
                 }
             });
             $('#modalAlertDelete').modal('hide')
         })
+
 
         function showSuccessMessage(mess) {
             $('#modalSuccessMess').modal('show')
