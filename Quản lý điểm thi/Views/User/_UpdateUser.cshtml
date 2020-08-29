@@ -65,6 +65,18 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
+                                    <label for="Address">Nơi công tác</label>
+                                    @Html.TextBoxFor(m => m.WorkPlace, new { @class = "form-control text-input", @placeholder = "Nơi công tác", @id = "txtUpdateWorkPlace" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Address">Phòng công tác</label>
+                                    @Html.TextBoxFor(m => m.OfficeRoom, new { @class = "form-control text-input", @placeholder = "Phòng công tác", @id = "txtUpdateOfficeRoom" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
                                     <label for="Password">Mật khẩu</label>
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control text-input", @placeholder = "Mật khẩu", @id = "txtUpdatePassword" })
                                 </div>

@@ -350,6 +350,8 @@
     <EntitySetMapping Name="Users">
       <EntityTypeMapping TypeName="QLDTModel.User">
         <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="WorkPlace" ColumnName="WorkPlace" />
+          <ScalarProperty Name="OfficeRoom" ColumnName="OfficeRoom" />
           <ScalarProperty Name="AvatarFolderPath" ColumnName="AvatarFolderPath" />
           <ScalarProperty Name="AvatarUrl" ColumnName="AvatarUrl" />
           <ScalarProperty Name="UnitId" ColumnName="UnitId" />

@@ -174,6 +174,8 @@
             $('#txtUpdatePhone').val(data.Phone)
             $('#txtUpdatePassword').val(data.Password)
             $('#hdUpdateId').val(data.Id)
+            $('#txtUpdateOfficeRoom').val(data.OfficeRoom)
+            $('#txtUpdateWorkPlace').val(data.WorkPlace)
             const roles = JSON.parse(data.Image)
             if (roles) {
                 const chkRoles = $("input[name='Role']")

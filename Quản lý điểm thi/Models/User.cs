@@ -28,5 +28,7 @@ namespace Quản_lý_điểm_thi.Models
         public Nullable<int> UnitId { get; set; }
         public string AvatarUrl { get; set; }
         public string AvatarFolderPath { get; set; }
+        public string OfficeRoom { get; set; }
+        public string WorkPlace { get; set; }
     }
 }

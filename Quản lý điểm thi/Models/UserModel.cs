@@ -38,6 +38,10 @@ namespace Quản_lý_điểm_thi.Models
         [Required]
         public string CMND { get; set; }
 
+        public string OfficeRoom { get; set; }
+
+        public string WorkPlace { get; set; }
+
         public HttpPostedFileBase Image { get; set; }
 
         [Required]

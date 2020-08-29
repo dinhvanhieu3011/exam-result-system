@@ -313,6 +313,8 @@
     <Property Name="UnitId" Type="int" />
     <Property Name="AvatarUrl" Type="varchar" MaxLength="200" />
     <Property Name="AvatarFolderPath" Type="varchar" MaxLength="200" />
+    <Property Name="OfficeRoom" Type="nvarchar" MaxLength="200" />
+    <Property Name="WorkPlace" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="XepLoaiHanhKiem">
     <Key>

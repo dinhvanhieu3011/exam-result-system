@@ -70,7 +70,7 @@ namespace Quản_lý_điểm_thi.Controllers
         {
             string message = "";
             bool isSuccess = false;
-            if (CheckRole(UserRole.Edit))
+            if (CheckRole(UserRole.Create))
             {
                 if (ModelState.IsValid)
                 {
@@ -86,6 +86,8 @@ namespace Quản_lý_điểm_thi.Controllers
                         Phone = userModel.Phone,
                         CMND = userModel.CMND,
                         Mail = userModel.Mail,
+                        OfficeRoom = userModel.OfficeRoom,
+                        WorkPlace = userModel.WorkPlace
                     };
                     if (userModel.Role != null && userModel.Role.Any())
                     {
@@ -152,6 +154,8 @@ namespace Quản_lý_điểm_thi.Controllers
                         currUser.Phone = userModel.Phone;
                         currUser.CMND = userModel.CMND;
                         currUser.Mail = userModel.Mail;
+                        currUser.OfficeRoom = userModel.OfficeRoom;
+                        currUser.WorkPlace = userModel.WorkPlace;
                     }
                     if (userModel.Role != null && userModel.Role.Any())
                     {
@@ -191,41 +195,50 @@ namespace Quản_lý_điểm_thi.Controllers
         {
             string message = "";
             bool isSuccess = false;
-            if (id >= 0)
+            if (CheckRole(UserRole.Edit))
             {
-                User user = _context.Users.Where(p => p.Id == id).FirstOrDefault();
-                if (user != null && user.Username != "admin" && user.Username != "u1" && user.Username != "u2" && user.Username != "u3")
+                if (id >= 0)
                 {
-                    _context.Users.Remove(user);
-                    _context.SaveChanges();
-                    var folder = Server.MapPath(user.AvatarFolderPath);
-                    if (Directory.Exists(folder))
+                    User user = _context.Users.Where(p => p.Id == id).FirstOrDefault();
+                    if (user != null && user.Username != "admin" && user.Username != "u1" && user.Username != "u2" && user.Username != "u3")
                     {
-                        var parrentFolder = Directory.GetParent(folder);
-                        string[] files = Directory.GetFiles(folder);
-                        foreach (string file in files)
+                        _context.Users.Remove(user);
+                        _context.SaveChanges();
+                        var folder = Server.MapPath(user.AvatarFolderPath);
+                        if (Directory.Exists(folder))
                         {
-                            System.IO.File.SetAttributes(file, FileAttributes.Normal);
-                            System.IO.File.Delete(file);
+                            var parrentFolder = Directory.GetParent(folder);
+                            string[] files = Directory.GetFiles(folder);
+                            foreach (string file in files)
+                            {
+                                System.IO.File.SetAttributes(file, FileAttributes.Normal);
+                                System.IO.File.Delete(file);
+                            }
+                            Directory.Delete(folder);
+                            parrentFolder.Refresh();
+                            parrentFolder.Delete();
                         }
-                        Directory.Delete(folder);
-                        parrentFolder.Refresh();
-                        parrentFolder.Delete();
-                    }
 
-                    isSuccess = true;
-                    message = "Đã xóa thành công";
+                        isSuccess = true;
+                        message = "Đã xóa thành công";
+                    }
+                    else
+                    {
+                        isSuccess = false;
+                        message = "Khồng tìm thấy user";
+                    }
                 }
                 else
                 {
                     isSuccess = false;
-                    message = "Khồng tìm thấy user";
+                    message = "Hãy chọn 1 user";
                 }
+
             }
             else
             {
                 isSuccess = false;
-                message = "Hãy chọn 1 user";
+                message = "Bạn không có quyền xóa thông tin này";
             }
             return Json(new
             {
@@ -252,8 +265,8 @@ namespace Quản_lý_điểm_thi.Controllers
             string fileExtention = Path.GetExtension(file.FileName);
             string fullFileName = fileName + fileExtention;
 
-            string folferPath = "~/Image/User/"+ user.Id +"/"+ fileName;
-            string url = "/Image/User/" + user.Id + "/" + fileName+"/"+fullFileName;
+            string folferPath = "~/Image/User/" + user.Id + "/" + fileName;
+            string url = "/Image/User/" + user.Id + "/" + fileName + "/" + fullFileName;
             string path = folferPath + "\\" + fullFileName;
             var folder = Server.MapPath(folferPath);
             if (!Directory.Exists(folder))

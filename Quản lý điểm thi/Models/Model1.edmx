@@ -318,6 +318,8 @@
           <Property Name="UnitId" Type="int" />
           <Property Name="AvatarUrl" Type="varchar" MaxLength="200" />
           <Property Name="AvatarFolderPath" Type="varchar" MaxLength="200" />
+          <Property Name="OfficeRoom" Type="nvarchar" MaxLength="200" />
+          <Property Name="WorkPlace" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="XepLoaiHanhKiem">
           <Key>
@@ -814,6 +816,8 @@
           <Property Name="UnitId" Type="Int32" />
           <Property Name="AvatarUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="AvatarFolderPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="OfficeRoom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="WorkPlace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1170,6 +1174,8 @@
           <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="QLDTModel.User">
               <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="WorkPlace" ColumnName="WorkPlace" />
+                <ScalarProperty Name="OfficeRoom" ColumnName="OfficeRoom" />
                 <ScalarProperty Name="AvatarFolderPath" ColumnName="AvatarFolderPath" />
                 <ScalarProperty Name="AvatarUrl" ColumnName="AvatarUrl" />
                 <ScalarProperty Name="UnitId" ColumnName="UnitId" />
