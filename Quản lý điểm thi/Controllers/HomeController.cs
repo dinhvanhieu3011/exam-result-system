@@ -39,7 +39,7 @@ namespace Quản_lý_điểm_thi.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(string user, string pwd)
+        public ActionResult Login(string user, string pwd, string remeber)
         {
             var lstMenu = db.MenuItems.ToList();
 
@@ -52,22 +52,26 @@ namespace Quản_lý_điểm_thi.Controllers
                     ViewBag.LoginResult = "Tên đăng nhập hoặc mật khẩu không đúng";
                     return RedirectToAction("Login", "Home");
                 }
-              
                 User loginUser = lstUser.FirstOrDefault();
+                if (!string.IsNullOrEmpty(remeber))
+                {
 
-                HttpCookie cookie = new HttpCookie("qldt_userlogin");
-                cookie.Values["qldt_username"] = loginUser.Username;
-                cookie.Expires = DateTime.Now.AddDays(10);
-                Response.Cookies.Add(cookie);
+                    HttpCookie cookie = new HttpCookie("qldt_userlogin");
+                    cookie.Values["qldt_username"] = loginUser.Username;
+                    cookie.Expires = DateTime.Now.AddDays(10);
+                    Response.Cookies.Add(cookie);
 
-                cookie.Values["qldt_password"] = loginUser.Password;
-                cookie.Expires = DateTime.Now.AddDays(10);
-                Response.Cookies.Add(cookie);
+                    cookie.Values["qldt_password"] = loginUser.Password;
+                    cookie.Expires = DateTime.Now.AddDays(10);
+                    Response.Cookies.Add(cookie);
+
+                }
 
                 List<int> listRole = new List<int>();
                 Session["curUser"] = lstUser[0];
                 Session["IdUnitOfUser"] = lstUser[0].UnitId;
                 Session["IsLogin"] = 1;
+
                 if (!string.IsNullOrEmpty(loginUser.Image))
                 {
                     listRole = JsonConvert.DeserializeObject<List<int>>(loginUser.Image);
