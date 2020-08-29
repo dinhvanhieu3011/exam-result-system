@@ -65,6 +65,18 @@
                             </div>
                             <div class="col-sm-12">
                                 <div class="form-group">
+                                    <label for="Address">Nơi công tác</label>
+                                    @Html.TextBoxFor(m => m.WorkPlace, new { @class = "form-control text-input", @placeholder = "Nơi công tác", @id = "txtUpdateWorkPlace" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="Address">Phòng công tác</label>
+                                    @Html.TextBoxFor(m => m.OfficeRoom, new { @class = "form-control text-input", @placeholder = "Phòng công tác", @id = "txtUpdateOfficeRoom" })
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
                                     <label for="Password">Mật khẩu</label>
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control text-input", @placeholder = "Mật khẩu", @id = "txtUpdatePassword" })
                                 </div>
@@ -99,6 +111,13 @@
                                         Xét tài khoản là Admin
                                     </label>
                                 </div>
+                            </div>
+                            <div class="col-sm-5">
+                                <label><strong>Chọn ảnh đại diện</strong></label>
+                                <input type="file" id="inputUpdateAvatar" accept="image/*" />
+                            </div>
+                            <div class="col-sm-6">
+                                <img src="https://via.placeholder.com/250" alt="Alternate Text" class="img-thumbnail" id="imageUpdatePreview" style="max-width:300px; max-height:300px" />
                             </div>
                             <div id="tokenUpdateUser">
                                 @Html.AntiForgeryToken()

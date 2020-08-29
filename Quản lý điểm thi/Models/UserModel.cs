@@ -38,6 +38,10 @@ namespace Quản_lý_điểm_thi.Models
         [Required]
         public string CMND { get; set; }
 
+        public string OfficeRoom { get; set; }
+
+        public string WorkPlace { get; set; }
+
         public HttpPostedFileBase Image { get; set; }
 
         [Required]
@@ -45,5 +49,6 @@ namespace Quản_lý_điểm_thi.Models
 
         public int[] Role { get; set; }
         public int UnitId { get; set; }
+        public HttpPostedFileBase Avatar { get; set; }
     }
 }

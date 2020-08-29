@@ -1,25 +1,109 @@
 ﻿let CreateUser = function () {
     let _CreateUser = function () {
+
+        var image = document.getElementById('imageCreatePreview');
+        var input = document.getElementById('inputCreateAvatar');
+        var cropper;
+
+        input.addEventListener('change', function (e) {
+            var files = e.target.files;
+            var done = function (url) {
+                input.value = '';
+                image.src = url;
+            };
+            var reader;
+            var file;
+            var url;
+            if (files && files.length > 0) {
+                file = files[0];
+                if (URL) {
+                    done(URL.createObjectURL(file));
+                } else if (FileReader) {
+                    reader = new FileReader();
+                    reader.onload = function (e) {
+                        done(reader.result);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            }
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+            cropper = new Cropper(image, {
+                dragMode: 'move',
+                aspectRatio: 1/1,
+                autoCropArea: 1,
+                restore: false,
+                guides: false,
+                center: true,
+                highlight: false,
+                cropBoxMovable: false,
+                cropBoxResizable: false,
+                toggleDragModeOnDblclick: false,
+            });
+        });
+
         $('#btnCreateUser').on('click', function () {
             hideMessage()
             if (validateForm()) {
-                $.ajax({
-                    url: '/User/CreateNewUser',
-                    type: "POST",
-                    data: $("#frmCreateUser").serialize(),
-                    success: function (result) {
-                        if (result.IsSuccess) {
-                            $("#createModal").modal("hide")
-                            $("#tblUser").DataTable().ajax.reload();
-                            hideMessage()
-                        } else {
-                            showAlterMessage(result.Message)
+                var form = $("#frmCreateUser")[0]
+                var formData = new FormData(form)
+                if (cropper) {
+                    canvas = cropper.getCroppedCanvas({
+                        width: 160,
+                        height: 160,
+                    });
+                    initialAvatarURL = image.src;
+                    image.src = canvas.toDataURL();
+                    canvas.toBlob(function (blob) {
+                        formData.append('Avatar', blob, 'avatar.jpg');
+                        $.ajax({
+                            url: '/User/CreateNewUser',
+                            type: "post",
+                            data: formData,
+                            cache: false,
+                            contentType: false,
+                            processData: false,
+                            success: function (result) {
+                                if (result.IsSuccess) {
+                                    $("#createModal").modal("hide")
+                                    $("#tblUser").DataTable().ajax.reload();
+                                    hideMessage()
+                                    showSuccessMessage('Thêm người dùng thành công.')
+                                } else {
+                                    showAlterMessage(result.Message)
+                                }
+                            },
+                            error: function (err) {
+                                alert(err.statusText);
+                            }
+                        });
+                    });
+                } else {
+                    $.ajax({
+                        url: '/User/CreateNewUser',
+                        type: "post",
+                        data: formData,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        success: function (result) {
+                            if (result.IsSuccess) {
+                                $("#createModal").modal("hide")
+                                $("#tblUser").DataTable().ajax.reload();
+                                hideMessage()
+                                showSuccessMessage('Thêm người dùng thành công.')
+                            } else {
+                                showAlterMessage(result.Message)
+                            }
+                        },
+                        error: function (err) {
+                            alert(err.statusText);
                         }
-                    },
-                    error: function (err) {
-                        alert(err.statusText);
-                    }
-                });
+                    });
+                }
+             
             }
         })
 
@@ -70,14 +154,26 @@
             $('#err-message-content').text(mesg)
         }
 
+        function showSuccessMessage(mess) {
+            $('#modalSuccessMess').modal('show')
+            $('#modalSuccessMess .message-content').text(mess)
+        }
+
         function hideMessage() {
+            $('#success-message').modal('hide')
+            $('#success-message .message-content').text('')
             $('#err-message-content').empty()
             $('#err-message').hide()
         }
 
         function resetForm() {
             $('.text-input').val('')
-            $("input[type='checkbox']").prop('checked',false)
+            $("input[type='checkbox']").prop('checked', false)
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+                image.src = "https://via.placeholder.com/250"
+            }
         }
     }
     return {

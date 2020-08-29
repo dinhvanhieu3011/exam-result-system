@@ -311,24 +311,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Users">
-      <EntityTypeMapping TypeName="QLDTModel.User">
-        <MappingFragment StoreEntitySet="User">
-          <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="Username" ColumnName="Username" />
-          <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="FullName" ColumnName="FullName" />
-          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
-          <ScalarProperty Name="Phone" ColumnName="Phone" />
-          <ScalarProperty Name="Mail" ColumnName="Mail" />
-          <ScalarProperty Name="Address" ColumnName="Address" />
-          <ScalarProperty Name="CMND" ColumnName="CMND" />
-          <ScalarProperty Name="Image" ColumnName="Image" />
-          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
-          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="XepLoaiHanhKiems">
       <EntityTypeMapping TypeName="QLDTModel.XepLoaiHanhKiem">
         <MappingFragment StoreEntitySet="XepLoaiHanhKiem">
@@ -362,6 +344,28 @@
           <ScalarProperty Name="Ghi_chu" ColumnName="Ghi chu" />
           <ScalarProperty Name="create_date" ColumnName="create_date" />
           <ScalarProperty Name="create_user" ColumnName="create_user" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="QLDTModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="WorkPlace" ColumnName="WorkPlace" />
+          <ScalarProperty Name="OfficeRoom" ColumnName="OfficeRoom" />
+          <ScalarProperty Name="AvatarFolderPath" ColumnName="AvatarFolderPath" />
+          <ScalarProperty Name="AvatarUrl" ColumnName="AvatarUrl" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+          <ScalarProperty Name="CMND" ColumnName="CMND" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Birthday" ColumnName="Birthday" />
+          <ScalarProperty Name="FullName" ColumnName="FullName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

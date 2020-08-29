@@ -8,6 +8,7 @@ using System.Linq.Dynamic;
 using System.IO;
 using Newtonsoft.Json;
 using Quản_lý_điểm_thi.Common;
+using System.Text.RegularExpressions;
 
 namespace Quản_lý_điểm_thi.Controllers
 {
@@ -69,7 +70,7 @@ namespace Quản_lý_điểm_thi.Controllers
         {
             string message = "";
             bool isSuccess = false;
-            if (CheckRole(UserRole.Edit))
+            if (CheckRole(UserRole.Create))
             {
                 if (ModelState.IsValid)
                 {
@@ -85,6 +86,8 @@ namespace Quản_lý_điểm_thi.Controllers
                         Phone = userModel.Phone,
                         CMND = userModel.CMND,
                         Mail = userModel.Mail,
+                        OfficeRoom = userModel.OfficeRoom,
+                        WorkPlace = userModel.WorkPlace
                     };
                     if (userModel.Role != null && userModel.Role.Any())
                     {
@@ -92,7 +95,12 @@ namespace Quản_lý_điểm_thi.Controllers
                         user.Image = role;
                     }
 
-                    _context.Users.Add(user);
+                    user = _context.Users.Add(user);
+                    _context.SaveChanges();
+                    if (userModel.Avatar != null)
+                    {
+                        user = SaveImage(userModel.Avatar, user);
+                    }
                     _context.SaveChanges();
 
                     message = "Thêm người dùng mới thành công";
@@ -146,11 +154,17 @@ namespace Quản_lý_điểm_thi.Controllers
                         currUser.Phone = userModel.Phone;
                         currUser.CMND = userModel.CMND;
                         currUser.Mail = userModel.Mail;
+                        currUser.OfficeRoom = userModel.OfficeRoom;
+                        currUser.WorkPlace = userModel.WorkPlace;
                     }
                     if (userModel.Role != null && userModel.Role.Any())
                     {
                         string roles = JsonConvert.SerializeObject(userModel.Role);
                         currUser.Image = roles;
+                    }
+                    if (userModel.Avatar != null)
+                    {
+                        currUser = SaveImage(userModel.Avatar, currUser);
                     }
                     _context.SaveChanges();
 
@@ -181,26 +195,50 @@ namespace Quản_lý_điểm_thi.Controllers
         {
             string message = "";
             bool isSuccess = false;
-            if (id >= 0)
+            if (CheckRole(UserRole.Edit))
             {
-                User user = _context.Users.Where(p => p.Id == id).FirstOrDefault();
-                if (user != null && user.Username != "admin" && user.Username != "u1" && user.Username != "u2" && user.Username != "u3")
+                if (id >= 0)
                 {
-                    _context.Users.Remove(user);
-                    _context.SaveChanges();
-                    isSuccess = true;
-                    message = "Đã xóa thành công";
+                    User user = _context.Users.Where(p => p.Id == id).FirstOrDefault();
+                    if (user != null && user.Username != "admin" && user.Username != "u1" && user.Username != "u2" && user.Username != "u3")
+                    {
+                        _context.Users.Remove(user);
+                        _context.SaveChanges();
+                        var folder = Server.MapPath(user.AvatarFolderPath);
+                        if (Directory.Exists(folder))
+                        {
+                            var parrentFolder = Directory.GetParent(folder);
+                            string[] files = Directory.GetFiles(folder);
+                            foreach (string file in files)
+                            {
+                                System.IO.File.SetAttributes(file, FileAttributes.Normal);
+                                System.IO.File.Delete(file);
+                            }
+                            Directory.Delete(folder);
+                            parrentFolder.Refresh();
+                            parrentFolder.Delete();
+                        }
+
+                        isSuccess = true;
+                        message = "Đã xóa thành công";
+                    }
+                    else
+                    {
+                        isSuccess = false;
+                        message = "Khồng tìm thấy user";
+                    }
                 }
                 else
                 {
                     isSuccess = false;
-                    message = "Khồng tìm thấy user";
+                    message = "Hãy chọn 1 user";
                 }
+
             }
             else
             {
                 isSuccess = false;
-                message = "Hãy chọn 1 user";
+                message = "Bạn không có quyền xóa thông tin này";
             }
             return Json(new
             {
@@ -220,6 +258,76 @@ namespace Quản_lý_điểm_thi.Controllers
             }
             return Json(new { User = user }, JsonRequestBehavior.AllowGet);
         }
+
+        private User SaveImage(HttpPostedFileBase file, User user)
+        {
+            string fileName = GetFileName(user);
+            string fileExtention = Path.GetExtension(file.FileName);
+            string fullFileName = fileName + fileExtention;
+
+            string folferPath = "~/Image/User/" + user.Id + "/" + fileName;
+            string url = "/Image/User/" + user.Id + "/" + fileName + "/" + fullFileName;
+            string path = folferPath + "\\" + fullFileName;
+            var folder = Server.MapPath(folferPath);
+            if (!Directory.Exists(folder))
+            {
+                Directory.CreateDirectory(folder);
+            }
+            else
+            {
+                string[] files = Directory.GetFiles(folder);
+                foreach (string fileImg in files)
+                {
+                    System.IO.File.SetAttributes(fileImg, FileAttributes.Normal);
+                    System.IO.File.Delete(fileImg);
+                }
+            }
+            string fullPath = Path.Combine(Server.MapPath(folferPath), fullFileName);
+
+            file.SaveAs(fullPath);
+            user.AvatarFolderPath = folferPath;
+            user.AvatarUrl = url;
+            return user;
+        }
+
+        public static string RemoveUnicode(string text)
+        {
+            string[] arr1 = new string[] { "á", "à", "ả", "ã", "ạ", "â", "ấ", "ầ", "ẩ", "ẫ", "ậ", "ă", "ắ", "ằ", "ẳ", "ẵ", "ặ",
+                                    "đ",
+                                    "é","è","ẻ","ẽ","ẹ","ê","ế","ề","ể","ễ","ệ",
+                                    "í","ì","ỉ","ĩ","ị",
+                                    "ó","ò","ỏ","õ","ọ","ô","ố","ồ","ổ","ỗ","ộ","ơ","ớ","ờ","ở","ỡ","ợ",
+                                    "ú","ù","ủ","ũ","ụ","ư","ứ","ừ","ử","ữ","ự",
+                                    "ý","ỳ","ỷ","ỹ","ỵ",};
+            string[] arr2 = new string[] { "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a", "a",
+                                    "d",
+                                    "e","e","e","e","e","e","e","e","e","e","e",
+                                    "i","i","i","i","i",
+                                    "o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o","o",
+                                    "u","u","u","u","u","u","u","u","u","u","u",
+                                    "y","y","y","y","y",};
+            for (int i = 0; i < arr1.Length; i++)
+            {
+                text = text.Replace(arr1[i], arr2[i]);
+                text = text.Replace(arr1[i].ToUpper(), arr2[i].ToUpper());
+            }
+            return text;
+        }
+
+        private string GetFileName(User user)
+        {
+            if (!string.IsNullOrEmpty(user.Username))
+            {
+                string fileName = RemoveUnicode(user.Username);
+                fileName = Regex.Replace(fileName, @"[^0-9a-zA-Z]+", "_") + "_id_" + user.Id;
+                return fileName;
+            }
+            else
+            {
+                return "id_" + user.Id;
+            }
+        }
+
 
         private bool CheckRole(int role)
         {
