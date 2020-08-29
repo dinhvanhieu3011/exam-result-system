@@ -158,6 +158,10 @@ namespace Quản_lý_điểm_thi.Controllers
                         string roles = JsonConvert.SerializeObject(userModel.Role);
                         currUser.Image = roles;
                     }
+                    if (userModel.Avatar != null)
+                    {
+                        currUser = SaveImage(userModel.Avatar, currUser);
+                    }
                     _context.SaveChanges();
 
                     message = "Cập nhật người dùng  thành công";
@@ -205,6 +209,7 @@ namespace Quản_lý_điểm_thi.Controllers
                             System.IO.File.Delete(file);
                         }
                         Directory.Delete(folder);
+                        parrentFolder.Refresh();
                         parrentFolder.Delete();
                     }
 

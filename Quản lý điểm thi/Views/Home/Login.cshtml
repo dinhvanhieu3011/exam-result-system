@@ -1,6 +1,14 @@
 ﻿
 @{
     Layout = null;
+    HttpCookie cookie = Request.Cookies["qldt_userlogin"];
+    string pass = "";
+    string username = "";
+    if ((cookie != null) && (cookie.Value != ""))
+    {
+        username = cookie.Values["qldt_username"] as string;
+        pass = cookie.Values["qldt_password"] as string;
+    }
 }
 
 <!DOCTYPE html>
@@ -132,7 +140,7 @@
                                             <div class="row">
                                                 <label class="col-lg-5 Col-sm-5 col-xs-5  pull-left h5 text-bold" style="font-weight:bold">Tên đăng nhập</label>
                                                 <div class="col-lg-7 col-sm-7">
-                                                    <input id="username" name="user" type="text" class="form-control" placeholder="Tên đăng nhập">
+                                                    <input id="username" name="user" value="@username" type="text" class="form-control" placeholder="Tên đăng nhập">
                                                 </div>
                                             </div>
                                         </div>
@@ -141,7 +149,7 @@
                                             <div class="row">
                                                 <label class="col-lg-5 Col-sm-5 col-xs-5 pull-left h5 text-bold" style="font-weight:bold">Mật khẩu</label>
                                                 <div class="col-lg-7 col-sm-7">
-                                                    <input id="password" name="pwd" type="password" class="form-control" placeholder="Mật khẩu">
+                                                    <input id="password" name="pwd" type="password" value="@pass" class="form-control" placeholder="Mật khẩu">
                                                 </div>
                                             </div>
                                         </div>

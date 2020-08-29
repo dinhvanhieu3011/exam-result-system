@@ -52,7 +52,18 @@ namespace Quản_lý_điểm_thi.Controllers
                     ViewBag.LoginResult = "Tên đăng nhập hoặc mật khẩu không đúng";
                     return RedirectToAction("Login", "Home");
                 }
+              
                 User loginUser = lstUser.FirstOrDefault();
+
+                HttpCookie cookie = new HttpCookie("qldt_userlogin");
+                cookie.Values["qldt_username"] = loginUser.Username;
+                cookie.Expires = DateTime.Now.AddDays(10);
+                Response.Cookies.Add(cookie);
+
+                cookie.Values["qldt_password"] = loginUser.Password;
+                cookie.Expires = DateTime.Now.AddDays(10);
+                Response.Cookies.Add(cookie);
+
                 List<int> listRole = new List<int>();
                 Session["curUser"] = lstUser[0];
                 Session["IdUnitOfUser"] = lstUser[0].UnitId;
