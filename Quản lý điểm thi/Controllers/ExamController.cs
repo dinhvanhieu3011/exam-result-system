@@ -73,7 +73,7 @@ namespace Quản_lý_điểm_thi.Controllers
         }
         public JsonResult saveJS(string id, string hoi_dong_thi, string khoa_thi, string nam_thi, string value_1, string value_2)
         {
-            if (CheckRole(UserRole.Create))
+            if (CheckRole(UserRole.Edit))
             {
                 if (id == null)
                 {

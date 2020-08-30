@@ -493,7 +493,7 @@ namespace Quản_lý_điểm_thi.Controllers
         }
         public ActionResult Createnew(string id)
         {
-            if (CheckRole(UserRole.Edit))
+            if (CheckRole(UserRole.Create))
             {
                 List<GioiTinh> Gt = db.GioiTinhs.ToList();
                 ViewBag.lstGioiTinh = Gt;

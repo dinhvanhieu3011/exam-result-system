@@ -90,7 +90,7 @@ namespace Quản_lý_điểm_thi.Controllers
         public JsonResult saveJS(string id, string value_1, string value_2, string value_3, string value_4,
                 string value_5, string value_6, string value_7, string value_8)
         {
-            if (CheckRole(UserRole.Create))
+            if (CheckRole(UserRole.Edit))
             {
                 if (id == null)
                 {

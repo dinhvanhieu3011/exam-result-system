@@ -57,7 +57,6 @@ D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Mvc.xml
 D:\quan-li-diem-thi-2\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.dll
 D:\quan-li-diem-thi-2\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.pdb
 D:\quan-li-diem-thi-2\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.csprojResolveAssemblyReference.cache
-E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.csprojResolveAssemblyReference.cache
 E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.pdb
 E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\ApplicationInsights.config
 E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\csc.exe
