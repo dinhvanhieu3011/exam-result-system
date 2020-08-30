@@ -13,7 +13,6 @@ namespace Quản_lý_điểm_thi.Common
         public const int Create = 4;
 
         public static List<SelectOption> ListRole = new List<SelectOption>{
-            new SelectOption {Value = Read, Name="Đọc" },
             new SelectOption { Value = Edit, Name = "Sửa" },
             new SelectOption { Value = Delete, Name = "Xóa" },
             new SelectOption { Value = Create, Name = "Tạo" }
