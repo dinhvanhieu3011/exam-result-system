@@ -346,6 +346,7 @@
     var nameUser = Session["Username"] as String;
     var fullName = Session["FullName"] as String;
     var isAdmin = Session["isAdmin"] as String;
+    var userLogined = Session["curUser"] as Quản_lý_điểm_thi.Models.User;
     if (lstMenu != null)
     {
         <body class="skin-blue layout-top-nav">
@@ -462,12 +463,11 @@
                                         <a href="~/exam/index"> Danh sách khoá thi</a>
                                     </li>
                                     <!-- Lev 1 -->
-
                                     @*<li class="dropdown"><a href="~/student/test"> Sao lưu và khôi phục dữ liệu</a></li>*@
                                     <li class="dropdown"><a href="~/settings/index"> Thiết lập tham số</a></li>
                                     @if (nameUser == "admin")
                                     {
-                                        
+
                                         <li class="dropdown"><a href="~/user/index"> Quản lí người dùng</a></li>
                                     }
                                     <li class="dropdown">
@@ -584,14 +584,28 @@
                                         <!-- Menu Toggle Button -->
                                         <a class="dropdown-toggle" aria-expanded="false" href="#" data-toggle="dropdown">
                                             <!-- The user image in the navbar-->
-                                            <img class="user-image" alt="User Image" src="~/Content/img/quan-tri-he-thong-logo.jpg">
-                                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                          @if (string.IsNullOrEmpty(userLogined.AvatarUrl)) {
+                                              <img class="user-image" alt="User Image" src="~/Content/img/quan-tri-he-thong-logo.jpg">
+                                          }
+                                          else
+                                          {
+                                            <img class="user-image" alt="User Image" src="@userLogined.AvatarUrl">
+                                          }
+                                          <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                             <span class="hidden-xs">@nameUser - @fullName</span>
                                         </a>
                                         <ul class="dropdown-menu">
                                             <!-- The user image in the menu -->
                                             <li class="user-header">
-                                                <img class="img-circle" alt="User Image" src="~/Content/img/quan-tri-he-thong-logo.jpg">
+                                                @if (string.IsNullOrEmpty(userLogined.AvatarUrl))
+                                                {
+                                                    <img class="img-circle" alt="User Image" src="~/Content/img/quan-tri-he-thong-logo.jpg">
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-circle" alt="User Image" src="@userLogined.AvatarUrl">
+                                                }
+
                                                 <p>
                                                     @nameUser
                                                 </p>
