@@ -174,7 +174,10 @@
 
             },
         function (data) {
-            if (data == -1) {
+            if(data == -2){
+                showAlterMessage('Bạn không có quyền sửa bản ghi này')
+            }
+            else if (data == -1) {
 
             }
             else {
@@ -206,7 +209,10 @@
            
             },
         function (data) {
-            if (data == -1) {
+            if(data == -2){
+                showAlterMessage('Bạn không có quyền thêm bản ghi này')
+            }
+            else if (data == -1) {
 
             }
             else {
@@ -236,7 +242,10 @@
                 type: "POST",
                 data: $("#formDelete").serialize(),
                 success: function (result) {
-                    if (result != -1)  {
+                    if(result == -2){
+                        showAlterMessage('Bạn không có quyền xóa bản ghi này')
+                    }
+                    else if (result != -1)  {
                         $("#demoGrid").DataTable().ajax.reload();
                         showSuccessMessage('Xóa thông tin hội đồng thi hoàn tất.')
                     } else {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Linq.Dynamic;
+using Quản_lý_điểm_thi.Common;
 
 namespace Quản_lý_điểm_thi.Controllers
 {
@@ -72,69 +73,87 @@ namespace Quản_lý_điểm_thi.Controllers
         }
         public JsonResult saveJS(string id, string hoi_dong_thi, string khoa_thi, string nam_thi, string value_1, string value_2)
         {
-
-            if (id == null)
+            if (CheckRole(UserRole.Create))
             {
-                return Json(0, JsonRequestBehavior.AllowGet);
+                if (id == null)
+                {
+                    return Json(0, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    int Nid = Int32.Parse(id);
+                    Exam record = db.Exams.Where(x => x.Id == Nid).FirstOrDefault();
+                    record.hoi_dong_thi = hoi_dong_thi;
+                    record.khoa_thi = khoa_thi;
+                    record.nam_thi = nam_thi;
+                    record.value_1 = value_1;
+                    record.value_2 = value_2;
+                    db.SaveChanges();
+                    return Json(1, JsonRequestBehavior.AllowGet);
+                }
             }
             else
             {
-                int Nid = Int32.Parse(id);
-                Exam record = db.Exams.Where(x => x.Id == Nid).FirstOrDefault();
+                return Json(-2, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult CreateNewJS(string hoi_dong_thi, string khoa_thi, string nam_thi, string ID_PT, string ID_MT, string value_1, string value_2)
+        {
+            if (CheckRole(UserRole.Create))
+            {
+                //DanhMuc_TaiKhoan record = new DanhMuc_TaiKhoan();
+                Exam record = new Exam();
                 record.hoi_dong_thi = hoi_dong_thi;
                 record.khoa_thi = khoa_thi;
                 record.nam_thi = nam_thi;
+                record.create_date = DateTime.Now.ToString();
+                record.create_user = Session["curUser"].ToString();
+                record.ID_MT_VALUE_NAME = Int32.Parse(ID_MT);
+                record.ID_PT_VALUE_NAME = Int32.Parse(ID_PT);
                 record.value_1 = value_1;
                 record.value_2 = value_2;
+                db.Exams.Add(record);
                 db.SaveChanges();
                 return Json(1, JsonRequestBehavior.AllowGet);
-            }
-        }
-        public JsonResult CreateNewJS(string hoi_dong_thi, string khoa_thi, string nam_thi,string ID_PT,string ID_MT, string value_1, string value_2)
-        {
-            //DanhMuc_TaiKhoan record = new DanhMuc_TaiKhoan();
-            Exam record = new Exam();
-            record.hoi_dong_thi = hoi_dong_thi;
-            record.khoa_thi = khoa_thi;
-            record.nam_thi = nam_thi;
-            record.create_date = DateTime.Now.ToString();
-            record.create_user = Session["curUser"].ToString();
-            record.ID_MT_VALUE_NAME = Int32.Parse( ID_MT);
-            record.ID_PT_VALUE_NAME = Int32.Parse(ID_PT);
-            record.value_1 = value_1;
-            record.value_2 = value_2;
-            db.Exams.Add(record);
-            db.SaveChanges();
-            return Json(1, JsonRequestBehavior.AllowGet);
-
-        }
-        public JsonResult deleteJS(string id)
-        {
-
-            if (id == null)
-            {
-                return Json(0, JsonRequestBehavior.AllowGet);
             }
             else
             {
-                Exam record = db.Exams.Find(Int32.Parse(id));
-                List<Hoi_dong_thi> lstHDT = db.Hoi_dong_thi.Where(x => x.value_11 == record.Id.ToString()).ToList();
-                foreach(Hoi_dong_thi recordHDT in lstHDT)
-                {   
-                    List<ExamRoom> lst = db.ExamRooms.Where(x => x.ID_Exam == recordHDT.Id).ToList();
-                    foreach (ExamRoom x in lst)
-                    {
-
-                        List<Student> student = db.Students.Where(b => b.ID_Exam_Room == x.Id).ToList();
-                        db.ExamRooms.Remove(x);
-                        db.Students.RemoveRange(student);
-                        db.SaveChanges();
-                    }
-                    db.Hoi_dong_thi.Remove(recordHDT);
+                return Json(-2, JsonRequestBehavior.AllowGet);
+            }
+        }
+        public JsonResult deleteJS(string id)
+        {
+            if (CheckRole(UserRole.Delete))
+            {
+                if (id == null)
+                {
+                    return Json(0, JsonRequestBehavior.AllowGet);
                 }
-                db.Exams.Remove(record);
-                db.SaveChanges();
-                return Json(1, JsonRequestBehavior.AllowGet);
+                else
+                {
+                    Exam record = db.Exams.Find(Int32.Parse(id));
+                    List<Hoi_dong_thi> lstHDT = db.Hoi_dong_thi.Where(x => x.value_11 == record.Id.ToString()).ToList();
+                    foreach (Hoi_dong_thi recordHDT in lstHDT)
+                    {
+                        List<ExamRoom> lst = db.ExamRooms.Where(x => x.ID_Exam == recordHDT.Id).ToList();
+                        foreach (ExamRoom x in lst)
+                        {
+
+                            List<Student> student = db.Students.Where(b => b.ID_Exam_Room == x.Id).ToList();
+                            db.ExamRooms.Remove(x);
+                            db.Students.RemoveRange(student);
+                            db.SaveChanges();
+                        }
+                        db.Hoi_dong_thi.Remove(recordHDT);
+                    }
+                    db.Exams.Remove(record);
+                    db.SaveChanges();
+                    return Json(1, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(-2, JsonRequestBehavior.AllowGet);
             }
         }
         public JsonResult getDataJS(string id)
@@ -158,6 +177,18 @@ namespace Quản_lý_điểm_thi.Controllers
                     value_2 = record.value_2,
                 }, JsonRequestBehavior.AllowGet);
             }
+        }
+        private bool CheckRole(int role)
+        {
+            List<int> listRole = Session["ListRole"] as List<int>;
+            if (listRole != null && listRole.Any())
+            {
+                if (listRole.Contains(role))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
     }

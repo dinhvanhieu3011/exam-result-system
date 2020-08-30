@@ -8,6 +8,7 @@ using System.Linq.Dynamic;
 using System.IO;
 using ExcelDataReader;
 using System.Data;
+using Quản_lý_điểm_thi.Common;
 
 namespace Quản_lý_điểm_thi.Controllers
 {
@@ -287,21 +288,21 @@ namespace Quản_lý_điểm_thi.Controllers
                                 record.ho_ten = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[3].ToString().ToLower());
                                 record.ngay_sinh = row[4].ToString();
                                 record.gioi_tinh = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[5].ToString().ToLower());
-                                record.coquan_congtac =  System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[6].ToString().ToLower());
+                                record.coquan_congtac = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[6].ToString().ToLower());
                                 record.dantoc = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[7].ToString());
                                 record.truong_hoc = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[8].ToString());
                                 record.ketqua_thi = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[9].ToString());
                                 record.ghichu = row[9 + 1].ToString();
 
                                 record.xeploai_hocluc = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[11].ToString());
-                                record.xeploai_hanhkiem = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[12 ].ToString());
-                                record.xeploai_totnghiep =  System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[12 + 1].ToString());
-                                record.dien_uudai = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[13 + + 1].ToString().ToLower());
+                                record.xeploai_hanhkiem = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[12].ToString());
+                                record.xeploai_totnghiep = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[12 + 1].ToString());
+                                record.dien_uudai = System.Threading.Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(row[13 + +1].ToString().ToLower());
 
                                 record.create_date = DateTime.Now.ToShortDateString();
                                 record.create_user = Session["Username"].ToString();
                                 record.ID_Exam_Room = id;
-                                record.pdf = RemoveUnicode(row[3].ToString().ToLower().Replace(" ","")) + "_" + row[2].ToString().ToLower();
+                                record.pdf = RemoveUnicode(row[3].ToString().ToLower().Replace(" ", "")) + "_" + row[2].ToString().ToLower();
                                 db.Students.Add(record);
                                 db.SaveChanges();
 
@@ -404,9 +405,9 @@ namespace Quản_lý_điểm_thi.Controllers
             {
                 path = HttpContext.Server.MapPath("~/PDF/" + fileName);
             }
-            else if (string.IsNullOrEmpty(fileName)|| fileName == "PDF.pdf")
+            else if (string.IsNullOrEmpty(fileName) || fileName == "PDF.pdf")
             {
-                    path = HttpContext.Server.MapPath("~/PDF/error.pdf");
+                path = HttpContext.Server.MapPath("~/PDF/error.pdf");
             }
             //18_165_20191005_01_06
             FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read);
@@ -417,116 +418,123 @@ namespace Quản_lý_điểm_thi.Controllers
         //id = id thí sinh
         public ActionResult Detail(int id)
         {
-            
-            Student a = db.Students.Where(x => x.Id == id).FirstOrDefault();
-            List<GioiTinh> Gt = db.GioiTinhs.ToList();
-            ViewBag.lstGioiTinh = Gt;
-            List<Truong> Truong = db.Truongs.ToList();
-            ViewBag.lstTruong = Truong;
-            List<XepLoaiHanhKiem> XepLoaiHanhKiem = db.XepLoaiHanhKiems.ToList();
-            ViewBag.lstXepLoaiHanhKiem = XepLoaiHanhKiem;
-            List<XepLoaiHocLuc> XepLoaiHocLuc = db.XepLoaiHocLucs.ToList();
-            ViewBag.lstXepLoaiHocLuc = XepLoaiHocLuc;
-            List<XepLoaiTotNghiep> XepLoaiTotNghiep = db.XepLoaiTotNghieps.ToList();
-            ViewBag.lstXepLoaiTotNghiep = XepLoaiTotNghiep;
-            List<DienUuTien> DienUuTien = db.DienUuTiens.ToList();
-            ViewBag.DienUuTien = DienUuTien;
-            List<KetQua> KetQua = db.KetQuas.ToList();
-            ViewBag.KetQua = KetQua;
-            List<Student> lstStudent = db.Students.Where(x => x.ID_Exam_Room == a.ID_Exam_Room).ToList();
-            ViewBag.lstStudent = lstStudent;
-            ExamRoom room = db.ExamRooms.Where(x => x.Id == a.ID_Exam_Room).FirstOrDefault();
-            Hoi_dong_thi hdt = db.Hoi_dong_thi.Where(x => x.Id == room.ID_Exam).FirstOrDefault();
-
-            int ID_Exam = Int32.Parse(hdt.value_11);
-
-            string ID_MT = db.Exams.Where(x => x.Id == ID_Exam).First().ID_MT_VALUE_NAME.ToString();
-            List<MT_VALUE_NAME> lst_MT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == ID_MT.ToString()).ToList();
-            ViewBag.lst_MT = lst_MT;
-
-
-
-            ViewBag.TenPhong = room.value_1;
-            ViewBag.IdPhong = room.Id;
-
-            ViewBag.TenHoiDongThi = hdt.value_1;
-            ViewBag.IDHoiDongThi = hdt.Id;
-
-            Exam Exam = db.Exams.Where(x => x.Id == ID_Exam).First();
-            ViewBag.ID_Exam = ID_Exam;
-            ViewBag.TenExam = Exam.khoa_thi;
-            ViewBag.TenTT = a.ho_ten;
-            //this.id_Room = a.ID_Exam_Room;
-            //this.folder = Server.MapPath("~/PDF/" + a.ID_Exam_Room);
-            //string[] filePaths = Directory.GetFiles(folder, "*.pdf").Select(Path.GetFileName).ToArray(); 
-
-            //ViewBag.filePaths = filePaths;
-            if (a.pdf == null)
+            if (CheckRole(UserRole.Edit))
             {
-                ViewBag.pdf = "PDF.pdf";
-            }
-            else
-            {
-                ViewBag.pdf = a.pdf;
-            }
-            this.folder = Server.MapPath("~/PDF/" + room.Id);
-            string[] filePaths = Directory.GetFiles(folder, "*.pdf").Select(Path.GetFileName).ToArray(); ;
+                Student a = db.Students.Where(x => x.Id == id).FirstOrDefault();
+                List<GioiTinh> Gt = db.GioiTinhs.ToList();
+                ViewBag.lstGioiTinh = Gt;
+                List<Truong> Truong = db.Truongs.ToList();
+                ViewBag.lstTruong = Truong;
+                List<XepLoaiHanhKiem> XepLoaiHanhKiem = db.XepLoaiHanhKiems.ToList();
+                ViewBag.lstXepLoaiHanhKiem = XepLoaiHanhKiem;
+                List<XepLoaiHocLuc> XepLoaiHocLuc = db.XepLoaiHocLucs.ToList();
+                ViewBag.lstXepLoaiHocLuc = XepLoaiHocLuc;
+                List<XepLoaiTotNghiep> XepLoaiTotNghiep = db.XepLoaiTotNghieps.ToList();
+                ViewBag.lstXepLoaiTotNghiep = XepLoaiTotNghiep;
+                List<DienUuTien> DienUuTien = db.DienUuTiens.ToList();
+                ViewBag.DienUuTien = DienUuTien;
+                List<KetQua> KetQua = db.KetQuas.ToList();
+                ViewBag.KetQua = KetQua;
+                List<Student> lstStudent = db.Students.Where(x => x.ID_Exam_Room == a.ID_Exam_Room).ToList();
+                ViewBag.lstStudent = lstStudent;
+                ExamRoom room = db.ExamRooms.Where(x => x.Id == a.ID_Exam_Room).FirstOrDefault();
+                Hoi_dong_thi hdt = db.Hoi_dong_thi.Where(x => x.Id == room.ID_Exam).FirstOrDefault();
 
-            ViewBag.filePaths = filePaths;
+                int ID_Exam = Int32.Parse(hdt.value_11);
 
-            ViewBag.id_student = id;
-            ViewBag.ID_Exam_Room = a.ID_Exam_Room;
-            return View();
+                string ID_MT = db.Exams.Where(x => x.Id == ID_Exam).First().ID_MT_VALUE_NAME.ToString();
+                List<MT_VALUE_NAME> lst_MT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == ID_MT.ToString()).ToList();
+                ViewBag.lst_MT = lst_MT;
+
+
+
+                ViewBag.TenPhong = room.value_1;
+                ViewBag.IdPhong = room.Id;
+
+                ViewBag.TenHoiDongThi = hdt.value_1;
+                ViewBag.IDHoiDongThi = hdt.Id;
+
+                Exam Exam = db.Exams.Where(x => x.Id == ID_Exam).First();
+                ViewBag.ID_Exam = ID_Exam;
+                ViewBag.TenExam = Exam.khoa_thi;
+                ViewBag.TenTT = a.ho_ten;
+                //this.id_Room = a.ID_Exam_Room;
+                //this.folder = Server.MapPath("~/PDF/" + a.ID_Exam_Room);
+                //string[] filePaths = Directory.GetFiles(folder, "*.pdf").Select(Path.GetFileName).ToArray(); 
+
+                //ViewBag.filePaths = filePaths;
+                if (a.pdf == null)
+                {
+                    ViewBag.pdf = "PDF.pdf";
+                }
+                else
+                {
+                    ViewBag.pdf = a.pdf;
+                }
+                this.folder = Server.MapPath("~/PDF/" + room.Id);
+                string[] filePaths = Directory.GetFiles(folder, "*.pdf").Select(Path.GetFileName).ToArray(); ;
+
+                ViewBag.filePaths = filePaths;
+
+                ViewBag.id_student = id;
+                ViewBag.ID_Exam_Room = a.ID_Exam_Room;
+                return View();
+            }
+            return RedirectToAction("Index", new { id = id});
         }
         public ActionResult Createnew(string id)
         {
-            List<GioiTinh> Gt = db.GioiTinhs.ToList();
-            ViewBag.lstGioiTinh = Gt;
-            List<Truong> Truong = db.Truongs.ToList();
-            ViewBag.lstTruong = Truong;
-            List<XepLoaiHanhKiem> XepLoaiHanhKiem = db.XepLoaiHanhKiems.ToList();
-            ViewBag.lstXepLoaiHanhKiem = XepLoaiHanhKiem;
-            List<XepLoaiHocLuc> XepLoaiHocLuc = db.XepLoaiHocLucs.ToList();
-            ViewBag.lstXepLoaiHocLuc = XepLoaiHocLuc;
-            List<XepLoaiTotNghiep> XepLoaiTotNghiep = db.XepLoaiTotNghieps.ToList();
-            ViewBag.lstXepLoaiTotNghiep = XepLoaiTotNghiep;
-            List<DienUuTien> DienUuTien = db.DienUuTiens.ToList();
-            ViewBag.DienUuTien = DienUuTien;
-            List<KetQua> KetQua = db.KetQuas.ToList();
-            ViewBag.KetQua = KetQua;
-            int i = Int32.Parse(id);
-            //Student a = db.Students.Where(x => x.Id == i).FirstOrDefault();
-            ExamRoom room = db.ExamRooms.Where(x => x.Id == i).FirstOrDefault();
-            Hoi_dong_thi hdt = db.Hoi_dong_thi.Where(x => x.Id == room.ID_Exam).FirstOrDefault();
+            if (CheckRole(UserRole.Edit))
+            {
+                List<GioiTinh> Gt = db.GioiTinhs.ToList();
+                ViewBag.lstGioiTinh = Gt;
+                List<Truong> Truong = db.Truongs.ToList();
+                ViewBag.lstTruong = Truong;
+                List<XepLoaiHanhKiem> XepLoaiHanhKiem = db.XepLoaiHanhKiems.ToList();
+                ViewBag.lstXepLoaiHanhKiem = XepLoaiHanhKiem;
+                List<XepLoaiHocLuc> XepLoaiHocLuc = db.XepLoaiHocLucs.ToList();
+                ViewBag.lstXepLoaiHocLuc = XepLoaiHocLuc;
+                List<XepLoaiTotNghiep> XepLoaiTotNghiep = db.XepLoaiTotNghieps.ToList();
+                ViewBag.lstXepLoaiTotNghiep = XepLoaiTotNghiep;
+                List<DienUuTien> DienUuTien = db.DienUuTiens.ToList();
+                ViewBag.DienUuTien = DienUuTien;
+                List<KetQua> KetQua = db.KetQuas.ToList();
+                ViewBag.KetQua = KetQua;
+                int i = Int32.Parse(id);
+                //Student a = db.Students.Where(x => x.Id == i).FirstOrDefault();
+                ExamRoom room = db.ExamRooms.Where(x => x.Id == i).FirstOrDefault();
+                Hoi_dong_thi hdt = db.Hoi_dong_thi.Where(x => x.Id == room.ID_Exam).FirstOrDefault();
 
-            int ID_Exam = Int32.Parse(hdt.value_11);
+                int ID_Exam = Int32.Parse(hdt.value_11);
 
-            string ID_MT = db.Exams.Where(x => x.Id == ID_Exam).First().ID_MT_VALUE_NAME.ToString();
-            List<MT_VALUE_NAME> lst_MT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == ID_MT.ToString()).ToList();
-            ViewBag.lst_MT = lst_MT;
+                string ID_MT = db.Exams.Where(x => x.Id == ID_Exam).First().ID_MT_VALUE_NAME.ToString();
+                List<MT_VALUE_NAME> lst_MT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == ID_MT.ToString()).ToList();
+                ViewBag.lst_MT = lst_MT;
 
 
 
-            ViewBag.TenPhong = room.value_1;
-            ViewBag.IdPhong = room.Id;
+                ViewBag.TenPhong = room.value_1;
+                ViewBag.IdPhong = room.Id;
 
-            ViewBag.TenHoiDongThi = hdt.value_1;
-            ViewBag.IDHoiDongThi = hdt.Id;
+                ViewBag.TenHoiDongThi = hdt.value_1;
+                ViewBag.IDHoiDongThi = hdt.Id;
 
-            Exam Exam = db.Exams.Where(x => x.Id == ID_Exam).First();
-            ViewBag.ID_Exam = ID_Exam;
-            ViewBag.TenExam = Exam.khoa_thi;
+                Exam Exam = db.Exams.Where(x => x.Id == ID_Exam).First();
+                ViewBag.ID_Exam = ID_Exam;
+                ViewBag.TenExam = Exam.khoa_thi;
 
-            this.id_Room = i;
-            this.folder = Server.MapPath("~/PDF/" + i);
-            string[] filePaths = Directory.GetFiles(folder, "*.pdf").Select(Path.GetFileName).ToArray(); ;
+                this.id_Room = i;
+                this.folder = Server.MapPath("~/PDF/" + i);
+                string[] filePaths = Directory.GetFiles(folder, "*.pdf").Select(Path.GetFileName).ToArray(); ;
 
-            ViewBag.filePaths = filePaths;
+                ViewBag.filePaths = filePaths;
 
-            ViewBag.pdf = "blank.pdf";
+                ViewBag.pdf = "blank.pdf";
 
-            ViewBag.ID_Exam_Room = i;
-            return View();
+                ViewBag.ID_Exam_Room = i;
+                return View();
+            }
+            return RedirectToAction("Index", new { id = id });
         }
         public ActionResult LoadData(string id)
         {
@@ -582,18 +590,21 @@ namespace Quản_lý_điểm_thi.Controllers
 
         public JsonResult deleteJS(string id)
         {
-
-            if (id == null)
+            if (CheckRole(UserRole.Delete))
             {
-                return Json(0);
+                if (id == null)
+                {
+                    return Json(0);
+                }
+                else
+                {
+                    Student record = db.Students.Find(Int32.Parse(id));
+                    db.Students.Remove(record);
+                    db.SaveChanges();
+                    return Json(1);
+                }
             }
-            else
-            {
-                Student record = db.Students.Find(Int32.Parse(id));
-                db.Students.Remove(record);
-                db.SaveChanges();
-                return Json(1);
-            }
+            return Json(-2);
         }
 
         #region Lấy dữ liệu điểm thi
@@ -1139,5 +1150,18 @@ namespace Quản_lý_điểm_thi.Controllers
             }
         }
         #endregion
+
+        private bool CheckRole(int role)
+        {
+            List<int> listRole = Session["ListRole"] as List<int>;
+            if (listRole != null && listRole.Any())
+            {
+                if (listRole.Contains(role))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

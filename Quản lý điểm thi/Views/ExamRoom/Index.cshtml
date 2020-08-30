@@ -264,7 +264,10 @@
 
         },
         function (data) {
-            if (data == -1) {
+            if(data == -2){
+                showSuccessMessage('Bạn không có quyền sửa thông tin này.')
+            }
+            else if (data == -1) {
 
             }
             else {
@@ -342,7 +345,10 @@
             value_50: document.getElementById('value_50').value,
         },
         function (data) {
-            if (data == -1) {
+            if(data == -2){
+                showSuccessMessage('Bạn không có quyền thêm mới thông tin này.')
+            }
+            else if (data == -1) {
 
             }
             else {
@@ -373,7 +379,10 @@
                 type: "POST",
                 data: $("#formDelete").serialize(),
                 success: function (result) {
-                    if (result != -1) {
+                    if(result == -2){
+                        showSuccessMessage('Bạn không có quyền xóa thông tin này.')
+                    }
+                    else if (result != -1) {
                         showSuccessMessage('Xóa thông tin kì thi hoàn tất.')
                         $("#demoGrid").DataTable().ajax.reload();
                     } else {
