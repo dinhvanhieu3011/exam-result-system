@@ -105,14 +105,23 @@ namespace Quản_lý_điểm_thi.Controllers
             foreach (MT_VALUE_NAME a in lst_MT)
             {
                 header.Add(a.name);
-                if (a.type == "date")
+                if (string.IsNullOrEmpty(a.mo_ta))
                 {
-                    example.Add(RemoveUnicode(a.mo_ta) + "(yyyy-MM-dd)");
+                    example.Add(" ");
                 }
                 else
                 {
-                    example.Add(RemoveUnicode(a.mo_ta));
+                    if (a.type == "date")
+                    {
+
+                        example.Add(RemoveUnicode(a.mo_ta.ToString()) + "(yyyy-MM-dd)");
+                    }
+                    else
+                    {
+                        example.Add(RemoveUnicode(a.mo_ta.ToString()));
+                    }
                 }
+
             }
 
             ViewBag.header = header;
