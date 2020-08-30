@@ -53,9 +53,8 @@ namespace Quản_lý_điểm_thi.Controllers
                     return RedirectToAction("Login", "Home");
                 }
                 User loginUser = lstUser.FirstOrDefault();
-                if (!string.IsNullOrEmpty(remeber))
+                if (!string.IsNullOrEmpty(remeber)&& remeber == "true")
                 {
-
                     HttpCookie cookie = new HttpCookie("qldt_userlogin");
                     cookie.Values["qldt_username"] = loginUser.Username;
                     cookie.Expires = DateTime.Now.AddDays(10);
@@ -63,8 +62,15 @@ namespace Quản_lý_điểm_thi.Controllers
 
                     cookie.Values["qldt_password"] = loginUser.Password;
                     cookie.Expires = DateTime.Now.AddDays(10);
-                    Response.Cookies.Add(cookie);
 
+                    cookie.Values["qldt_remember"] = remeber;
+                    cookie.Expires = DateTime.Now.AddDays(10);
+                    Response.Cookies.Add(cookie);
+                }else
+                {
+                    HttpCookie cookie = new HttpCookie("qldt_userlogin");
+                    cookie.Expires = DateTime.Now.AddDays(-1);
+                    Response.Cookies.Add(cookie);
                 }
 
                 List<int> listRole = new List<int>();
