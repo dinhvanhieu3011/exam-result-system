@@ -53,7 +53,7 @@ namespace Quản_lý_điểm_thi.Controllers
                     return RedirectToAction("Login", "Home");
                 }
                 User loginUser = lstUser.FirstOrDefault();
-                if (!string.IsNullOrEmpty(remeber)&& remeber == "true")
+                if ((!string.IsNullOrEmpty(remeber) && remeber == "true")|| (remeber == "on"))
                 {
                     HttpCookie cookie = new HttpCookie("qldt_userlogin");
                     cookie.Values["qldt_username"] = loginUser.Username;
@@ -66,7 +66,8 @@ namespace Quản_lý_điểm_thi.Controllers
                     cookie.Values["qldt_remember"] = remeber;
                     cookie.Expires = DateTime.Now.AddDays(10);
                     Response.Cookies.Add(cookie);
-                }else
+                }
+                else
                 {
                     HttpCookie cookie = new HttpCookie("qldt_userlogin");
                     cookie.Expires = DateTime.Now.AddDays(-1);
@@ -76,6 +77,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 List<int> listRole = new List<int>();
                 Session["curUser"] = lstUser[0];
                 Session["IdUnitOfUser"] = lstUser[0].UnitId;
+                Session["isAdmin"] = lstUser[0].IsAdmin;
                 Session["IsLogin"] = 1;
 
                 if (!string.IsNullOrEmpty(loginUser.Image))

@@ -345,6 +345,7 @@
     var lstMenu = Session["lstMenu"] as List<Quản_lý_điểm_thi.Models.MnuItem>;
     var nameUser = Session["Username"] as String;
     var fullName = Session["FullName"] as String;
+    var isAdmin = Session["isAdmin"] as String;
     if (lstMenu != null)
     {
         <body class="skin-blue layout-top-nav">
@@ -464,7 +465,11 @@
 
                                     @*<li class="dropdown"><a href="~/student/test"> Sao lưu và khôi phục dữ liệu</a></li>*@
                                     <li class="dropdown"><a href="~/settings/index"> Thiết lập tham số</a></li>
-                                    <li class="dropdown"><a href="~/user/index"> Quản lí người dùng</a></li>
+                                    @if (nameUser == "admin")
+                                    {
+                                        
+                                        <li class="dropdown"><a href="~/user/index"> Quản lí người dùng</a></li>
+                                    }
                                     <li class="dropdown">
 
                                         <a class="dropdown-toggle " href="" data-toggle="dropdown"> Quản lí danh mục <span class="caret"></span></a>

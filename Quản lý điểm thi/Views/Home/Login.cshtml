@@ -3,12 +3,11 @@
     Layout = null;
     HttpCookie cookie = Request.Cookies["qldt_userlogin"];
     string pass = "";
-    string username = "", remeber="", remeberTitle = "Ghi nhớ";
+    string username = "";
     if ((cookie != null) && (cookie.Value != ""))
     {
         username = cookie.Values["qldt_username"] as string;
         pass = cookie.Values["qldt_password"] as string;
-        remeber = cookie.Values["qldt_remember"] as string; 
     }
 }
 
@@ -160,14 +159,7 @@
                                                 <div class="col-lg-7 col-sm-10">
                                                     <div class="checkbox">
                                                         <label>
-                                                            @if (remeber == "true")
-                                                            { 
-                                                                <input type="checkbox" name="remeber" checked value="true"/> @remeberTitle
-                                                            }
-                                                            else
-                                                            {
-                                                                <input type="checkbox" name="remeber" value="true"> @remeberTitle
-                                                            }
+                                                            <input type="checkbox" name="remeber"> Ghi nhớ
                                                         </label>
                                                     </div>
                                                 </div>
