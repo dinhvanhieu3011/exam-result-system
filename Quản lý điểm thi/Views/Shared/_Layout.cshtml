@@ -710,26 +710,28 @@
                                 <input type="hidden" value="" id="txtIdPass">
                             </div>
                             <div class="modal-body">
-                                <label>Mật khẩu hiện tại (*):</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <input type="password" placeholder="Nhập mật khẩu hiện tại" id="txt_oldpass" class="form-control" style="height:30px !important;">
-                                </div>
-                                <div class="clear"></div>
-                                <label>Mật khẩu mới (*):</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                    <input type="password" placeholder="Mật khẩu mới" id="txt_newpass1" class="form-control" style="height:30px !important;">
-                                </div>
-                                <div class="clear"></div>
-                                <label>Nhập lại mật khẩu mới (*):</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                                    <input type="password" placeholder="Nhập lại mật khẩu mới" id="txt_newpass2" class="form-control" style="height:30px !important;">
-                                </div>
-                                <div id="notif-pass" style="margin-top:20px; height:30px;">
-                                    <!--Thông báo việc thay đổi mật khẩu-->
-                                </div>
+                                <form id="frmResetPassword">
+                                    <label>Mật khẩu hiện tại (*):</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <input type="password" placeholder="Nhập mật khẩu hiện tại" id="txt_oldpass" class="form-control" name="OldPassword" style="height:30px !important;">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <label>Mật khẩu mới (*):</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                        <input type="password" placeholder="Mật khẩu mới" id="txt_new_pass" class="form-control" name="Password" style="height:30px !important;">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <label>Nhập lại mật khẩu mới (*):</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                                        <input type="password" placeholder="Nhập lại mật khẩu mới" id="txt_cormfirm_pass" name="ComfirmPassword" class="form-control" style="height:30px !important;">
+                                    </div>
+                                    <div id="notif-pass" style="margin-top:20px; height:30px;">
+                                        <!--Thông báo việc thay đổi mật khẩu-->
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <a class="btn btn-default" data-dismiss="modal">Đóng</a>
@@ -750,36 +752,54 @@
                             </div>
                             <div class="modal-body">
                                 <!-- more info-->
-                                <div class="clear"></div>
-                                <label>Họ tên (*)</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
-                                    <input type="text" id="txtHoTen_Edit" class="form-control" style="height:30px !important;">
-                                </div>
-                                <div class="clear"></div>
-                                <label>Số điện thoại (*)</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-phone-square"></i></span>
-                                    <input type="text" id="txtDienThoai_Edit" class="form-control" style="height:30px !important;">
-                                </div>
-                                <div class="clear"></div>
-                                <label>Email (*)</label>
-                                <div class="input-group">
-                                    <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                                    <input type="text" id="txtEmail_Edit" class="form-control" style="height:30px !important;">
-                                </div>
-                                <div id="notif-profile" style="margin-top:20px; height:30px;">
-                                    <!--Thông báo việc thay thông tin-->
-                                </div>
+                                <form id="frmUpdateProfile">
+                                    <div class="clear"></div>
+                                    <label>Họ tên (*)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-id-card-o"></i></span>
+                                        <input type="text" id="txtHoTen_Edit" class="form-control" name="FullName" value="@userLogined.FullName" style="height:30px !important;">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <label>Số điện thoại (*)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-phone-square"></i></span>
+                                        <input type="text" id="txtDienThoai_Edit" class="form-control" name="Phone" value="@userLogined.Phone" style="height:30px !important;">
+                                    </div>
+                                    <div class="clear"></div>
+                                    <label>Email (*)</label>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+                                        <input type="text" id="txtEmail_Edit" class="form-control" name="Mail" value="@userLogined.Mail" style="height:30px !important;">
+                                    </div>
+                                    <div id="notif-profile" style="margin-top:20px; height:30px;">
+                                        <!--Thông báo việc thay thông tin-->
+                                    </div>
+                                </form>
                             </div>
                             <div class="modal-footer">
                                 <a class="btn btn-default" data-dismiss="modal">Đóng</a>
-                                <a class="btn btn-primary" id="btnSave_Change_Profile">Lưu</a>
+                                <button type="button" class="btn btn-primary" id="btnSave_Change_Profile">Lưu</button>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- end change password modal-->
+            </div>
+
+            <div class="modal modal-message" tabindex="-1" role="dialog" id="modal_Message_Success">
+                <div class="modal-dialog modal-sm" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header bg-success" style="color:white!important">
+                            <h5 class="modal-title">Thông báo</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p class="message-content">Cập nhật thông tin thành công</p>
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Đóng</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <iframe id="nr-ext-rsicon" style="position: absolute; display: none; width: 50px; height: 50px; z-index: 2147483647; border-style: none; background: transparent;"></iframe><div id="eJOY__extension_root" style="all: unset;"></div>
@@ -821,9 +841,8 @@
             <!-- AdminLTE for demo purposes -->
             <script src="~/dist/js/demo.js"></script>
             <script src="~/Content/select2.min.js"></script>
-
-
-
+            <script src="~/scripts/Home/ResetPassword.js"></script>
+            <script src="~/scripts/Home/UpdateProfile.js"></script>
             <script type="text/javascript">
                 $(document).ready(function () {
                     $('#btn-search-fast').on('click', function () {

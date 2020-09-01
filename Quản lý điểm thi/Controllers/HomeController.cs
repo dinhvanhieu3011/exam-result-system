@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using System.Web.ModelBinding;
 using System.Web.Mvc;
 
 namespace Quản_lý_điểm_thi.Controllers
@@ -53,7 +54,7 @@ namespace Quản_lý_điểm_thi.Controllers
                     return RedirectToAction("Login", "Home");
                 }
                 User loginUser = lstUser.FirstOrDefault();
-                if ((!string.IsNullOrEmpty(remeber) && remeber == "true")|| (remeber == "on"))
+                if ((!string.IsNullOrEmpty(remeber) && remeber == "true") || (remeber == "on"))
                 {
                     HttpCookie cookie = new HttpCookie("qldt_userlogin");
                     cookie.Values["qldt_username"] = loginUser.Username;
@@ -146,6 +147,103 @@ namespace Quản_lý_điểm_thi.Controllers
             return RedirectToAction("Login", "Home");
         }
 
+        [HttpPost]
+        public ActionResult ResetPassword(ResetPasswordModal model)
+        {
+            string message = "";
+            bool isSuccess = false;
+            if (ModelState.IsValid)
+            {
+                User currUser = Session["curUser"] as User;
+                QLDTEntities1 _context = new QLDTEntities1();
+
+                if (currUser != null)
+                {
+                    var checkUser = _context.Users.Where(p => p.Username == currUser.Username && p.Password == model.OldPassword).FirstOrDefault();
+                    if (checkUser != null)
+                    {
+                        checkUser.Password = model.Password;
+                        _context.SaveChanges();
+                        Session["curUser"] = checkUser;
+
+                        HttpCookie cookie = new HttpCookie("qldt_userlogin");
+                        if (cookie.Values["qldt_remember"] != "true")
+                        {
+                            cookie.Values["qldt_username"] = checkUser.Username;
+                            cookie.Expires = DateTime.Now.AddDays(10);
+                            Response.Cookies.Add(cookie);
+
+                            cookie.Values["qldt_password"] = checkUser.Password;
+                            cookie.Expires = DateTime.Now.AddDays(10);
+
+                            cookie.Values["qldt_remember"] = "true";
+                            cookie.Expires = DateTime.Now.AddDays(10);
+                            Response.Cookies.Add(cookie);
+                        }
+
+                        message = "Thay đổi password thành công.";
+                        isSuccess = true;
+                    }
+                    else
+                    {
+                        message = "Không tìm thấy tài khoản của bạn";
+                        isSuccess = false;
+                    }
+                }
+                else
+                {
+                    message = "Xin hãy đăng nhập để sử dụng chức năng này.";
+                    isSuccess = false;
+                }
+            }
+            else
+            {
+                message = "Mật khẩu xác thực và mật khẩu không được bỏ trống và phải trùng nhau.";
+                isSuccess = false;
+            }
+            return Json(new
+            {
+                Message = message,
+                IsSuccess = isSuccess
+            });
+        }
+
+        public ActionResult UpdateProfile(UpdateProfileModel model)
+        {
+            string message = "";
+            bool isSuccess = false;
+            if (ModelState.IsValid)
+            {
+                User userLogin = Session["curUser"] as User;
+                QLDTEntities1 _context = new QLDTEntities1();
+                if (userLogin != null)
+                {
+                    User currUser = _context.Users.Where(p => p.Username == userLogin.Username && p.Password == userLogin.Password).FirstOrDefault();
+                    currUser.FullName = model.FullName;
+                    currUser.Phone = model.Phone;
+                    currUser.Mail = model.Mail;
+                    _context.SaveChanges();
+                    Session["curUser"] = currUser;
+                    message = "Cập nhật thông tin thành công.";
+                    isSuccess = true;
+                }
+                else
+                {
+                    message = "Xin hãy đăng nhập để sử dụng chức năng này.";
+                    isSuccess = false;
+                }
+            }
+            else
+            {
+                message = "Xin hãy nhập đủ thông tin.";
+                isSuccess = false;
+            }
+            return Json(new
+            {
+                Message = message,
+                IsSuccess = isSuccess
+            });
+        }
         #endregion ------------------------------------------------
 
         #region Search student

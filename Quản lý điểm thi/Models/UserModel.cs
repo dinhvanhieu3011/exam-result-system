@@ -51,4 +51,29 @@ namespace Quản_lý_điểm_thi.Models
         public int UnitId { get; set; }
         public HttpPostedFileBase Avatar { get; set; }
     }
+    
+    public class ResetPasswordModal
+    {
+        [Required]
+        public string OldPassword { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        [Required]
+        [Compare("Password")]
+        public string ComfirmPassword { get; set; }
+    }
+
+    public class UpdateProfileModel
+    {
+        [Required]
+        public string FullName { get; set; }
+
+        [Required]
+        public string Mail { get; set; }
+
+        [Required]
+        public string Phone { get; set; }
+    }
 }

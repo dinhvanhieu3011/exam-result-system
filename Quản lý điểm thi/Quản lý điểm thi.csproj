@@ -2707,6 +2707,8 @@
     <Content Include="scripts\Gender\ListGender.js" />
     <Content Include="scripts\Gender\UpdateGender.js" />
     <Content Include="scripts\Home\ListStudent.js" />
+    <Content Include="scripts\Home\ResetPassword.js" />
+    <Content Include="scripts\Home\UpdateProfile.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
     <Content Include="scripts\modernizr-2.6.2.js" />
