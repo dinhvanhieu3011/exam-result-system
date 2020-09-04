@@ -9,6 +9,8 @@ using System.IO;
 using ExcelDataReader;
 using System.Data;
 using Quản_lý_điểm_thi.Common;
+using OfficeOpenXml;
+using System.Drawing;
 
 namespace Quản_lý_điểm_thi.Controllers
 {
@@ -311,7 +313,7 @@ namespace Quản_lý_điểm_thi.Controllers
                                 record.create_date = DateTime.Now.ToShortDateString();
                                 record.create_user = Session["Username"].ToString();
                                 record.ID_Exam_Room = id;
-                                record.pdf = RemoveUnicode(row[3].ToString().ToLower().Replace(" ", "")) + "_" + row[2].ToString().ToLower();
+                                record.pdf = record.ho_ten + "_" + record.sbd;
                                 db.Students.Add(record);
                                 db.SaveChanges();
 
@@ -404,11 +406,26 @@ namespace Quản_lý_điểm_thi.Controllers
 
             if (type == null)
             {
-                path = HttpContext.Server.MapPath("~/PDF/" + id_Room + "/" + fileName);
+          
+                if(fileName.Contains(".pdf"))
+                {
+                    path = HttpContext.Server.MapPath("~/PDF/" + id_Room + "/" + fileName);
+                }
+                else
+                {
+                    path = HttpContext.Server.MapPath("~/PDF/" + id_Room + "/" + fileName+".pdf");
+                }
             }
             else
             {
-                path = HttpContext.Server.MapPath("~/PDF/" + id_Room + "/" + fileName);
+                if (fileName.Contains(".pdf"))
+                {
+                    path = HttpContext.Server.MapPath("~/PDF/" + id_Room + "/" + fileName);
+                }
+                else
+                {
+                    path = HttpContext.Server.MapPath("~/PDF/" + id_Room + "/" + fileName + ".pdf");
+                }
             }
             if (fileName == "blank.pdf")
             {
@@ -423,7 +440,49 @@ namespace Quản_lý_điểm_thi.Controllers
             return File(fs, "application/pdf");
         }
 
+        
+         public JsonResult DeleteAllStudent(string idPhong)
+        {
+            if (CheckRole(UserRole.Delete))
+            {
+                int Niid = Int32.Parse(idPhong);
+                if (idPhong == null)
+                {
+                    return Json(0, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    ExamRoom record = db.ExamRooms.Find(Niid);
+                    List<Student> student = db.Students.Where(x => x.ID_Exam_Room == Niid).ToList();
+                    string fullPath = Request.MapPath("~/PDF/" + idPhong + "/");
+                    string[] files = Directory.GetFiles(fullPath);
+                    for(int i = 0; i < files.Count(); i ++)
+                    {
+                        if (System.IO.File.Exists(files[i]))
+                        {
+                            System.IO.File.Delete(files[i]);
 
+                        }
+                    }
+                    //foreach (Student S in student)
+                    //{
+                    //    string fullPath = Request.MapPath("~/PDF/" + idPhong + "/" + S.pdf);
+                    //    if (System.IO.File.Exists(fullPath))
+                    //    {
+                    //        System.IO.File.Delete(fullPath);
+
+                    //    }
+                    //}
+                    db.Students.RemoveRange(student);
+                    db.SaveChanges();
+                    return Json(1, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                return Json(-2, JsonRequestBehavior.AllowGet);
+            }
+        }
         //id = id thí sinh
         public ActionResult Detail(int id)
         {
@@ -453,8 +512,9 @@ namespace Quản_lý_điểm_thi.Controllers
 
                 string ID_MT = db.Exams.Where(x => x.Id == ID_Exam).First().ID_MT_VALUE_NAME.ToString();
                 List<MT_VALUE_NAME> lst_MT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == ID_MT.ToString()).ToList();
+                List<MT_VALUE_NAME> lst_Show = lst_MT.Where(x => x.status != "hidden").ToList();
                 ViewBag.lst_MT = lst_MT;
-
+                ViewBag.lst_Show = lst_Show;
 
 
                 ViewBag.TenPhong = room.value_1;
@@ -609,7 +669,13 @@ namespace Quản_lý_điểm_thi.Controllers
                 {
                     Student record = db.Students.Find(Int32.Parse(id));
                     db.Students.Remove(record);
+
                     db.SaveChanges();
+                    string fullPath = Request.MapPath("~/PDF/"+ record.ID_Exam_Room +"/"+ record.pdf);
+                    if (System.IO.File.Exists(fullPath))
+                    {
+                        System.IO.File.Delete(fullPath);
+                    }
                     return Json(1);
                 }
             }
@@ -1171,6 +1237,132 @@ namespace Quản_lý_điểm_thi.Controllers
                 }
             }
             return false;
+        }
+        string idStudent = "1", monthi1 = "", monthi2 = "", monthi3 = "", monthi4 = "", monthi5 = "", monthi6 = "", tongdiem_excel = "", diemkhuyenkhich_excel = "";
+        [HttpGet]
+        public ActionResult Export(string id,string monthi1,string monthi2,string monthi3,string monthi4,string monthi5,string monthi6,string tongdiem_excel,string diemkhuyenkhich_excel)
+        {
+            idStudent = id;
+            this.monthi1 = monthi1;
+            this.monthi2 = monthi2;
+            this.monthi3 = monthi3;
+            this.monthi4 = monthi4;
+            this.monthi5 = monthi5;
+            this.monthi6 = monthi6;
+            this.tongdiem_excel = tongdiem_excel;
+            this.diemkhuyenkhich_excel = diemkhuyenkhich_excel;
+
+            int Nid = int.Parse(idStudent);
+            Student s = db.Students.Find(Nid);
+            // Gọi lại hàm để tạo file excel
+            var stream = CreateExcelFile();
+            // Tạo buffer memory strean để hứng file excel
+            var buffer = stream as MemoryStream;
+            // Đây là content Type dành cho file excel, còn rất nhiều content-type khác nhưng cái này mình thấy okay nhất
+            Response.ContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            // Dòng này rất quan trọng, vì chạy trên firefox hay IE thì dòng này sẽ hiện Save As dialog cho người dùng chọn thư mục để lưu
+            // File name của Excel này là ExcelDemo
+            Response.AddHeader("Content-Disposition", "attachment; filename="+s.ho_ten+"_"+s.ngay_sinh+"_"+s.sbd+".xlsx");
+            // Lưu file excel của chúng ta như 1 mảng byte để trả về response
+            Response.BinaryWrite(buffer.ToArray());
+            // Send tất cả ouput bytes về phía clients
+            Response.Flush();
+            Response.End();
+            // Redirect về luôn trang index :D
+            return View();
+        }
+        public static object GetPropValue(object src, string propName)
+        {
+            return src.GetType().GetProperty(propName).GetValue(src, null);
+        }
+        private Stream CreateExcelFile(Stream stream = null)
+        {
+            int id = int.Parse(idStudent);
+            Student s = db.Students.Find(id);
+            ExamRoom room = db.ExamRooms.Where(x => x.Id == s.ID_Exam_Room).FirstOrDefault();
+            Hoi_dong_thi hdt = db.Hoi_dong_thi.Where(x => x.Id == room.ID_Exam).FirstOrDefault();
+            Grade g = db.Grades.Where(x => x.ID_Student == id).First() ;
+            int ID_Exam = Int32.Parse(hdt.value_11);
+            Exam exam = db.Exams.Where(x => x.Id == ID_Exam).First();
+
+            List<MT_VALUE_NAME> lstmt = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == exam.ID_MT_VALUE_NAME+"").ToList();
+
+               
+            
+            //or if you use asp.net, get the relative path
+            string filePath = Server.MapPath("~/Content/Excel/Mẫu cấp giấy xác nhận tốt nghiệp.xlsx");
+
+            //create a fileinfo object of an excel file on the disk
+            FileInfo file = new FileInfo(filePath);
+
+            //create a new Excel package from the file
+            using (ExcelPackage excelPackage = new ExcelPackage(file))
+            {
+                //create an instance of the the first sheet in the loaded file
+                ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets[1];
+
+                using (var range = worksheet.Cells["A4:J4"])
+                {
+                    // Set PatternType
+                   // range.Style.Fill.PatternType = ExcelFillStyle.DarkGray;
+                    // Set Màu cho Background
+                   // range.Style.Fill.BackgroundColor.SetColor(Color.Aqua);
+                    // Canh giữa cho các text
+                   // range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                    // Set Font cho text  trong Range hiện tại
+                    range.Style.Font.SetFromFont(new Font("Times New Roman", 12));
+                }
+                //add some data
+                worksheet.Cells[2, 1].Value = s.truong_hoc;
+                worksheet.Cells[6, 3].Value = s.ho_ten;
+                if(!string.IsNullOrEmpty(s.ngay_sinh))
+                {
+                    worksheet.Cells[7, 3].Value = DateTime.Parse(s.ngay_sinh).ToString("dd/MM/yyyy");
+                }
+                worksheet.Cells[7, 7].Value = s.gioi_tinh;
+                worksheet.Cells[8, 3].Value = s.coquan_congtac;
+                if (!string.IsNullOrEmpty(exam.nam_thi))
+                {
+                    worksheet.Cells[9, 3].Value = exam.khoa_thi + " " + DateTime.Parse(exam.nam_thi).ToString("dd/MM/yyyy");
+                }
+           else
+                {
+                    worksheet.Cells[9, 3].Value = exam.khoa_thi;
+                }
+                worksheet.Cells[10, 3].Value = hdt.value_1;
+                worksheet.Cells[11, 3].Value = room.value_1;
+                worksheet.Cells[11, 6].Value = s.sbd;
+                //13-2 đến 13-8
+                worksheet.Cells[13, 2].Value = lstmt.Where(x => x.name == monthi1).First().mo_ta.ToString().Replace("Điểm môn ","");
+                worksheet.Cells[14, 2].Value = GetPropValue(g, monthi1).ToString();
+
+                worksheet.Cells[13, 3].Value = lstmt.Where(x => x.name == monthi2).First().mo_ta.ToString().Replace("Điểm môn ", "");
+                worksheet.Cells[14, 3].Value = GetPropValue(g, monthi2).ToString();
+
+                worksheet.Cells[13, 4].Value = lstmt.Where(x => x.name == monthi3).First().mo_ta.ToString().Replace("Điểm môn ", "");
+                worksheet.Cells[14, 4].Value = GetPropValue(g, monthi3).ToString();
+
+                worksheet.Cells[13, 5].Value = lstmt.Where(x => x.name == monthi4).First().mo_ta.ToString().Replace("Điểm môn ", "");
+                worksheet.Cells[14, 5].Value = GetPropValue(g, monthi4).ToString();
+
+                worksheet.Cells[13, 6].Value = lstmt.Where(x => x.name == monthi5).First().mo_ta.ToString().Replace("Điểm môn ", "");
+                worksheet.Cells[14, 6].Value = GetPropValue(g, monthi5).ToString();
+
+                worksheet.Cells[13, 7].Value = lstmt.Where(x => x.name == monthi6).First().mo_ta.ToString().Replace("Điểm môn ", "");
+                worksheet.Cells[14, 7].Value = GetPropValue(g, monthi6).ToString();
+
+
+
+                //Tonogr diem excel
+                worksheet.Cells[12, 3].Value = GetPropValue(g,tongdiem_excel).ToString();
+                worksheet.Cells[15, 3].Value = GetPropValue(g, diemkhuyenkhich_excel).ToString();
+                //
+                worksheet.Cells[15, 7].Value = s.dien_uudai;
+                worksheet.Cells[17, 3].Value = s.xeploai_totnghiep;
+                //save the changes
+                excelPackage.Save();
+                return excelPackage.Stream;
+            }
         }
     }
 }

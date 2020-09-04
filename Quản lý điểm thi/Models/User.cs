@@ -26,9 +26,9 @@ namespace Quản_lý_điểm_thi.Models
         public string Image { get; set; }
         public Nullable<bool> IsAdmin { get; set; }
         public Nullable<int> UnitId { get; set; }
-        public string AvatarUrl { get; set; }
-        public string AvatarFolderPath { get; set; }
         public string OfficeRoom { get; set; }
         public string WorkPlace { get; set; }
+        public string AvatarFolderPath { get; set; }
+        public string AvatarUrl { get; set; }
     }
 }

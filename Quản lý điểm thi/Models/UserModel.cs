@@ -51,7 +51,7 @@ namespace Quản_lý_điểm_thi.Models
         public int UnitId { get; set; }
         public HttpPostedFileBase Avatar { get; set; }
     }
-    
+
     public class ResetPasswordModal
     {
         [Required]
