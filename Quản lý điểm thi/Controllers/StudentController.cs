@@ -11,6 +11,7 @@ using System.Data;
 using Quản_lý_điểm_thi.Common;
 using OfficeOpenXml;
 using System.Drawing;
+using OfficeOpenXml.Style;
 
 namespace Quản_lý_điểm_thi.Controllers
 {
@@ -1240,17 +1241,10 @@ namespace Quản_lý_điểm_thi.Controllers
         }
         string idStudent = "1", monthi1 = "", monthi2 = "", monthi3 = "", monthi4 = "", monthi5 = "", monthi6 = "", tongdiem_excel = "", diemkhuyenkhich_excel = "";
         [HttpGet]
-        public ActionResult Export(string id,string monthi1,string monthi2,string monthi3,string monthi4,string monthi5,string monthi6,string tongdiem_excel,string diemkhuyenkhich_excel)
+        public ActionResult Export(string id)
         {
             idStudent = id;
-            this.monthi1 = monthi1;
-            this.monthi2 = monthi2;
-            this.monthi3 = monthi3;
-            this.monthi4 = monthi4;
-            this.monthi5 = monthi5;
-            this.monthi6 = monthi6;
-            this.tongdiem_excel = tongdiem_excel;
-            this.diemkhuyenkhich_excel = diemkhuyenkhich_excel;
+
 
             int Nid = int.Parse(idStudent);
             Student s = db.Students.Find(Nid);
@@ -1333,33 +1327,140 @@ namespace Quản_lý_điểm_thi.Controllers
                 worksheet.Cells[11, 3].Value = room.value_1;
                 worksheet.Cells[11, 6].Value = s.sbd;
                 //13-2 đến 13-8
-                worksheet.Cells[13, 2].Value = lstmt.Where(x => x.name == monthi1).First().mo_ta.ToString().Replace("Điểm môn ","");
-                worksheet.Cells[14, 2].Value = GetPropValue(g, monthi1).ToString();
+                int i = 0;
+                foreach(MT_VALUE_NAME mt in lstmt)
+                {
+                    if((mt.status!="hidden") && mt.type.Contains("totnghiep")&& (GetPropValue(g, mt.name.ToString()).ToString()!=""))
+                    {
+                        worksheet.Cells[13, i + 2].Value = mt.mo_ta.ToString();
+                        worksheet.Cells[14, i + 2].Value = GetPropValue(g, mt.name.ToString()).ToString();
 
-                worksheet.Cells[13, 3].Value = lstmt.Where(x => x.name == monthi2).First().mo_ta.ToString().Replace("Điểm môn ", "");
-                worksheet.Cells[14, 3].Value = GetPropValue(g, monthi2).ToString();
+                        worksheet.Cells[13, i + 2].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[13, i + 2].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[13, i + 2].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[13, i + 2].Style.Border.Left.Style = ExcelBorderStyle.Thin;
 
-                worksheet.Cells[13, 4].Value = lstmt.Where(x => x.name == monthi3).First().mo_ta.ToString().Replace("Điểm môn ", "");
-                worksheet.Cells[14, 4].Value = GetPropValue(g, monthi3).ToString();
+                        worksheet.Cells[14, i + 2].Style.Border.Top.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[14, i + 2].Style.Border.Right.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[14, i + 2].Style.Border.Bottom.Style = ExcelBorderStyle.Thin;
+                        worksheet.Cells[14, i + 2].Style.Border.Left.Style = ExcelBorderStyle.Thin;
+                        i++;
+                    }
+                
+                }
 
-                worksheet.Cells[13, 5].Value = lstmt.Where(x => x.name == monthi4).First().mo_ta.ToString().Replace("Điểm môn ", "");
-                worksheet.Cells[14, 5].Value = GetPropValue(g, monthi4).ToString();
 
-                worksheet.Cells[13, 6].Value = lstmt.Where(x => x.name == monthi5).First().mo_ta.ToString().Replace("Điểm môn ", "");
-                worksheet.Cells[14, 6].Value = GetPropValue(g, monthi5).ToString();
+                for (int j = 0; j < 20;j++)
+                {
+                    worksheet.Cells[13, i + j+2].Value = "";
+                    worksheet.Cells[14, i + j+2].Value = "";
 
-                worksheet.Cells[13, 7].Value = lstmt.Where(x => x.name == monthi6).First().mo_ta.ToString().Replace("Điểm môn ", "");
-                worksheet.Cells[14, 7].Value = GetPropValue(g, monthi6).ToString();
+                    worksheet.Cells[13, i + j+2].Style.Border.Top.Style = ExcelBorderStyle.None;
+                    worksheet.Cells[13, i + j+2].Style.Border.Right.Style = ExcelBorderStyle.None;
+                    worksheet.Cells[13, i + j+2].Style.Border.Bottom.Style = ExcelBorderStyle.None;
+                    worksheet.Cells[13, i + j+2].Style.Border.Left.Style = ExcelBorderStyle.None;
 
+                    worksheet.Cells[14, i + j+2].Style.Border.Top.Style = ExcelBorderStyle.None;
+                    worksheet.Cells[14, i + j+2].Style.Border.Right.Style = ExcelBorderStyle.None;
+                    worksheet.Cells[14, i + j+2].Style.Border.Bottom.Style = ExcelBorderStyle.None;
+                    worksheet.Cells[14, i + j+2].Style.Border.Left.Style = ExcelBorderStyle.None;
+                }
 
 
                 //Tonogr diem excel
-                worksheet.Cells[12, 3].Value = GetPropValue(g,tongdiem_excel).ToString();
-                worksheet.Cells[15, 3].Value = GetPropValue(g, diemkhuyenkhich_excel).ToString();
+                string tong =  lstmt.Where(x => x.mo_ta == "Tổng số điểm").First().name.ToString(); 
+                worksheet.Cells[12, 3].Value = GetPropValue(g, tong).ToString();
+
+                string diemcong = lstmt.Where(x => x.mo_ta == "Điểm khuyến khích").First().name.ToString();
+                worksheet.Cells[15, 3].Value = GetPropValue(g, diemcong).ToString();
                 //
                 worksheet.Cells[15, 7].Value = s.dien_uudai;
                 worksheet.Cells[17, 3].Value = s.xeploai_totnghiep;
                 //save the changes
+                #region Sheet 2
+                ExcelWorksheet worksheet2 = excelPackage.Workbook.Worksheets[2];
+                //
+                worksheet2.Cells[1, 1].Value = "1";
+                worksheet2.Cells[1, 2].Value = "Thứ tự";
+                worksheet2.Cells[1, 3].Value = s.tt.ToString();
+
+                worksheet2.Cells[2, 1].Value = "1";
+                worksheet2.Cells[2, 2].Value = "Họ tên";
+                worksheet2.Cells[2, 3].Value = s.ho_ten.ToString();
+
+                worksheet2.Cells[3, 1].Value = "2";
+                worksheet2.Cells[3, 2].Value = "SBD";
+                worksheet2.Cells[3, 3].Value = s.sbd.ToString();
+
+                worksheet2.Cells[4, 1].Value = "3";
+                worksheet2.Cells[4, 2].Value = "NGày sinh";
+                worksheet2.Cells[4, 3].Value = s.ngay_sinh.ToString();
+
+                worksheet2.Cells[5, 1].Value = "4";
+                worksheet2.Cells[5, 2].Value = "Giới tính";
+                worksheet2.Cells[5, 3].Value = s.gioi_tinh.ToString();
+
+                worksheet2.Cells[6, 1].Value = "5";
+                worksheet2.Cells[6, 2].Value = "Quê quán";
+                worksheet2.Cells[6, 3].Value = s.coquan_congtac.ToString();
+
+                worksheet2.Cells[7, 1].Value = "6";
+                worksheet2.Cells[7, 2].Value = "Trường";
+                worksheet2.Cells[7, 3].Value = s.coquan_congtac.ToString();
+
+                worksheet2.Cells[8, 1].Value = "7";
+                worksheet2.Cells[8, 2].Value = "Quê quán";
+                worksheet2.Cells[8, 3].Value = s.coquan_congtac.ToString();
+
+                worksheet2.Cells[9, 1].Value = "8";
+                worksheet2.Cells[9, 2].Value = "Dân tộc";
+                worksheet2.Cells[9, 3].Value = s.dantoc.ToString();
+
+                worksheet2.Cells[10, 1].Value = "9";
+                worksheet2.Cells[10, 2].Value = "Xếp loại tốt nghiệp";
+                worksheet2.Cells[10, 3].Value = s.xeploai_totnghiep.ToString();
+
+                worksheet2.Cells[11, 1].Value = "10";
+                worksheet2.Cells[11, 2].Value = "Xếp loại học lực";
+                worksheet2.Cells[11, 3].Value = s.xeploai_hocluc.ToString();
+
+                worksheet2.Cells[12, 1].Value = "11";
+                worksheet2.Cells[12, 2].Value = "Xếp loại hạnh kiểm";
+                worksheet2.Cells[12, 3].Value = s.xeploai_hanhkiem.ToString();
+
+                worksheet2.Cells[13, 1].Value = "12";
+                worksheet2.Cells[13, 2].Value = "Kêt quả";
+                worksheet2.Cells[13, 3].Value = s.ketqua_thi.ToString();
+
+                worksheet2.Cells[14, 1].Value = "13";
+                worksheet2.Cells[14, 2].Value = "Diện ưu tiên";
+                worksheet2.Cells[14, 3].Value = s.dien_uudai.ToString();
+
+                worksheet2.Cells[15, 1].Value = "14";
+                worksheet2.Cells[15, 2].Value = "Ghi chú";
+                worksheet2.Cells[15, 3].Value = s.ghichu.ToString();
+               int dem = 16;
+                foreach (MT_VALUE_NAME mt in lstmt)
+                {
+                    if ((mt.status != "hidden"))
+                    {
+                        worksheet2.Cells[dem, 1].Value = dem -1 +"";
+                        worksheet2.Cells[dem, 2].Value = mt.mo_ta.ToString();
+                        var nameTemp = lstmt.Where(x => x.mo_ta == mt.mo_ta).First().name.ToString();
+                        worksheet2.Cells[dem, 3].Value = GetPropValue(g, nameTemp).ToString();
+
+                        dem++;
+                    }
+
+                }
+                for(int j = dem+1; j <15+51;j++ )
+                {
+                    worksheet2.Cells[j, 1].Value = "";
+                    worksheet2.Cells[j, 2].Value = "";
+                    worksheet2.Cells[j, 3].Value = "";
+                }
+                //
+                #endregion
                 excelPackage.Save();
                 return excelPackage.Stream;
             }

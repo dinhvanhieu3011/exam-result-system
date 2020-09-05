@@ -311,21 +311,31 @@
                                         <select class="form-control" id="loai_v@(i + 1)">
                                             @if (listMT[i].type == "datetime")
                                             {
-                                                <option selected value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option value="number">Number</option>
+                                                <option selected value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
                                             }
                                             else if (listMT[i].type == "text")
                                             {
-                                                <option value="date">Datetime</option>
-                                                <option selected value="text">Text</option>
-                                                <option value="number">Number</option>
+                                                <option value="date">Thời gian</option>
+                                                <option selected value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                            }
+                                            else if (listMT[i].type == "number")
+                                            {
+                                                <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option selected value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
                                             }
                                             else
                                             {
-                                                <option value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option selected value="number">Number</option>
+                                                <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option selected value="number/totnghiep">Số/Điểm tốt nghiệp</option>
                                             }
                                         </select>
                                     </span>
@@ -366,23 +376,33 @@
                                     </span>
                                     <span class="input-group-btn">
                                         <select class="form-control" id="loai_v@(i + 2)">
-                                            @if (listMT[i + 1].type == "datetime")
+                                            @if (listMT[i+1].type == "datetime")
                                             {
-                                                <option selected value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option value="number">Number</option>
+                                                <option selected value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
                                             }
-                                            else if (listMT[i + 1].type == "text")
+                                            else if (listMT[i+1].type == "text")
                                             {
-                                                <option value="date">Datetime</option>
-                                                <option selected value="text">Text</option>
-                                                <option value="number">Number</option>
+                                                <option value="date">Thời gian</option>
+                                                <option selected value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                            }
+                                            else if (listMT[i+1].type == "number")
+                                            {
+                                                <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option selected value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
                                             }
                                             else
                                             {
-                                                <option value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option selected value="number">Number</option>
+                                                <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option selected value="number/totnghiep">Số/Điểm tốt nghiệp</option>
                                             }
                                         </select>
                                     </span>
@@ -423,23 +443,33 @@
                                 </span>
                                 <span class="input-group-btn">
                                     <select class="form-control" id="loai_v@(i + 3)">
-                                        @if (listMT[i + 2].type == "datetime")
+                                        @if (listMT[i+2].type == "datetime")
                                         {
-                                            <option selected value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option value="number">Number</option>
+                                            <option selected value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
                                         }
-                                        else if (listMT[i + 2].type == "text")
+                                        else if (listMT[i+2].type == "text")
                                         {
-                                            <option value="date">Datetime</option>
-                                                <option selected value="text">Text</option>
-                                                <option value="number">Number</option>
+                                            <option value="date">Thời gian</option>
+                                                <option selected value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                        }
+                                        else if (listMT[i+2].type == "number")
+                                        {
+                                            <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option selected value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
                                         }
                                         else
                                         {
-                                            <option value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option selected value="number">Number</option>
+                                            <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option selected value="number/totnghiep">Số/Điểm tốt nghiệp</option>
                                         }
                                     </select>
                                 </span>
@@ -477,9 +507,34 @@
                             </span>
                             <span class="input-group-btn">
                                 <select class="form-control" id="loai_v49">
-                                    <option value="date">Datetime</option>
-                                    <option value="text">Text</option>
-                                    <option value="number">Number</option>
+                                    @if (listMT[48].type == "datetime")
+                                    {
+                                        <option selected value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                    }
+                                    else if (listMT[48].type == "text")
+                                    {
+                                        <option value="date">Thời gian</option>
+                                                <option selected value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                    }
+                                    else if (listMT[48].type == "number")
+                                    {
+                                        <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option selected value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option selected value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                    }
                                 </select>
                             </span>
 
@@ -510,9 +565,34 @@
                             </span>
                             <span class="input-group-btn">
                                 <select class="form-control" id="loai_v50">
-                                    <option value="date">Datetime</option>
-                                    <option value="text">Text</option>
-                                    <option value="number">Number</option>
+                                    @if (listMT[49].type == "datetime")
+                                    {
+                                        <option selected value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                    }
+                                    else if (listMT[49].type == "text")
+                                    {
+                                        <option value="date">Thời gian</option>
+                                                <option selected value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                    }
+                                    else if (listMT[49].type == "number")
+                                    {
+                                        <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option selected value="number">Số</option>
+                                                <option value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                                <option selected value="number/totnghiep">Số/Điểm tốt nghiệp</option>
+                                    }
                                 </select>
                             </span>
 
@@ -561,21 +641,22 @@
                                         <select class="form-control" id="loai_v@(i + 1)">
                                             @if (listPT[i].type == "datetime")
                                             {
-                                                <option selected value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option value="number">Number</option>
+                                                <option selected value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
                                             }
                                             else if (listPT[i].type == "text")
                                             {
-                                                <option value="date">Datetime</option>
-                                                <option selected value="text">Text</option>
-                                                <option value="number">Number</option>
+                                                <option value="date">Thời gian</option>
+                                                <option selected value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                 
                                             }
                                             else
                                             {
-                                                <option value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option selected value="number">Number</option>
+                                                <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option selected value="number">Số</option>
                                             }
                                         </select>
                                     </span>
@@ -618,21 +699,21 @@
                                         <select class="form-control" id="loai_v@(i + 2)">
                                             @if (listPT[i + 1].type == "datetime")
                                             {
-                                                <option selected value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option value="number">Number</option>
+                                                <option selected value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
                                             }
                                             else if (listPT[i + 1].type == "text")
                                             {
-                                                <option value="date">Datetime</option>
-                                                <option selected value="text">Text</option>
-                                                <option value="number">Number</option>
+                                                <option value="date">Thời gian</option>
+                                                <option selected value="text">Chữ</option>
+                                                <option value="number">Số</option>
                                             }
                                             else
                                             {
-                                                <option value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option selected value="number">Number</option>
+                                                <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option selected value="number">Số</option>
                                             }
                                         </select>
                                     </span>
@@ -675,21 +756,21 @@
                                     <select class="form-control" id="loai_v@(i + 3)">
                                         @if (listPT[i + 2].type == "datetime")
                                         {
-                                            <option selected value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option value="number">Number</option>
+                                            <option selected value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
                                         }
                                         else if (listPT[i + 2].type == "text")
                                         {
-                                            <option value="date">Datetime</option>
-                                                <option selected value="text">Text</option>
-                                                <option value="number">Number</option>
+                                            <option value="date">Thời gian</option>
+                                                <option selected value="text">Chữ</option>
+                                                <option value="number">Số</option>
                                         }
                                         else
                                         {
-                                            <option value="date">Datetime</option>
-                                                <option value="text">Text</option>
-                                                <option selected value="number">Number</option>
+                                            <option value="date">Thời gian</option>
+                                                <option value="text">Chữ</option>
+                                                <option selected value="number">Số</option>
                                         }
                                     </select>
                                 </span>
@@ -723,9 +804,24 @@
                             </span>
                             <span class="input-group-btn">
                                 <select class="form-control" id="loai_v49">
-                                    <option value="date">Datetime</option>
-                                    <option value="text">Text</option>
-                                    <option value="number">Number</option>
+                                    @if (listPT[48].type == "datetime")
+                                    {
+                                        <option selected value="date">Thời gian</option>
+                                            <option value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                    }
+                                    else if (listPT[48].type == "text")
+                                    {
+                                        <option value="date">Thời gian</option>
+                                            <option selected value="text">Chữ</option>
+                                                <option value="number">Số</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="date">Thời gian</option>
+                                            <option value="text">Chữ</option>
+                                                <option selected value="number">Số</option>
+                                    }
                                 </select>
                             </span>
 
@@ -756,9 +852,24 @@
                             </span>
                             <span class="input-group-btn">
                                 <select class="form-control" id="loai_v50">
-                                    <option value="date">Datetime</option>
-                                    <option value="text">Text</option>
-                                    <option value="number">Number</option>
+                                    @if (listPT[49].type == "datetime")
+                                    {
+                                        <option selected value="date">Thời gian</option>
+                                        <option value="text">Chữ</option>
+                                            <option value="number">Số</option>
+                                    }
+                                    else if (listPT[49].type == "text")
+                                    {
+                                        <option value="date">Thời gian</option>
+                                        <option selected value="text">Chữ</option>
+                                            <option value="number">Số</option>
+                                    }
+                                    else
+                                    {
+                                        <option value="date">Thời gian</option>
+                                        <option value="text">Chữ</option>
+                                            <option selected value="number">Số</option>
+                                    }
                                 </select>
                             </span>
 
