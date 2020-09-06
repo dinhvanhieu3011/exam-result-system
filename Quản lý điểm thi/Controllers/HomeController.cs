@@ -558,7 +558,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 FileInfo fileInfo = new FileInfo(fileClonePath);
                 using (ExcelPackage excelPack = new ExcelPackage(fileInfo))
                 {
-                    ExcelWorksheet worksheet = excelPack.Workbook.Worksheets[0];
+                    ExcelWorksheet worksheet = excelPack.Workbook.Worksheets[1];
                     if (listExamRoom == null || !listExamRoom.Any())
                     {
                         List<int> listIDExamRoom = listStudents.Select(s => s.ID_Exam_Room).ToList<int>();
