@@ -57,3 +57,64 @@ D:\quan-li-diem-thi-2\Quản lý điểm thi\bin\System.Web.Mvc.xml
 D:\quan-li-diem-thi-2\Quản lý điểm thi\obj\Release\Quản lý điểm thi.dll
 D:\quan-li-diem-thi-2\Quản lý điểm thi\obj\Release\Quản lý điểm thi.pdb
 D:\quan-li-diem-thi-2\Quản lý điểm thi\obj\Release\Quản lý điểm thi.csprojResolveAssemblyReference.cache
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\ApplicationInsights.config
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\csc.exe
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\System.Collections.Immutable.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\System.Reflection.Metadata.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\vbc.exe
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\VBCSCompiler.exe
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\roslyn\VBCSCompiler.exe.config
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Quản lý điểm thi.dll.config
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Quản lý điểm thi.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Quản lý điểm thi.pdb
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\EntityFramework.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\EntityFramework.SqlServer.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\EPPlus.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\ExcelDataReader.DataSet.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\ExcelDataReader.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.Agent.Intercept.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.DependencyCollector.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.Web.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.WindowsServer.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.ApplicationInsights.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.Web.Infrastructure.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Newtonsoft.Json.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Linq.Dynamic.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Helpers.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Mvc.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Razor.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Webpages.Deployment.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Webpages.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Webpages.Razor.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\EntityFramework.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\EntityFramework.SqlServer.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\EPPlus.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\ExcelDataReader.pdb
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\ExcelDataReader.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\ExcelDataReader.DataSet.pdb
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\ExcelDataReader.DataSet.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.DependencyCollector.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.Web.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.AI.WindowsServer.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.ApplicationInsights.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\Newtonsoft.Json.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Razor.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Webpages.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Webpages.Deployment.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Webpages.Razor.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Helpers.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\System.Web.Mvc.xml
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\obj\Release\Quản lý điểm thi.csprojResolveAssemblyReference.cache
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\obj\Release\Quản lý điểm thi.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\obj\Release\Quản lý điểm thi.pdb

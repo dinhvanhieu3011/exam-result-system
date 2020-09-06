@@ -613,7 +613,22 @@ namespace Quản_lý_điểm_thi.Controllers
                             if (!string.IsNullOrEmpty(student.ngay_sinh))
                             {
                                 string[] arr = student.ngay_sinh.Split('-');
-                                birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
+                                if(arr.Count() >= 3)
+                                {
+                                    birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
+                                }
+                                else
+                                {
+                                    arr = student.ngay_sinh.Split('/');
+                                    if (arr.Count() >= 3)
+                                    {
+                                        birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
+                                    }
+                                    else
+                                    {
+                                        birthDay = student.ngay_sinh;
+                                    }
+                                }
                             }
 
                             worksheet.Cells[startRowList, 1].Value = stt++;

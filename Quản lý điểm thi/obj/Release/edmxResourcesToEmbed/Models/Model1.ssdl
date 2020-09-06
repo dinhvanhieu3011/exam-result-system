@@ -36,7 +36,7 @@
     <Property Name="value_2" Type="nvarchar" MaxLength="250" />
     <Property Name="value_3" Type="nvarchar" MaxLength="250" />
     <Property Name="value_4" Type="nvarchar" MaxLength="250" />
-    <Property Name="value_5" Type="nvarchar" MaxLength="250" />
+    <Property Name="value_5" Type="nvarchar" MaxLength="1000" />
     <Property Name="value_6" Type="nvarchar" MaxLength="250" />
     <Property Name="value_7" Type="nvarchar" MaxLength="250" />
     <Property Name="value_8" Type="nvarchar" MaxLength="250" />
@@ -301,6 +301,10 @@
     <Property Name="Image" Type="varchar" MaxLength="200" />
     <Property Name="IsAdmin" Type="bit" />
     <Property Name="UnitId" Type="int" />
+    <Property Name="OfficeRoom" Type="nvarchar" MaxLength="200" />
+    <Property Name="WorkPlace" Type="nvarchar" MaxLength="200" />
+    <Property Name="AvatarFolderPath" Type="nvarchar" MaxLength="200" />
+    <Property Name="AvatarUrl" Type="nvarchar" MaxLength="200" />
   </EntityType>
   <EntityType Name="XepLoaiHanhKiem">
     <Key>
@@ -335,18 +339,6 @@
     <Property Name="create_date" Type="nvarchar" MaxLength="350" Nullable="false" />
     <Property Name="create_user" Type="nvarchar" MaxLength="350" Nullable="false" />
   </EntityType>
-  <Association Name="FK_ReportIdValue11">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Role_MenuItem">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_ReportIdValue112">
     <End Role="MenuItem" Type="Self.MenuItem" Multiplicity="1" />
     <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
@@ -379,10 +371,6 @@
     <EntitySet Name="XepLoaiHanhKiem" EntityType="Self.XepLoaiHanhKiem" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="XepLoaiHocLuc" EntityType="Self.XepLoaiHocLuc" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="XepLoaiTotNghiep" EntityType="Self.XepLoaiTotNghiep" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_ReportIdValue11" Association="Self.FK_ReportIdValue11">
-      <End Role="Role" EntitySet="Role" />
-      <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
-    </AssociationSet>
     <AssociationSet Name="FK_ReportIdValue112" Association="Self.FK_ReportIdValue112">
       <End Role="MenuItem" EntitySet="MenuItem" />
       <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />

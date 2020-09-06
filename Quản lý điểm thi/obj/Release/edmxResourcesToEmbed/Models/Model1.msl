@@ -315,6 +315,10 @@
           <ScalarProperty Name="Image" ColumnName="Image" />
           <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
           <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+          <ScalarProperty Name="OfficeRoom" ColumnName="OfficeRoom" />
+          <ScalarProperty Name="WorkPlace" ColumnName="WorkPlace" />
+          <ScalarProperty Name="AvatarFolderPath" ColumnName="AvatarFolderPath" />
+          <ScalarProperty Name="AvatarUrl" ColumnName="AvatarUrl" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

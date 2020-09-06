@@ -36,7 +36,7 @@
     <Property Name="value_2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="value_3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="value_4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="value_5" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_5" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Name="value_6" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="value_7" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="value_8" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -229,7 +229,6 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="0" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="Role_MenuItem" Relationship="Self.FK_ReportIdValue11" FromRole="Role" ToRole="Role_MenuItem" />
   </EntityType>
   <EntityType Name="Role_MenuItem">
     <Key>
@@ -240,7 +239,6 @@
     <Property Name="RoleId" Type="Int32" Nullable="false" />
     <Property Name="MenuItemId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="MenuItem" Relationship="Self.FK_ReportIdValue112" FromRole="Role_MenuItem" ToRole="MenuItem" />
-    <NavigationProperty Name="Role" Relationship="Self.FK_ReportIdValue11" FromRole="Role_MenuItem" ToRole="Role" />
   </EntityType>
   <EntityType Name="Setting">
     <Key>
@@ -305,6 +303,10 @@
     <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="IsAdmin" Type="Boolean" />
     <Property Name="UnitId" Type="Int32" />
+    <Property Name="OfficeRoom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AvatarFolderPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AvatarUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="XepLoaiHanhKiem">
     <Key>
@@ -351,18 +353,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ReportIdValue11">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Role_MenuItem">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="QLDTEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="DienUuTiens" EntityType="Self.DienUuTien" />
     <EntitySet Name="Exams" EntityType="Self.Exam" />
@@ -385,10 +375,6 @@
     <EntitySet Name="XepLoaiTotNghieps" EntityType="Self.XepLoaiTotNghiep" />
     <AssociationSet Name="FK_ReportIdValue112" Association="Self.FK_ReportIdValue112">
       <End Role="MenuItem" EntitySet="MenuItems" />
-      <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
-    </AssociationSet>
-    <AssociationSet Name="FK_ReportIdValue11" Association="Self.FK_ReportIdValue11">
-      <End Role="Role" EntitySet="Roles" />
       <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
     </AssociationSet>
   </EntityContainer>
