@@ -499,148 +499,158 @@ namespace Quản_lý_điểm_thi.Controllers
             string message = "";
             bool isSuccess = false;
 
-            toTestDay = ConvertDate(toTestDay);
-            fromBirthday = ConvertDate(fromBirthday);
-            toBirthday = ConvertDate(toBirthday);
-            fromTestDay = ConvertDate(fromTestDay);
+            try
+            {
 
-            var listHDThi = new List<Hoi_dong_thi>();
-            var listExamRoom = new List<ExamRoom>();
-            var listStudents = new List<Student>();
-            if (!string.IsNullOrEmpty(examCouncil) || !string.IsNullOrEmpty(exam))
-            {
-                listHDThi = GetListHDThi(examCouncil, exam, _context);
-            }
-            if (!string.IsNullOrEmpty(examRoom) || (listHDThi != null && listHDThi.Any()))
-            {
-                listExamRoom = GetListExamRoom(examRoom, listHDThi, _context);
-            }
-            if (!string.IsNullOrEmpty(fullName) || !string.IsNullOrEmpty(candidateNumber) || listExamRoom.Any() || !string.IsNullOrEmpty(fromBirthday) || !string.IsNullOrEmpty(toBirthday)
-                || !string.IsNullOrEmpty(ketQua) || !string.IsNullOrEmpty(truong) || !string.IsNullOrEmpty(hanhKiem) || !string.IsNullOrEmpty(hocLuc) || !string.IsNullOrEmpty(gioiTinh)
-                || !string.IsNullOrEmpty(loaiTN) || !string.IsNullOrEmpty(dienUT) || !string.IsNullOrEmpty(exam) || !string.IsNullOrEmpty(examRoom) || !string.IsNullOrEmpty(examCouncil))
-            {
-                listStudents = GetListSudent(exam, examCouncil, listExamRoom, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, _context);
-            }
-            else
-            {
-                listStudents = new List<Student>();
-            }
+                toTestDay = ConvertDate(toTestDay);
+                fromBirthday = ConvertDate(fromBirthday);
+                toBirthday = ConvertDate(toBirthday);
+                fromTestDay = ConvertDate(fromTestDay);
 
-           
-
-            if (listStudents.Any())
-            {
-                string fileName = "\\Excel\\Home\\mau_xua_excel.xlsx";
-                string outFolder = "\\Excel\\Home\\Search";
-                string fileClone = "ket_qua_tim_kiem", fileClonePath;
-                int startRowList = 10, stt = 1;
-                string excelsPath = Server.MapPath(fileName);
-                var folder = Server.MapPath(outFolder);
-                fileClonePath = folder + "\\" + fileClone + ".xlsx";
-
-                if (Directory.Exists(folder))
+                var listHDThi = new List<Hoi_dong_thi>();
+                var listExamRoom = new List<ExamRoom>();
+                var listStudents = new List<Student>();
+                if (!string.IsNullOrEmpty(examCouncil) || !string.IsNullOrEmpty(exam))
                 {
-                    string[] files = Directory.GetFiles(folder);
-                    foreach (string file in files)
+                    listHDThi = GetListHDThi(examCouncil, exam, _context);
+                }
+                if (!string.IsNullOrEmpty(examRoom) || (listHDThi != null && listHDThi.Any()))
+                {
+                    listExamRoom = GetListExamRoom(examRoom, listHDThi, _context);
+                }
+                if (!string.IsNullOrEmpty(fullName) || !string.IsNullOrEmpty(candidateNumber) || listExamRoom.Any() || !string.IsNullOrEmpty(fromBirthday) || !string.IsNullOrEmpty(toBirthday)
+                    || !string.IsNullOrEmpty(ketQua) || !string.IsNullOrEmpty(truong) || !string.IsNullOrEmpty(hanhKiem) || !string.IsNullOrEmpty(hocLuc) || !string.IsNullOrEmpty(gioiTinh)
+                    || !string.IsNullOrEmpty(loaiTN) || !string.IsNullOrEmpty(dienUT) || !string.IsNullOrEmpty(exam) || !string.IsNullOrEmpty(examRoom) || !string.IsNullOrEmpty(examCouncil))
+                {
+                    listStudents = GetListSudent(exam, examCouncil, listExamRoom, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, _context);
+                }
+                else
+                {
+                    listStudents = new List<Student>();
+                }
+
+
+
+                if (listStudents.Any())
+                {
+                    string fileName = "\\Excel\\Home\\mau_xua_excel.xlsx";
+                    string outFolder = "\\Excel\\Home\\Search";
+                    string fileClone = "ket_qua_tim_kiem", fileClonePath;
+                    int startRowList = 10, stt = 1;
+                    string excelsPath = Server.MapPath(fileName);
+                    var folder = Server.MapPath(outFolder);
+                    fileClonePath = folder + "\\" + fileClone + ".xlsx";
+
+                    if (Directory.Exists(folder))
                     {
-                        System.IO.File.SetAttributes(file, FileAttributes.Normal);
-                        System.IO.File.Delete(file);
+                        string[] files = Directory.GetFiles(folder);
+                        foreach (string file in files)
+                        {
+                            System.IO.File.SetAttributes(file, FileAttributes.Normal);
+                            System.IO.File.Delete(file);
+                        }
+
+                    }
+                    else
+                    {
+                        Directory.CreateDirectory(folder);
+                    }
+
+                    System.IO.File.Copy(excelsPath, folder + "\\" + fileClone + ".xlsx");
+
+                    FileInfo fileInfo = new FileInfo(fileClonePath);
+                    using (ExcelPackage excelPack = new ExcelPackage(fileInfo))
+                    {
+                        ExcelWorksheet worksheet = excelPack.Workbook.Worksheets[1];
+                        if (listExamRoom == null || !listExamRoom.Any())
+                        {
+                            List<int> listIDExamRoom = listStudents.Select(s => s.ID_Exam_Room).ToList<int>();
+                            listExamRoom = _context.ExamRooms.Where(e => listIDExamRoom.Contains(e.Id)).ToList<ExamRoom>();
+                        }
+                        if (listHDThi == null || !listHDThi.Any())
+                        {
+                            List<int> listHDThiId = listExamRoom.Select(s => s.ID_Exam).ToList<int>();
+                            listHDThi = _context.Hoi_dong_thi.Where(e => listHDThiId.Contains(e.Id)).ToList<Hoi_dong_thi>();
+                        }
+
+                        if (!string.IsNullOrEmpty(exam))
+                        {
+                            var _exam = _context.Exams.Where(e => e.Id.ToString() == exam).FirstOrDefault();
+                            worksheet.Cells[4, 2].Value = _exam.value_1;
+                        }
+                        if (!string.IsNullOrEmpty(examCouncil))
+                        {
+                            var _examCon = _context.Hoi_dong_thi.Where(e => e.Id.ToString() == examCouncil).FirstOrDefault();
+                            worksheet.Cells[5, 2].Value = _examCon.value_1;
+                        }
+                        if (!string.IsNullOrEmpty(examRoom))
+                        {
+                            var _examRoom = _context.ExamRooms.Where(e => e.Id.ToString() == examRoom).FirstOrDefault();
+                            worksheet.Cells[6, 2].Value = _examRoom.value_1;
+                        }
+                        worksheet.Cells[startRowList - 1, 1].Value = "STT";
+                        worksheet.Cells[startRowList - 1, 2].Value = "Họ và tên";
+                        worksheet.Cells[startRowList - 1, 3].Value = "Số báo danh";
+                        worksheet.Cells[startRowList - 1, 4].Value = "Ngày sinh";
+                        worksheet.Cells[startRowList - 1, 5].Value = "Giới tính";
+                        worksheet.Cells[startRowList - 1, 6].Value = "Dân tộc";
+                        worksheet.Cells[startRowList - 1, 7].Value = "Trường học";
+                        worksheet.Cells[startRowList - 1, 8].Value = "Hạnh kiểm";
+                        worksheet.Cells[startRowList - 1, 9].Value = "Học lực";
+                        worksheet.Cells[startRowList - 1, 10].Value = "Loại tốt nghiệp";
+                        worksheet.Cells[startRowList - 1, 11].Value = "Phòng thi";
+                        worksheet.Cells[startRowList - 1, 12].Value = "Hội đồng thi";
+                        worksheet.Cells[startRowList - 1, 13].Value = "Niên khóa";
+                        worksheet.Cells[startRowList - 1, 14].Value = "Cơ quan công tác";
+
+
+                        foreach (var student in listStudents)
+                        {
+                            ExamRoom exRoom = listExamRoom.Where(a => a.Id == student.ID_Exam_Room).FirstOrDefault();
+                            Hoi_dong_thi hdThi = listHDThi.Where(a => a.Id == exRoom.ID_Exam).FirstOrDefault();
+                            Exam ex = _context.Exams.Where(a => a.Id.ToString() == hdThi.value_11).FirstOrDefault();
+                            string birthDay = "";
+                            if (!string.IsNullOrEmpty(student.ngay_sinh))
+                            {
+                                string[] arr = student.ngay_sinh.Split('-');
+                                birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
+                            }
+
+                            worksheet.Cells[startRowList, 1].Value = stt++;
+                            worksheet.Cells[startRowList, 2].Value = student.ho_ten;
+                            worksheet.Cells[startRowList, 3].Value = student.sbd;
+                            worksheet.Cells[startRowList, 4].Value = birthDay;
+                            worksheet.Cells[startRowList, 5].Value = student.gioi_tinh;
+                            worksheet.Cells[startRowList, 6].Value = student.dantoc;
+                            worksheet.Cells[startRowList, 7].Value = student.truong_hoc;
+                            worksheet.Cells[startRowList, 8].Value = student.xeploai_hanhkiem;
+                            worksheet.Cells[startRowList, 9].Value = student.xeploai_hocluc;
+                            worksheet.Cells[startRowList, 10].Value = student.xeploai_totnghiep;
+                            worksheet.Cells[startRowList, 11].Value = exRoom.value_1;
+                            worksheet.Cells[startRowList, 12].Value = hdThi.value_1;
+                            worksheet.Cells[startRowList, 13].Value = ex.value_1;
+                            worksheet.Cells[startRowList, 14].Value = student.coquan_congtac;
+
+                            startRowList++;
+                        }
+                        excelPack.Save();
+                        byte[] fileBytes = System.IO.File.ReadAllBytes(fileClonePath);
+                        isSuccess = true;
+                        message = "Hệ thống sẽ trả về 1 file excel";
+                        TempData["OutputExcels"] = fileBytes;
                     }
 
                 }
                 else
                 {
-                    Directory.CreateDirectory(folder);
+                    message = "Không có bản ghi nào, không thể kết xuất file";
                 }
-
-                System.IO.File.Copy(excelsPath, folder + "\\" + fileClone + ".xlsx");
-
-                FileInfo fileInfo = new FileInfo(fileClonePath);
-                using (ExcelPackage excelPack = new ExcelPackage(fileInfo))
-                {
-                    ExcelWorksheet worksheet = excelPack.Workbook.Worksheets[1];
-                    if (listExamRoom == null || !listExamRoom.Any())
-                    {
-                        List<int> listIDExamRoom = listStudents.Select(s => s.ID_Exam_Room).ToList<int>();
-                        listExamRoom = _context.ExamRooms.Where(e => listIDExamRoom.Contains(e.Id)).ToList<ExamRoom>();
-                    }
-                    if (listHDThi == null || !listHDThi.Any())
-                    {
-                        List<int> listHDThiId = listExamRoom.Select(s => s.ID_Exam).ToList<int>();
-                        listHDThi = _context.Hoi_dong_thi.Where(e => listHDThiId.Contains(e.Id)).ToList<Hoi_dong_thi>();
-                    }
-
-                    if (!string.IsNullOrEmpty(exam))
-                    {
-                        var _exam = _context.Exams.Where(e => e.Id.ToString() == exam).FirstOrDefault();
-                        worksheet.Cells[4, 2].Value = _exam.value_1;
-                    }
-                    if (!string.IsNullOrEmpty(examCouncil))
-                    {
-                        var _examCon = _context.Hoi_dong_thi.Where(e => e.Id.ToString() == examCouncil).FirstOrDefault();
-                        worksheet.Cells[5, 2].Value = _examCon.value_1;
-                    }
-                    if (!string.IsNullOrEmpty(examRoom))
-                    {
-                        var _examRoom = _context.ExamRooms.Where(e => e.Id.ToString() == examRoom).FirstOrDefault();
-                        worksheet.Cells[6, 2].Value = _examRoom.value_1;
-                    }
-                    worksheet.Cells[startRowList - 1, 1].Value = "STT";
-                    worksheet.Cells[startRowList - 1, 2].Value = "Họ và tên";
-                    worksheet.Cells[startRowList - 1, 3].Value = "Số báo danh";
-                    worksheet.Cells[startRowList - 1, 4].Value = "Ngày sinh";
-                    worksheet.Cells[startRowList - 1, 5].Value = "Giới tính";
-                    worksheet.Cells[startRowList - 1, 6].Value = "Dân tộc";
-                    worksheet.Cells[startRowList - 1, 7].Value = "Trường học";
-                    worksheet.Cells[startRowList - 1, 8].Value = "Hạnh kiểm";
-                    worksheet.Cells[startRowList - 1, 9].Value = "Học lực";
-                    worksheet.Cells[startRowList - 1, 10].Value = "Loại tốt nghiệp";
-                    worksheet.Cells[startRowList - 1, 11].Value = "Phòng thi";
-                    worksheet.Cells[startRowList - 1, 12].Value = "Hội đồng thi";
-                    worksheet.Cells[startRowList - 1, 13].Value = "Niên khóa";
-                    worksheet.Cells[startRowList - 1, 14].Value = "Cơ quan công tác";
-
-
-                    foreach (var student in listStudents)
-                    {
-                        ExamRoom exRoom = listExamRoom.Where(a => a.Id == student.ID_Exam_Room).FirstOrDefault();
-                        Hoi_dong_thi hdThi = listHDThi.Where(a => a.Id == exRoom.ID_Exam).FirstOrDefault();
-                        Exam ex = _context.Exams.Where(a => a.Id.ToString() == hdThi.value_11).FirstOrDefault();
-                        string birthDay = "";
-                        if ( !string.IsNullOrEmpty( student.ngay_sinh))
-                        {
-                            string[] arr = student.ngay_sinh.Split('-');
-                            birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
-                        }
-
-                        worksheet.Cells[startRowList, 1].Value = stt++;
-                        worksheet.Cells[startRowList, 2].Value = student.ho_ten;
-                        worksheet.Cells[startRowList, 3].Value = student.sbd;
-                        worksheet.Cells[startRowList, 4].Value = birthDay;
-                        worksheet.Cells[startRowList, 5].Value = student.gioi_tinh;
-                        worksheet.Cells[startRowList, 6].Value = student.dantoc;
-                        worksheet.Cells[startRowList, 7].Value = student.truong_hoc;
-                        worksheet.Cells[startRowList, 8].Value = student.xeploai_hanhkiem;
-                        worksheet.Cells[startRowList, 9].Value = student.xeploai_hocluc;
-                        worksheet.Cells[startRowList, 10].Value = student.xeploai_totnghiep;
-                        worksheet.Cells[startRowList, 11].Value = exRoom.value_1;
-                        worksheet.Cells[startRowList, 12].Value = hdThi.value_1;
-                        worksheet.Cells[startRowList, 13].Value = ex.value_1;
-                        worksheet.Cells[startRowList, 14].Value = student.coquan_congtac;
-
-                        startRowList++;
-                    }
-                    excelPack.Save();
-                    byte[] fileBytes = System.IO.File.ReadAllBytes(fileClonePath);
-                    isSuccess = true;
-                    message = "Hệ thống sẽ trả về 1 file excel";
-                    TempData["OutputExcels"] = fileBytes;
-                }
-
-            }else
-            {
-                message = "Không có bản ghi nào, không thể kết xuất file";
             }
+            catch(Exception ex)
+            {
+                message = ex.ToString();
+            }
+
             return Json(new
             {
                 Message = message,
