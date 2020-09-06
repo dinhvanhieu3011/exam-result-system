@@ -11,19 +11,6 @@
             "pageLength": 50,
             "searching": false,
             "lengthChange": false,
-            'dom': 'Bfrtip',
-            'buttons': [
-                {
-                    text: 'Excel',
-                    extend: 'excel',
-                    className: 'form-control',
-                    exportOptions: {
-                        modifier: {
-                            page: 'current'
-                        }
-                    }
-                }
-            ],
             "ajax": {
                 "url": "/Home/GetListStudent",
                 "type": "POST",
@@ -83,10 +70,6 @@
                     //    }
                     //},
                 ],
-            initComplete: function () {
-                var api = this.api();
-                api.buttons().container().appendTo($('#tblStudent_wrapper .col-sm-6:eq(1)'))
-            },
         })
         table.on('draw.dt', function () {
             var PageInfo = table.page.info();

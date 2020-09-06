@@ -36,7 +36,7 @@
     <Property Name="value_2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="value_3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="value_4" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-    <Property Name="value_5" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="value_5" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Name="value_6" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="value_7" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
     <Property Name="value_8" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
@@ -229,7 +229,6 @@
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="CreatedDate" Type="DateTime" Precision="0" />
     <Property Name="UpdatedDate" Type="DateTime" Precision="0" />
-    <NavigationProperty Name="Role_MenuItem" Relationship="Self.FK_ReportIdValue11" FromRole="Role" ToRole="Role_MenuItem" />
   </EntityType>
   <EntityType Name="Role_MenuItem">
     <Key>
@@ -240,7 +239,6 @@
     <Property Name="RoleId" Type="Int32" Nullable="false" />
     <Property Name="MenuItemId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="MenuItem" Relationship="Self.FK_ReportIdValue112" FromRole="Role_MenuItem" ToRole="MenuItem" />
-    <NavigationProperty Name="Role" Relationship="Self.FK_ReportIdValue11" FromRole="Role_MenuItem" ToRole="Role" />
   </EntityType>
   <EntityType Name="Setting">
     <Key>
@@ -276,17 +274,7 @@
     <Property Name="create_date" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="create_user" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="pdf" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="dantoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-  </EntityType>
-  <EntityType Name="sysdiagram">
-    <Key>
-      <PropertyRef Name="diagram_id" />
-    </Key>
-    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="principal_id" Type="Int32" Nullable="false" />
-    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="version" Type="Int32" />
-    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="dantoc" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="Truong">
     <Key>
@@ -298,6 +286,27 @@
     <Property Name="Ghi_chu" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
     <Property Name="create_date" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="create_user" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="CMND" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <Property Name="UnitId" Type="Int32" />
+    <Property Name="OfficeRoom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WorkPlace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AvatarFolderPath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AvatarUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="XepLoaiHanhKiem">
     <Key>
@@ -344,18 +353,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ReportIdValue11">
-    <End Role="Role" Type="Self.Role" Multiplicity="1" />
-    <End Role="Role_MenuItem" Type="Self.Role_MenuItem" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Role">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Role_MenuItem">
-        <PropertyRef Name="RoleId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="QLDTEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="DienUuTiens" EntityType="Self.DienUuTien" />
     <EntitySet Name="Exams" EntityType="Self.Exam" />
@@ -371,8 +368,8 @@
     <EntitySet Name="Role_MenuItem" EntityType="Self.Role_MenuItem" />
     <EntitySet Name="Settings" EntityType="Self.Setting" />
     <EntitySet Name="Students" EntityType="Self.Student" />
-    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="Truongs" EntityType="Self.Truong" />
+    <EntitySet Name="Users" EntityType="Self.User" />
     <EntitySet Name="XepLoaiHanhKiems" EntityType="Self.XepLoaiHanhKiem" />
     <EntitySet Name="XepLoaiHocLucs" EntityType="Self.XepLoaiHocLuc" />
     <EntitySet Name="XepLoaiTotNghieps" EntityType="Self.XepLoaiTotNghiep" />
@@ -380,31 +377,5 @@
       <End Role="MenuItem" EntitySet="MenuItems" />
       <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
     </AssociationSet>
-    <AssociationSet Name="FK_ReportIdValue11" Association="Self.FK_ReportIdValue11">
-      <End Role="Role" EntitySet="Roles" />
-      <End Role="Role_MenuItem" EntitySet="Role_MenuItem" />
-    </AssociationSet>
-    <EntitySet Name="Users" EntityType="QLDTModel.User" />
   </EntityContainer>
-  <EntityType Name="User">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Username" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Password" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-    <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-    <Property Name="Birthday" Type="DateTime" Precision="0" />
-    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-    <Property Name="CMND" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="Image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="IsAdmin" Type="Boolean" />
-    <Property Name="UnitId" Type="Int32" />
-    <Property Name="AvatarUrl" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="AvatarFolderPath" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-    <Property Name="OfficeRoom" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-    <Property Name="WorkPlace" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-  </EntityType>
 </Schema>

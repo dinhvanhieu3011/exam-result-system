@@ -526,6 +526,8 @@ namespace Quản_lý_điểm_thi.Controllers
                 listStudents = new List<Student>();
             }
 
+           
+
             if (listStudents.Any())
             {
                 string fileName = "\\Excel\\Home\\mau_xua_excel.xlsx";
@@ -556,7 +558,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 FileInfo fileInfo = new FileInfo(fileClonePath);
                 using (ExcelPackage excelPack = new ExcelPackage(fileInfo))
                 {
-                    ExcelWorksheet myWorksheet = excelPack.Workbook.Worksheets.FirstOrDefault();
+                    ExcelWorksheet worksheet = excelPack.Workbook.Worksheets[0];
                     if (listExamRoom == null || !listExamRoom.Any())
                     {
                         List<int> listIDExamRoom = listStudents.Select(s => s.ID_Exam_Room).ToList<int>();
@@ -568,19 +570,36 @@ namespace Quản_lý_điểm_thi.Controllers
                         listHDThi = _context.Hoi_dong_thi.Where(e => listHDThiId.Contains(e.Id)).ToList<Hoi_dong_thi>();
                     }
 
-                    myWorksheet.Cells[startRowList - 1, 1].Value = "STT";
-                    myWorksheet.Cells[startRowList - 1, 2].Value = "Họ và tên";
-                    myWorksheet.Cells[startRowList - 1, 3].Value = "Số báo danh";
-                    myWorksheet.Cells[startRowList - 1, 4].Value = "Ngày sinh";
-                    myWorksheet.Cells[startRowList - 1, 5].Value = "Giới tính";
-                    myWorksheet.Cells[startRowList - 1, 6].Value = "Dân tộc";
-                    myWorksheet.Cells[startRowList - 1, 7].Value = "Trường học";
-                    myWorksheet.Cells[startRowList - 1, 8].Value = "Hạnh kiểm";
-                    myWorksheet.Cells[startRowList - 1, 9].Value = "Học lực";
-                    myWorksheet.Cells[startRowList - 1, 10].Value = "Loại tốt nghiệp";
-                    myWorksheet.Cells[startRowList - 1, 11].Value = "Phòng thi";
-                    myWorksheet.Cells[startRowList - 1, 12].Value = "Hội đồng thi";
-                    myWorksheet.Cells[startRowList - 1, 13].Value = "Niên khóa";
+                    if (!string.IsNullOrEmpty(exam))
+                    {
+                        var _exam = _context.Exams.Where(e => e.Id.ToString() == exam).FirstOrDefault();
+                        worksheet.Cells[4, 2].Value = _exam.value_1;
+                    }
+                    if (!string.IsNullOrEmpty(examCouncil))
+                    {
+                        var _examCon = _context.Hoi_dong_thi.Where(e => e.Id.ToString() == examCouncil).FirstOrDefault();
+                        worksheet.Cells[5, 2].Value = _examCon.value_1;
+                    }
+                    if (!string.IsNullOrEmpty(examRoom))
+                    {
+                        var _examRoom = _context.ExamRooms.Where(e => e.Id.ToString() == examRoom).FirstOrDefault();
+                        worksheet.Cells[6, 2].Value = _examRoom.value_1;
+                    }
+                    worksheet.Cells[startRowList - 1, 1].Value = "STT";
+                    worksheet.Cells[startRowList - 1, 2].Value = "Họ và tên";
+                    worksheet.Cells[startRowList - 1, 3].Value = "Số báo danh";
+                    worksheet.Cells[startRowList - 1, 4].Value = "Ngày sinh";
+                    worksheet.Cells[startRowList - 1, 5].Value = "Giới tính";
+                    worksheet.Cells[startRowList - 1, 6].Value = "Dân tộc";
+                    worksheet.Cells[startRowList - 1, 7].Value = "Trường học";
+                    worksheet.Cells[startRowList - 1, 8].Value = "Hạnh kiểm";
+                    worksheet.Cells[startRowList - 1, 9].Value = "Học lực";
+                    worksheet.Cells[startRowList - 1, 10].Value = "Loại tốt nghiệp";
+                    worksheet.Cells[startRowList - 1, 11].Value = "Phòng thi";
+                    worksheet.Cells[startRowList - 1, 12].Value = "Hội đồng thi";
+                    worksheet.Cells[startRowList - 1, 13].Value = "Niên khóa";
+                    worksheet.Cells[startRowList - 1, 14].Value = "Cơ quan công tác";
+
 
                     foreach (var student in listStudents)
                     {
@@ -594,19 +613,21 @@ namespace Quản_lý_điểm_thi.Controllers
                             birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
                         }
 
-                        myWorksheet.Cells[startRowList, 1].Value = stt++;
-                        myWorksheet.Cells[startRowList, 2].Value = student.ho_ten;
-                        myWorksheet.Cells[startRowList, 3].Value = student.sbd;
-                        myWorksheet.Cells[startRowList, 4].Value = birthDay;
-                        myWorksheet.Cells[startRowList, 5].Value = student.gioi_tinh;
-                        myWorksheet.Cells[startRowList, 6].Value = student.dantoc;
-                        myWorksheet.Cells[startRowList, 7].Value = student.truong_hoc;
-                        myWorksheet.Cells[startRowList, 8].Value = student.xeploai_hanhkiem;
-                        myWorksheet.Cells[startRowList, 9].Value = student.xeploai_hocluc;
-                        myWorksheet.Cells[startRowList, 10].Value = student.xeploai_totnghiep;
-                        myWorksheet.Cells[startRowList, 11].Value = exRoom.value_1;
-                        myWorksheet.Cells[startRowList, 12].Value = hdThi.value_1;
-                        myWorksheet.Cells[startRowList, 13].Value = ex.value_1;
+                        worksheet.Cells[startRowList, 1].Value = stt++;
+                        worksheet.Cells[startRowList, 2].Value = student.ho_ten;
+                        worksheet.Cells[startRowList, 3].Value = student.sbd;
+                        worksheet.Cells[startRowList, 4].Value = birthDay;
+                        worksheet.Cells[startRowList, 5].Value = student.gioi_tinh;
+                        worksheet.Cells[startRowList, 6].Value = student.dantoc;
+                        worksheet.Cells[startRowList, 7].Value = student.truong_hoc;
+                        worksheet.Cells[startRowList, 8].Value = student.xeploai_hanhkiem;
+                        worksheet.Cells[startRowList, 9].Value = student.xeploai_hocluc;
+                        worksheet.Cells[startRowList, 10].Value = student.xeploai_totnghiep;
+                        worksheet.Cells[startRowList, 11].Value = exRoom.value_1;
+                        worksheet.Cells[startRowList, 12].Value = hdThi.value_1;
+                        worksheet.Cells[startRowList, 13].Value = ex.value_1;
+                        worksheet.Cells[startRowList, 14].Value = student.coquan_congtac;
+
                         startRowList++;
                     }
                     excelPack.Save();
