@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Linq.Dynamic;
+using Quản_lý_điểm_thi.Common;
 
 namespace Quản_lý_điểm_thi.Controllers
 {
@@ -72,29 +73,38 @@ namespace Quản_lý_điểm_thi.Controllers
 
         public ActionResult Edit(string id)
         {
+            if (CheckRole(UserRole.Edit))
+            {
+                int i = Int32.Parse(id);
+                Setting setting = db.Settings.Find(i);
+                ViewBag.setting = setting;
+                string loai = setting.Loai;
+                ViewBag.loai = loai;
+                List<MT_VALUE_NAME> listMT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == id).ToList();
+                ViewBag.listMT = listMT;
 
-            int i = Int32.Parse(id);
-            Setting setting = db.Settings.Find(i);
-            ViewBag.setting = setting;
-            string loai = setting.Loai;
-            ViewBag.loai = loai;
-            List<MT_VALUE_NAME> listMT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == id).ToList();
-            ViewBag.listMT = listMT;
+                List<PT_VALUE_NAME> listPT = db.PT_VALUE_NAME.Where(x => x.ID_PT_VALUE_NAME == id).ToList();
+                ViewBag.listPT = listPT;
 
-            List<PT_VALUE_NAME> listPT = db.PT_VALUE_NAME.Where(x => x.ID_PT_VALUE_NAME == id).ToList();
-            ViewBag.listPT = listPT;
-
-
-            return View();
+                return View();
+            }
+            return RedirectToAction("Index");
         }
         public ActionResult Detail(string id)
         {
-
-            return View();
+            if (CheckRole(UserRole.Edit))
+            {
+                return View();
+            }
+            return RedirectToAction("Index");
         }
         public ActionResult Create()
         {
-            return View();
+            if (CheckRole(UserRole.Create))
+            {
+                return View();
+            }
+            return RedirectToAction("Index");
         }
         public JsonResult deleteJS(string id)
         {
@@ -1277,6 +1287,19 @@ namespace Quản_lý_điểm_thi.Controllers
             }
 
             return Json(1, JsonRequestBehavior.AllowGet);
+        }
+
+        private bool CheckRole(int role)
+        {
+            List<int> listRole = Session["ListRole"] as List<int>;
+            if (listRole != null && listRole.Any())
+            {
+                if (listRole.Contains(role))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

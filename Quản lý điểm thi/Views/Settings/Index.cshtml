@@ -12,6 +12,7 @@
 {
     <script src="~/dist/js/jquery.dataTables.js"></script>
     <script src="~/dist/js/dataTables.bootstrap4.js"></script>
+    <script src="~/scripts/Common/CheckRole.js"></script>
     <!-- #region RELOAD -->
     <script>
         function reload()
@@ -88,6 +89,26 @@
     <!-- #endregion -->
     <script>
         function DeleteData(id) {
+            let role = RoleAction.Delete
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        DeleteSetting(id)
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+          
+        }
+
+        function DeleteSetting(id) {
             var r = confirm("Xác nhận xoá cấu hình");
             if (r == true) {
                 $.post("@Url.Action("deleteJS", "Settings")",
@@ -103,9 +124,9 @@
                     alert("Xóa thành công");
                 }
             });
-            } else {
+        } else {
 
-            }
+        }
         }
     </script>
 
@@ -265,3 +286,4 @@
         </div>
     </div>
 </div>
+@Html.Action("MessageBox", "Common")
