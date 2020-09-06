@@ -601,34 +601,23 @@ namespace Quản_lý_điểm_thi.Controllers
                         worksheet.Cells[startRowList - 1, 11].Value = "Phòng thi";
                         worksheet.Cells[startRowList - 1, 12].Value = "Hội đồng thi";
                         worksheet.Cells[startRowList - 1, 13].Value = "Niên khóa";
-                        worksheet.Cells[startRowList - 1, 14].Value = "Cơ quan công tác";
+                        worksheet.Cells[startRowList - 1, 14].Value = "Quê quán";
 
 
                         foreach (var student in listStudents)
                         {
-                            ExamRoom exRoom = listExamRoom.Where(a => a.Id == student.ID_Exam_Room).FirstOrDefault();
+                           if( startRowList > 200)
+                            {
+                                break;
+                            }
+                               ExamRoom exRoom = listExamRoom.Where(a => a.Id == student.ID_Exam_Room).FirstOrDefault();
                             Hoi_dong_thi hdThi = listHDThi.Where(a => a.Id == exRoom.ID_Exam).FirstOrDefault();
                             Exam ex = _context.Exams.Where(a => a.Id.ToString() == hdThi.value_11).FirstOrDefault();
                             string birthDay = "";
                             if (!string.IsNullOrEmpty(student.ngay_sinh))
                             {
                                 string[] arr = student.ngay_sinh.Split('-');
-                                if(arr.Count() >= 3)
-                                {
-                                    birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
-                                }
-                                else
-                                {
-                                    arr = student.ngay_sinh.Split('/');
-                                    if (arr.Count() >= 3)
-                                    {
-                                        birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
-                                    }
-                                    else
-                                    {
-                                        birthDay = student.ngay_sinh;
-                                    }
-                                }
+                                birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
                             }
 
                             worksheet.Cells[startRowList, 1].Value = stt++;
@@ -661,7 +650,7 @@ namespace Quản_lý_điểm_thi.Controllers
                     message = "Không có bản ghi nào, không thể kết xuất file";
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 message = ex.ToString();
             }

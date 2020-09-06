@@ -40,17 +40,17 @@ namespace Quản_lý_điểm_thi.Controllers
 
 
 
-            ExamRoom room = db.ExamRooms.Where(x => x.Id == id).First();
+            ExamRoom room = db.ExamRooms.Where(x => x.Id == id).FirstOrDefault();
             ViewBag.TenPhong = room.value_1;
             ViewBag.IdPhong = room.Id;
 
-            Hoi_dong_thi Hdt = db.Hoi_dong_thi.Where(x => x.Id == room.ID_Exam).First();
+            Hoi_dong_thi Hdt = db.Hoi_dong_thi.Where(x => x.Id == room.ID_Exam).FirstOrDefault();
             ViewBag.TenHoiDongThi = Hdt.value_1;
             ViewBag.IDHoiDongThi = Hdt.Id;
 
             string ID_Exam = Hdt.value_11.ToString();
             int id_Exam_int = Int32.Parse(ID_Exam);
-            Exam Exam = db.Exams.Where(x => x.Id == id_Exam_int).First();
+            Exam Exam = db.Exams.Where(x => x.Id == id_Exam_int).FirstOrDefault();
             ViewBag.ID_Exam = ID_Exam;
             ViewBag.TenExam = Exam.khoa_thi;
             this.folder = Server.MapPath("~/PDF/" + id);
@@ -100,7 +100,7 @@ namespace Quản_lý_điểm_thi.Controllers
             #endregion
 
             //new string[] { "CMND", "STT", "SBD", "HoTen", "yyyy-MM-dd", "GioiTinh", "QueQuan", "TruongHoc", "KetQua", "GhiChu" };
-            string ID_MT = db.Exams.Where(x => x.Id == id_Exam_int).First().ID_MT_VALUE_NAME.ToString();
+            string ID_MT = db.Exams.Where(x => x.Id == id_Exam_int).FirstOrDefault().ID_MT_VALUE_NAME.ToString();
             //List<MT_VALUE_NAME> lst_MT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == ID_MT.ToString()).Where(x=>x.status!="hidden").OrderBy(x=>x.status).ToList();
             List<MT_VALUE_NAME> lst_MT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == ID_MT.ToString()).ToList();
 
@@ -511,7 +511,7 @@ namespace Quản_lý_điểm_thi.Controllers
 
                 int ID_Exam = Int32.Parse(hdt.value_11);
 
-                string ID_MT = db.Exams.Where(x => x.Id == ID_Exam).First().ID_MT_VALUE_NAME.ToString();
+                string ID_MT = db.Exams.Where(x => x.Id == ID_Exam).FirstOrDefault().ID_MT_VALUE_NAME.ToString();
                 List<MT_VALUE_NAME> lst_MT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == ID_MT.ToString()).ToList();
                 List<MT_VALUE_NAME> lst_Show = lst_MT.Where(x => x.status != "hidden").ToList();
                 ViewBag.lst_MT = lst_MT;
@@ -524,7 +524,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 ViewBag.TenHoiDongThi = hdt.value_1;
                 ViewBag.IDHoiDongThi = hdt.Id;
 
-                Exam Exam = db.Exams.Where(x => x.Id == ID_Exam).First();
+                Exam Exam = db.Exams.Where(x => x.Id == ID_Exam).FirstOrDefault();
                 ViewBag.ID_Exam = ID_Exam;
                 ViewBag.TenExam = Exam.khoa_thi;
                 ViewBag.TenTT = a.ho_ten;
@@ -577,7 +577,7 @@ namespace Quản_lý_điểm_thi.Controllers
 
                 int ID_Exam = Int32.Parse(hdt.value_11);
 
-                string ID_MT = db.Exams.Where(x => x.Id == ID_Exam).First().ID_MT_VALUE_NAME.ToString();
+                string ID_MT = db.Exams.Where(x => x.Id == ID_Exam).FirstOrDefault().ID_MT_VALUE_NAME.ToString();
                 List<MT_VALUE_NAME> lst_MT = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == ID_MT.ToString()).ToList();
                 ViewBag.lst_MT = lst_MT;
 
@@ -589,7 +589,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 ViewBag.TenHoiDongThi = hdt.value_1;
                 ViewBag.IDHoiDongThi = hdt.Id;
 
-                Exam Exam = db.Exams.Where(x => x.Id == ID_Exam).First();
+                Exam Exam = db.Exams.Where(x => x.Id == ID_Exam).FirstOrDefault();
                 ViewBag.ID_Exam = ID_Exam;
                 ViewBag.TenExam = Exam.khoa_thi;
 
@@ -1275,9 +1275,9 @@ namespace Quản_lý_điểm_thi.Controllers
             Student s = db.Students.Find(id);
             ExamRoom room = db.ExamRooms.Where(x => x.Id == s.ID_Exam_Room).FirstOrDefault();
             Hoi_dong_thi hdt = db.Hoi_dong_thi.Where(x => x.Id == room.ID_Exam).FirstOrDefault();
-            Grade g = db.Grades.Where(x => x.ID_Student == id).First() ;
+            Grade g = db.Grades.Where(x => x.ID_Student == id).FirstOrDefault() ;
             int ID_Exam = Int32.Parse(hdt.value_11);
-            Exam exam = db.Exams.Where(x => x.Id == ID_Exam).First();
+            Exam exam = db.Exams.Where(x => x.Id == ID_Exam).FirstOrDefault();
 
             List<MT_VALUE_NAME> lstmt = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == exam.ID_MT_VALUE_NAME+"").ToList();
 
@@ -1368,11 +1368,25 @@ namespace Quản_lý_điểm_thi.Controllers
 
 
                 //Tonogr diem excel
-                string tong =  lstmt.Where(x => x.mo_ta == "Tổng số điểm").First().name.ToString(); 
-                worksheet.Cells[12, 3].Value = GetPropValue(g, tong).ToString();
+                if (lstmt.Where(x => x.mo_ta == "Tổng số điểm").FirstOrDefault() != null)
+                {
+                    string tong = lstmt.Where(x => x.mo_ta == "Tổng số điểm").FirstOrDefault().name.ToString();
+                    worksheet.Cells[12, 3].Value = GetPropValue(g, tong).ToString();
+                }
+                else
+                {
+                    worksheet.Cells[12, 3].Value = "";
+                }
+                if (lstmt.Where(x => x.mo_ta == "Điểm khuyến khích").FirstOrDefault() != null)
+                {
+                    string diemcong = lstmt.Where(x => x.mo_ta == "Điểm khuyến khích").FirstOrDefault().name.ToString();
+                    worksheet.Cells[15, 3].Value = GetPropValue(g, diemcong).ToString();
+                }
+                else
+                {
+                    worksheet.Cells[15, 3].Value = "";
+                }
 
-                string diemcong = lstmt.Where(x => x.mo_ta == "Điểm khuyến khích").First().name.ToString();
-                worksheet.Cells[15, 3].Value = GetPropValue(g, diemcong).ToString();
                 //
                 worksheet.Cells[15, 7].Value = s.dien_uudai;
                 worksheet.Cells[17, 3].Value = s.xeploai_totnghiep;
@@ -1382,71 +1396,72 @@ namespace Quản_lý_điểm_thi.Controllers
                 //
                 worksheet2.Cells[1, 1].Value = "1";
                 worksheet2.Cells[1, 2].Value = "Thứ tự";
-                worksheet2.Cells[1, 3].Value = s.tt.ToString();
+                worksheet2.Cells[1, 3].Value =  s.tt == null ? "" : s.tt.ToString();
 
                 worksheet2.Cells[2, 1].Value = "1";
                 worksheet2.Cells[2, 2].Value = "Họ tên";
-                worksheet2.Cells[2, 3].Value = s.ho_ten.ToString();
+                worksheet2.Cells[2, 3].Value = s.ho_ten == null ? "" : s.ho_ten.ToString();
 
                 worksheet2.Cells[3, 1].Value = "2";
                 worksheet2.Cells[3, 2].Value = "SBD";
-                worksheet2.Cells[3, 3].Value = s.sbd.ToString();
+                worksheet2.Cells[3, 3].Value = s.sbd == null ? "" : s.sbd.ToString();
 
                 worksheet2.Cells[4, 1].Value = "3";
                 worksheet2.Cells[4, 2].Value = "NGày sinh";
-                worksheet2.Cells[4, 3].Value = s.ngay_sinh.ToString();
+                worksheet2.Cells[4, 3].Value =  s.ngay_sinh == null ? "" : s.ngay_sinh.ToString();
 
                 worksheet2.Cells[5, 1].Value = "4";
                 worksheet2.Cells[5, 2].Value = "Giới tính";
-                worksheet2.Cells[5, 3].Value = s.gioi_tinh.ToString();
+                worksheet2.Cells[5, 3].Value =  s.gioi_tinh == null ? "" : s.gioi_tinh.ToString();
 
                 worksheet2.Cells[6, 1].Value = "5";
                 worksheet2.Cells[6, 2].Value = "Quê quán";
-                worksheet2.Cells[6, 3].Value = s.coquan_congtac.ToString();
+                worksheet2.Cells[6, 3].Value =  s.coquan_congtac == null ? "" : s.coquan_congtac.ToString();
 
                 worksheet2.Cells[7, 1].Value = "6";
                 worksheet2.Cells[7, 2].Value = "Trường";
-                worksheet2.Cells[7, 3].Value = s.coquan_congtac.ToString();
+                worksheet2.Cells[7, 3].Value =  s.truong_hoc == null ? "" : s.truong_hoc.ToString();
 
                 worksheet2.Cells[8, 1].Value = "7";
                 worksheet2.Cells[8, 2].Value = "Quê quán";
-                worksheet2.Cells[8, 3].Value = s.coquan_congtac.ToString();
+                
+                worksheet2.Cells[8, 3].Value = s.coquan_congtac ==null ? "" :  s.coquan_congtac.ToString();
 
                 worksheet2.Cells[9, 1].Value = "8";
                 worksheet2.Cells[9, 2].Value = "Dân tộc";
-                worksheet2.Cells[9, 3].Value = s.dantoc.ToString();
+                worksheet2.Cells[9, 3].Value = s.dantoc == null ? "" : s.dantoc.ToString();
 
                 worksheet2.Cells[10, 1].Value = "9";
                 worksheet2.Cells[10, 2].Value = "Xếp loại tốt nghiệp";
-                worksheet2.Cells[10, 3].Value = s.xeploai_totnghiep.ToString();
+                worksheet2.Cells[10, 3].Value = s.xeploai_totnghiep == null ? "" : s.xeploai_totnghiep.ToString();
 
                 worksheet2.Cells[11, 1].Value = "10";
                 worksheet2.Cells[11, 2].Value = "Xếp loại học lực";
-                worksheet2.Cells[11, 3].Value = s.xeploai_hocluc.ToString();
+                worksheet2.Cells[11, 3].Value = s.xeploai_hocluc == null ? "" : s.xeploai_hocluc.ToString();
 
                 worksheet2.Cells[12, 1].Value = "11";
                 worksheet2.Cells[12, 2].Value = "Xếp loại hạnh kiểm";
-                worksheet2.Cells[12, 3].Value = s.xeploai_hanhkiem.ToString();
+                worksheet2.Cells[12, 3].Value = s.xeploai_hanhkiem == null ? "" : s.xeploai_hanhkiem.ToString();
 
                 worksheet2.Cells[13, 1].Value = "12";
                 worksheet2.Cells[13, 2].Value = "Kêt quả";
-                worksheet2.Cells[13, 3].Value = s.ketqua_thi.ToString();
+                worksheet2.Cells[13, 3].Value = s.ketqua_thi == null ? "" : s.ketqua_thi.ToString();
 
                 worksheet2.Cells[14, 1].Value = "13";
                 worksheet2.Cells[14, 2].Value = "Diện ưu tiên";
-                worksheet2.Cells[14, 3].Value = s.dien_uudai.ToString();
+                worksheet2.Cells[14, 3].Value =  s.dien_uudai == null ? "" : s.dien_uudai.ToString();
 
                 worksheet2.Cells[15, 1].Value = "14";
                 worksheet2.Cells[15, 2].Value = "Ghi chú";
-                worksheet2.Cells[15, 3].Value = s.ghichu.ToString();
-               int dem = 16;
+                worksheet2.Cells[15, 3].Value =  s.ghichu == null ? "" : s.ghichu.ToString();
+                int dem = 16;
                 foreach (MT_VALUE_NAME mt in lstmt)
                 {
                     if ((mt.status != "hidden"))
                     {
                         worksheet2.Cells[dem, 1].Value = dem -1 +"";
-                        worksheet2.Cells[dem, 2].Value = mt.mo_ta.ToString();
-                        var nameTemp = lstmt.Where(x => x.mo_ta == mt.mo_ta).First().name.ToString();
+                        worksheet2.Cells[dem, 2].Value =  mt.mo_ta == null ? "" : mt.mo_ta.ToString();
+                        var nameTemp = lstmt.Where(x => x.mo_ta == mt.mo_ta).FirstOrDefault().name.ToString();
                         worksheet2.Cells[dem, 3].Value = GetPropValue(g, nameTemp).ToString();
 
                         dem++;
