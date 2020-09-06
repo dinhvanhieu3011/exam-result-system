@@ -139,7 +139,51 @@
         }
     }
 }();
-
+let ExportFile = function () {
+    let _ExportFile = function () {
+        $('#btn_export_excels').on('click', function () {
+            $.ajax({
+                url: '/Home/ExportExcelSearchResult',
+                type: "post",
+                data: {
+                    identifyNumber: $('#txtIdNumber').val(),
+                    examRoom: $('#selExamRoom').val(),
+                    candidateNumber: $('#txtCandidateNumber').val(),
+                    examCouncil: $('#selExamCouncil').val(),
+                    fullName: $('#txtFullName').val(),
+                    exam: $('#selExam').val(),
+                    fromBirthday: $('#txtFromBirthday').val(),
+                    toBirthday: $('#txtToBirthay').val(),
+                    toTestDay: $('#txtToTestDay').val(),
+                    fromTestDay: $('#txtFromTestDay').val(),
+                    ketQua: $('#selKetQua').val(),
+                    truong: $('#selTruong').val(),
+                    gioiTinh: $('#selGioiTinh').val(),
+                    loaiTN: $('#selLoaiTN').val(),
+                    hanhKiem: $('#selHanhKiem').val(),
+                    hocLuc: $('#selHocLuc').val(),
+                    dienUT: $('#selDienUT').val(),
+                },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        window.location.href = '/Home/DownloadExcel';
+                    } else {
+                        alert(result.Message)
+                    }
+                },
+                error: function (err) {
+                    alert(err.statusText);
+                }
+            });
+        })
+    }
+    return {
+        init: function () {
+            _ExportFile()
+        }
+    }
+}();
 document.addEventListener('DOMContentLoaded', function () {
     ListStudent.init()
+    ExportFile.init()
 })

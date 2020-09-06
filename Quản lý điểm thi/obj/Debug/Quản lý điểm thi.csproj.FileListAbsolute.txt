@@ -175,3 +175,5 @@ D:\Work\2508QLDT\qldt2508\Quản lý điểm thi\obj\Debug\Quản lý điểm th
 D:\Work\2508QLDT\qldt2508\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.dll
 D:\Work\2508QLDT\qldt2508\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.pdb
 E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\obj\Debug\Quản lý điểm thi.csprojResolveAssemblyReference.cache
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\EPPlus.dll
+E:\Freelancer-Work\Quan-ly-diem-thi\Quan_ly_diem_thi\qldt2508\Quản lý điểm thi\bin\EPPlus.xml
