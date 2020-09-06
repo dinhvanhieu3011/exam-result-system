@@ -45,10 +45,25 @@
 
 
         $('#tblUser').on('click', '.btn-edit-user', function () {
+            let role = RoleAction.Edit
             let id = $(this).val()
-            getUserById(id)
-            hideMessage()
-            $('#updateModal').modal('show')
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        getUserById(id)
+                        hideMessage()
+                        $('#updateModal').modal('show')
+                    } else {
+                        showModalAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showModalAlterMessage(err.statusText);
+                }
+            });
         })
 
         $('#btnUpdateUser').on('click', function () {
@@ -137,6 +152,11 @@
                 }
             }
             return validResult
+        }
+
+        function showModalAlterMessage(mess) {
+            $('#modalErroMess').modal('show')
+            $('#modalErroMess .message-content').text(mess)
         }
 
         function showAlterMessage(mesg) {
@@ -233,8 +253,23 @@
     let _DeleteUser = function () {
         $('#tblUser').on('click', '.btn-delete-user', function () {
             let id = $(this).val()
-            $("#deleteUserId").val(id)
-            $('#modalAlertDelete').modal('show')
+            let role = RoleAction.Delete
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                        success: function (result) {
+                    if (result.IsSuccess) {
+                        $("#deleteUserId").val(id)
+                        $('#modalAlertDelete').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                        },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         })
 
         $('#modalAlertDelete').on('hide.bs.modal', function (event) {

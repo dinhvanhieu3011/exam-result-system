@@ -32,7 +32,7 @@
             }
             cropper = new Cropper(image, {
                 dragMode: 'move',
-                aspectRatio: 1/1,
+                aspectRatio: 1 / 1,
                 autoCropArea: 1,
                 restore: false,
                 guides: false,
@@ -103,12 +103,29 @@
                         }
                     });
                 }
-             
+
             }
         })
 
         $("#createModal").on('shown.bs.modal', function () {
-            resetForm()
+            let role = RoleAction.Create
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        resetForm()
+                    } else {
+                        hideMessage()
+                        showModalAlterMessage(result.Message)
+                        $("#createModal").modal('hide')
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         });
 
         function validateForm() {
@@ -147,6 +164,11 @@
                 return false
             }
             return true;
+        }
+
+        function showModalAlterMessage(mess) {
+            $('#modalErroMess').modal('show')
+            $('#modalErroMess .message-content').text(mess)
         }
 
         function showAlterMessage(mesg) {

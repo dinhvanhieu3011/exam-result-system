@@ -7,14 +7,15 @@
 }
 @section Styles
 {
-<style>
-    .dataTables_info {
-        font-size: 10px;
-    }
-        a{
-        font-size:15px;
-    }
-</style>
+    <style>
+        .dataTables_info {
+            font-size: 10px;
+        }
+
+        a {
+            font-size: 15px;
+        }
+    </style>
 }
 @section script
 {
@@ -22,11 +23,31 @@
     <script src="~/dist/js/jquery.dataTables.js"></script>
     <script src="~/dist/js/dataTables.bootstrap4.js"></script>
     <!-- #region RELOAD -->
+    <script src="~/scripts/Common/CheckRole.js"></script>
     <script>
         function reload()
         {
             location.reload();
             document.getElementById('search').value = "";
+        }
+        function CreateAction() {
+            let role = RoleAction.Create
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        ResetForm()
+                        $('#createModal').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         }
     </script>
     <!-- #endregion -->
@@ -34,8 +55,8 @@
     <script>
 
 
-    $(document).ready(function () {
-           var t = $("#demoGrid").DataTable({
+        $(document).ready(function () {
+            var t = $("#demoGrid").DataTable({
                 initComplete: function() {
                     $(this.api().table().container()).find('input').parent().wrap('<form>').parent().attr('autocomplete', 'off');
                 },
@@ -74,7 +95,7 @@
      "searchable": false,
      "orderable": false,
      "className" : 'text-center'
-    }
+ }
  ],
 
                 "columns": [
@@ -96,24 +117,24 @@
                       { "data": "value_6", "name": "value_6", "autoWidth": true },
                       { "data": "value_7", "name": "value_7", "autoWidth": true },
                       { "data": "value_8", "name": "value_8", "autoWidth": true },
-                       
+
                       {
                           "render": function (data, type, full, meta)
 
                           {
-                              return '<button type="button" data-toggle="modal" onclick = "EditData(' + full.Id + ')" data-target="#createModal" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></button>' +
+                              return '<button type="button" onclick = "EditData(' + full.Id + ')"  style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></button>' +
                                     '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>' +
                                      '<button type="button" data-toggle="modal" data-target="#createModal" onclick = "Detail(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-success"><i class="fa fa-eye"></i></button>';
                           }
                       },
                 ]
-           });
-        t.on('draw.dt', function () {
-            var PageInfo = $('#demoGrid').DataTable().page.info();
-            t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
-                cell.innerHTML = i + 1 + PageInfo.start;
             });
-        });
+            t.on('draw.dt', function () {
+                var PageInfo = $('#demoGrid').DataTable().page.info();
+                t.column(0, { page: 'current' }).nodes().each(function (cell, i) {
+                    cell.innerHTML = i + 1 + PageInfo.start;
+                });
+            });
         });
     </script>
     <script>
@@ -172,7 +193,7 @@
             value_7: document.getElementById('value_7').value,
             value_8: document.getElementById('value_8').value,
 
-            },
+        },
         function (data) {
             if(data == -2){
                 showAlterMessage('Bạn không có quyền sửa bản ghi này')
@@ -206,8 +227,8 @@
             value_6: document.getElementById('value_6').value,
             value_7: document.getElementById('value_7').value,
             value_8: document.getElementById('value_8').value,
-           
-            },
+
+        },
         function (data) {
             if(data == -2){
                 showAlterMessage('Bạn không có quyền thêm bản ghi này')
@@ -227,8 +248,24 @@
     <!-- #region Xóa phòng thi -->
     <script>
         function DeleteData(id) {
-            $("#deleteId").val(id)
-            $('#modalAlertDelete').modal('show')
+            let role = RoleAction.Delete
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                        success: function (result) {
+                            if (result.IsSuccess) {
+                                $("#deleteId").val(id)
+                                $('#modalAlertDelete').modal('show')
+                            } else {
+                                showAlterMessage(result.Message)
+                            }
+                        },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+
         }
         $('#modalAlertDelete').on('hide.bs.modal', function (event) {
             $("#deleteId").val('')
@@ -263,67 +300,87 @@
     <!-- #endregion -->
     <!-- #region Sửa phòng thi -->
     <script>
-    async function EditData(id) {
-        await ReadonlyFalse();
-        $.post("@Url.Action("getDataJS", "HoiDongThi")",
-    {
-        id: id
-    },
-    function (data) {
-        if (data == -1) {
-        }
-        else {
-
-            document.getElementById('txtID').value = data.id;
-            document.getElementById('value_1').value = data.value_1;
-            document.getElementById('value_2').value = data.value_2;
-            document.getElementById('value_3').value = data.value_3;
-            document.getElementById('value_4').value = data.value_4;
-            document.getElementById('value_5').value = data.value_5;
-            document.getElementById('value_6').value = data.value_6;
-            document.getElementById('value_7').value = data.value_7;
-            document.getElementById('value_8').value = data.value_8;
-  
-
+        function EditData(id) {
+            ReadonlyFalse();
+            let role = RoleAction.Edit
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                        success: function (result) {
+                            if (result.IsSuccess) {
+                                getDataById(id)
+                                $('#createModal').modal('show')
+                            } else {
+                                showAlterMessage(result.Message)
+                            }
+                        },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
 
         }
-    });
+        function getDataById(id){
+            $.post("@Url.Action("getDataJS", "HoiDongThi")",
+            {
+                id: id
+            },
+            function (data) {
+                if (data == -1) {
+                }
+                else {
+
+                    document.getElementById('txtID').value = data.id;
+                    document.getElementById('value_1').value = data.value_1;
+                    document.getElementById('value_2').value = data.value_2;
+                    document.getElementById('value_3').value = data.value_3;
+                    document.getElementById('value_4').value = data.value_4;
+                    document.getElementById('value_5').value = data.value_5;
+                    document.getElementById('value_6').value = data.value_6;
+                    document.getElementById('value_7').value = data.value_7;
+                    document.getElementById('value_8').value = data.value_8;
+
+
+
+                }
+            });
         }
     </script>
 
     <!-- #endregion -->
     <!-- #region Chi tiết phòng thi -->
     <script>
-    async function Detail(id) {
-        await ReadonlyFalse();
-        $.post("@Url.Action("getDataJS", "HoiDongThi")",
-    {
-        id: id
-    },
-    function (data) {
-        if (data == -1) {
-        }
-        else {
-            document.getElementById('txtID').value = data.id;
-            document.getElementById('value_1').value = data.value_1;
-            document.getElementById('value_2').value = data.value_2;
-            document.getElementById('value_3').value = data.value_3;
-            document.getElementById('value_4').value = data.value_4;
-            document.getElementById('value_5').value = data.value_5;
-            document.getElementById('value_6').value = data.value_6;
-            document.getElementById('value_7').value = data.value_7;
-            document.getElementById('value_8').value = data.value_8;
-        }
-    });
-        await ReadonlyTrue();
+        function Detail(id) {
+            ReadonlyFalse();
+            $.post("@Url.Action("getDataJS", "HoiDongThi")",
+        {
+            id: id
+        },
+        function (data) {
+            if (data == -1) {
+            }
+            else {
+                document.getElementById('txtID').value = data.id;
+                document.getElementById('value_1').value = data.value_1;
+                document.getElementById('value_2').value = data.value_2;
+                document.getElementById('value_3').value = data.value_3;
+                document.getElementById('value_4').value = data.value_4;
+                document.getElementById('value_5').value = data.value_5;
+                document.getElementById('value_6').value = data.value_6;
+                document.getElementById('value_7').value = data.value_7;
+                document.getElementById('value_8').value = data.value_8;
+            }
+        });
+            await ReadonlyTrue();
         }
     </script>
     <!-- #endregion -->
     <!-- #region Reset form nhập model -->
     <script>
-       asycn function ResetForm()
-       {
-           await ReadonlyFalse();
+        asycn function ResetForm()
+        {
+            await ReadonlyFalse();
             document.getElementById('txtID').value = "";
             document.getElementById('value_1').value = "";
             document.getElementById('value_2').value = "";
@@ -333,7 +390,7 @@
             document.getElementById('value_6').value = "";
             document.getElementById('value_7').value = "";
             document.getElementById('value_8').value = "";
-       }
+        }
     </script>
     <script>
         function ReadonlyFalse()
@@ -369,8 +426,8 @@
 }
 
 @section path{
-<li><a href="/Home/Index"><i class="fa fa-home"></i> Trang chủ</a></li>
-<li><a href="/exam/Index">Danh sách khoá thi</a></li>
+    <li><a href="/Home/Index"><i class="fa fa-home"></i> Trang chủ</a></li>
+    <li><a href="/exam/Index">Danh sách khoá thi</a></li>
     <li><a href="/HoiDongThi/Index/@id">@TenKhoaThi</a></li>
     <li class="active"></li>
 }
@@ -384,7 +441,7 @@
             </div>
             <div class="box-body" style="padding:0px !important; margin-bottom:5px;text-align:right">
 
-                <button type="button" class="btn btn-primary" onclick="ResetForm();" style="border-radius:10px;" data-toggle="modal" data-target="#createModal">
+                <button type="button" class="btn btn-primary" onclick="CreateAction();" style="border-radius:10px;">
                     <i class="fa fa-plus"></i> Thêm hội đồng thi
                 </button>
                 <a class="btn btn-default" onclick="reload();" id="btnrefresh" title="Tải lại dữ liệu mới"><i class="fa fa-refresh"></i> Tải lại</a>
@@ -414,7 +471,7 @@
                                                     <th></th>
                                                     <th></th>
                                                     <th></th>
-                                                  
+
                                                     <th></th>
                                                 </tr>
                                             </thead>

@@ -23,11 +23,31 @@
 {
     <script src="~/dist/js/jquery.dataTables.js"></script>
     <script src="~/dist/js/dataTables.bootstrap4.js"></script>
+    <script src="~/scripts/Common/CheckRole.js"></script>
     <!-- #region RELOAD -->
     <script>
         function reload() {
             location.reload();
             document.getElementById('search').value = "";
+        }
+        function CreateAction() {
+            let role = RoleAction.Create
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        ResetForm()
+                        $('#createModal').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         }
     </script>
     <!-- #endregion -->
@@ -100,7 +120,7 @@
 
                       {
                           "render": function (data, type, full, meta) {
-                              return '<button type="button" data-toggle="modal" onclick = "EditData(' + full.Id + ')" data-target="#createModal" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></button>' +
+                              return '<button type="button" data-toggle="modal" onclick = "EditData(' + full.Id + ')"  style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></button>' +
                                     '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>' +
                                      '<button type="button" data-toggle="modal" data-target="#createModal" onclick = "Detail(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-success"><i class="fa fa-eye"></i></button>';
                           }
@@ -230,9 +250,25 @@
     <!-- #region Xóa khóa thi -->
     <script>
         function DeleteData(id) {
-            $("#deleteId").val(id)
-            $('#modalAlertDelete').modal('show')
+            let role = RoleAction.Delete
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        $("#deleteId").val(id)
+                        $('#modalAlertDelete').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         }
+
         $('#modalAlertDelete').on('hide.bs.modal', function (event) {
             $("#deleteId").val('')
             hideMessage();
@@ -268,39 +304,59 @@
     <!-- #region Sửa khóa thi -->
     <script>
         function EditData(id) {
+            let role = RoleAction.Edit
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                        success: function (result) {
+                            if (result.IsSuccess) {
+                                getDataById(id)
+                                $('#createModal').modal('show')
+                            } else {
+                                showAlterMessage(result.Message)
+                            }
+                        },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
 
+        }
+
+        function getDataById(id) {
             $.post("@Url.Action("getDataJS", "Exam")",
-        {
-            id: id
-        },
-        function (data) {
-            if (data == -1) {
-            }
-            else {
-                //console.log(data);
+            {
+                id: id
+            },
+            function (data) {
+                if (data == -1) {
+                }
+                else {
+                    //console.log(data);
 
-                document.getElementById('txtID').readOnly = false;
-                document.getElementById('txtHoiDongThi').readOnly = false;
-                document.getElementById('txtKhoaThi').readOnly = false;
-                document.getElementById('txtNamThi').readOnly = false;
-                $('#txtCauHinhPhongThi').select2({ disabled: false });
-                $('#txtCauHinhMonThi').select2({ disabled: false });
-                document.getElementById('txtID').value = data.id;
-                document.getElementById('txtHoiDongThi').value = data.hoi_dong_thi;
-                document.getElementById('txtKhoaThi').value = data.khoa_thi;
-                document.getElementById('txtNamThi').value = data.nam_thi;
-                document.getElementById('txtvalue_1').value = data.value_1;
-                document.getElementById('txtvalue_2').value = data.value_2;
+                    document.getElementById('txtID').readOnly = false;
+                    document.getElementById('txtHoiDongThi').readOnly = false;
+                    document.getElementById('txtKhoaThi').readOnly = false;
+                    document.getElementById('txtNamThi').readOnly = false;
+                    $('#txtCauHinhPhongThi').select2({ disabled: false });
+                    $('#txtCauHinhMonThi').select2({ disabled: false });
+                    document.getElementById('txtID').value = data.id;
+                    document.getElementById('txtHoiDongThi').value = data.hoi_dong_thi;
+                    document.getElementById('txtKhoaThi').value = data.khoa_thi;
+                    document.getElementById('txtNamThi').value = data.nam_thi;
+                    document.getElementById('txtvalue_1').value = data.value_1;
+                    document.getElementById('txtvalue_2').value = data.value_2;
 
-                $("#txtCauHinhPhongThi").select2("val", data.ID_PT + "");
-                $('#txtCauHinhPhongThi').select2({ disabled: true });
+                    $("#txtCauHinhPhongThi").select2("val", data.ID_PT + "");
+                    $('#txtCauHinhPhongThi').select2({ disabled: true });
 
 
-                $("#txtCauHinhMonThi").select2("val", data.ID_MT + "");
-                $('#txtCauHinhMonThi').select2({ disabled: true });
+                    $("#txtCauHinhMonThi").select2("val", data.ID_MT + "");
+                    $('#txtCauHinhMonThi').select2({ disabled: true });
 
-            }
-        });
+                }
+            });
         }
     </script>
 
@@ -359,7 +415,7 @@
 
             }
         });
-        }
+    }
     </script>
     <!-- #endregion -->
 }
@@ -379,7 +435,7 @@
             </div>
             <div class="box-body" style="padding:0px !important; margin-bottom:5px;text-align:right">
 
-                <button type="button" class="btn btn-primary" onclick="ResetForm()" style="border-radius:10px;" data-toggle="modal" data-target="#createModal">
+                <button type="button" class="btn btn-primary" onclick="CreateAction()" style="border-radius:10px;">
                     <i class="fa fa-plus"></i> Thêm khoá thi
                 </button>
                 <a class="btn btn-default" onclick="reload();" id="btnrefresh" title="Tải lại dữ liệu mới"><i class="fa fa-refresh"></i> Tải lại</a>

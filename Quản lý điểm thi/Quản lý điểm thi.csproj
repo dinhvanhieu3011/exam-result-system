@@ -2709,6 +2709,7 @@
     <Content Include="PDF\error.pdf" />
     <None Include="Properties\PublishProfiles\vanhieu12.pubxml" />
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="scripts\Common\CheckRole.js" />
     <Content Include="scripts\Gender\CreateGender.js" />
     <Content Include="scripts\Gender\ListGender.js" />
     <Content Include="scripts\Gender\UpdateGender.js" />
