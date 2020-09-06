@@ -19,6 +19,5 @@ namespace Quản_lý_điểm_thi.Models
         public int MenuItemId { get; set; }
     
         public virtual MenuItem MenuItem { get; set; }
-        public virtual Role Role { get; set; }
     }
 }

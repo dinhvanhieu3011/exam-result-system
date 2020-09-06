@@ -8,7 +8,7 @@
             "serverSide": true, // for process server side
             "filter": true, // this is for disable filter (search box)
             "orderMulti": false, // for disable multiple column at once
-            "pageLength": 10,
+            "pageLength": 50,
             "searching": false,
             "lengthChange": false,
             'dom': 'Bfrtip',

@@ -15,6 +15,7 @@
     string TenPhong = ViewBag.TenPhong;
     string TenTT = ViewBag.TenTT;
     var lst_MT = (List<Quản_lý_điểm_thi.Models.MT_VALUE_NAME>)ViewBag.lst_MT;
+    var lst_Show = (List<Quản_lý_điểm_thi.Models.MT_VALUE_NAME>)ViewBag.lst_Show;
     List<Quản_lý_điểm_thi.Models.GioiTinh> lstGioiTinh = (List<Quản_lý_điểm_thi.Models.GioiTinh>)ViewBag.lstGioiTinh;
     List<Quản_lý_điểm_thi.Models.Truong> lstTruong = (List<Quản_lý_điểm_thi.Models.Truong>)ViewBag.lstTruong;
     List<Quản_lý_điểm_thi.Models.XepLoaiHanhKiem> lstXepLoaiHanhKiem = (List<Quản_lý_điểm_thi.Models.XepLoaiHanhKiem>)ViewBag.lstXepLoaiHanhKiem;
@@ -26,6 +27,7 @@
 }
 
 @section path{
+    
     <li><a href="/Home/Index"><i class="fa fa-home"></i> Trang chủ</a></li>
     <li><a href="/exam/Index">Danh sách khoá thi</a></li>
     <li><a href="/HoiDongThi/Index/@ID_Exam">@TenExam</a></li>
@@ -45,6 +47,9 @@
 
     }
 </select></li>
+<button type="button" class="btn btn-success" style="border-radius:10px;float: right; margin-right:50px" onclick="ExportExcel();">
+    <i class="fa fa-file-excel-o"></i><text style="margin-left:2px">Xuất giấy chứng nhận tạm thời</text> 
+</button>
 }
 @section script
 {<script>
@@ -365,6 +370,15 @@ $(document).ready(function(){
             window.location.href = '/Student/detail/' + x;
         }
     </script>
+
+    <script>
+        function ExportExcel()
+        {
+
+            window.location.href = '/Student/export/'+@id_student;
+        }
+
+    </script>
 }
 @section Styles
 {
@@ -644,7 +658,7 @@ $(document).ready(function(){
 
                         </div>
 
-                        <div id="tab_2" style="margin-top:10px; overflow: auto;width:100%">
+                        <div id="tab_2" style="margin-top:10px;height:740px; overflow: auto;width:100%">
                             @foreach (var item in lst_MT)
                             {
                                 <div style="width:100%;" @item.status>
@@ -652,7 +666,7 @@ $(document).ready(function(){
                                         <label style="margin-top: 5px">@item.mo_ta </label>
                                     </div>
                                     <div style="width:58%; float:left">
-                                        <input type="@item.type" id="@item.name" class="form-control" placeholder="Nhập điểm @item.mo_ta">
+                                        <input type="@item.type.Replace("/totnghiep","")" id="@item.name" class="form-control" placeholder="Nhập @item.mo_ta">
                                     </div>
                                     <div class="clear"></div>
                                 </div>
@@ -674,4 +688,3 @@ $(document).ready(function(){
 
 </div>
 @Html.Action("MessageBox", "Common")
-

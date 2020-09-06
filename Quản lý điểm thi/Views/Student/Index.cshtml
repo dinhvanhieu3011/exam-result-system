@@ -65,12 +65,45 @@ vertical-align: middle;
     <script src="~/dist/js/custom-file-input.js"></script>
     <script src="~/dist/js/jquery.dataTables.js"></script>
     <script src="~/dist/js/dataTables.bootstrap4.js"></script>
+    <script>
+
+        function Details(id)
+        {
+            window.location.href = '@Url.Action("actionName", "controllerName")';
+        }
+    </script>
     <!-- #region RELOAD -->
     <script>
         function reload()
         {
             location.reload();
             document.getElementById('search').value = "";
+        }
+    </script>
+    <script>
+        function deleteAll()
+        {
+            if (confirm("Xoá tất cả thông tin sinh viên!")) {
+                $.post("@Url.Action("DeleteAllStudent", "Student")",
+            {
+                idPhong: @IdPhong,
+                },
+            function (data) {
+                if (data == -1) {
+
+                }
+                else {
+                    // document.getElementById('myModalLabel').value = "Xoá thành công thành công";
+                    location.reload();
+                    showSuccessMessage("Xoá thành công thành công");
+                  
+                }
+            });
+            } else {
+               
+            }
+            
+  
         }
     </script>
     <!-- #endregion -->
@@ -89,7 +122,6 @@ vertical-align: middle;
                 "filter": true, // this is for disable filter (search box)
                 "orderMulti": false, // for disable multiple column at once
                 "pageLength": 50,
-                "searching": false,
                 "ajax": {
                     "url": "/Student/LoadData/" + id_Exam_Room,
                     "type": "POST",
@@ -129,7 +161,10 @@ vertical-align: middle;
                           "render": function (data, type, full, meta)
 
                           {
-                              return  '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>' 
+                              return  '<a href="/Student/detail/' + full.Id + '" type="button" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-success"><i class="fa fa-eye"></i></a>' +
+                                '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>' 
+
+
                           }
                       },
                 ]
@@ -356,7 +391,7 @@ vertical-align: middle;
                 </div>
                 <a href="/Student/Createnew/@id"><button type="button" class="btn btn-primary" style="border-radius:10px;"><i class="fa fa-plus"></i> Thêm thí sinh</button></a>
 
-                <a class="btn btn-default" onclick="reload();" id="btnrefresh" title="Tải lại dữ liệu mới"><i class="fa fa-refresh"></i> Tải lại</a>
+                <a class="btn btn-danger" onclick="deleteAll();" id="btndeleteAll" title="Xoá toàn bộ thí sinh"><i class="fa fa-remove"></i> Xoá toàn bộ thí sinh</a>
                 <a class="btn btn-default" id="test" onClick="fnExcelReport();" title=""><i class="fa fa-file-excel-o"></i> Tải excel mẫu</a>
                 <button type="button" class="btn btn-primary" style="border-radius:10px;" data-toggle="modal" data-target="#createModal"> 
                     <i class="fa fa-file-excel-o"></i>Import dữ liệu từ Excel
@@ -402,7 +437,7 @@ vertical-align: middle;
         </div>
     </div>
 </div>
-<!-- Model thêm mới ki` thi-->
+
 <div class="modal fade in" id="createModal" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -440,6 +475,9 @@ vertical-align: middle;
         </div>
     </div>
 </div>
+
+
+
 <div id='MessageHolder'>
     <table id="myModifiedTable" class="visibilityHide">
         <thead>
