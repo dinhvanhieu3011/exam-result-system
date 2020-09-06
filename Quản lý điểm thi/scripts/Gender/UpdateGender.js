@@ -2,9 +2,25 @@
     let _UpdateUser = function () {
         $('#tblGender').on('click', '.btn-edit-gender', function () {
             let id = $(this).val()
-            getUserById(id)
-            hideMessage()
-            $('#updateModal').modal('show')
+           
+            let role = RoleAction.Edit
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        getUserById(id)
+                        hideMessage()
+                        $('#updateModal').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         })
 
         $('#btnUpdateGender').on('click', function () {
@@ -86,8 +102,23 @@
     let _DeleteUser = function () {
         $('#tblGender').on('click', '.btn-delete-gender', function () {
             let id = $(this).val()
-            $("#deleteId").val(id)
-            $('#modalAlertDelete').modal('show')
+            let role = RoleAction.Delete
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        $("#deleteId").val(id)
+                        $('#modalAlertDelete').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         })
 
         $('#modalAlertDelete').on('hide.bs.modal', function (event) {
@@ -105,11 +136,11 @@
                         showSuccessMessage('Xóa giới tính thành công')
                         $("#tblGender").DataTable().ajax.reload();
                     } else {
-                        showAlterMessagelb(result.Message)
+                        showAlterMessage(result.Message)
                     }
                 },
                 error: function (err) {
-                    showAlterMessagelb(err.statusText);
+                    showAlterMessage(err.statusText);
                 }
             });
             $('#modalAlertDelete').modal('hide')

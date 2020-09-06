@@ -19,11 +19,31 @@
 {
     <script src="~/dist/js/jquery.dataTables.js"></script>
     <script src="~/dist/js/dataTables.bootstrap4.js"></script>
+    <script src="~/scripts/Common/CheckRole.js"></script>
     <!-- #region RELOAD -->
     <script>
         function reload() {
             location.reload();
             document.getElementById('search').value = "";
+        }
+        function CreateAction() {
+            let role = RoleAction.Create
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        ResetForm()
+                        $('#createModal').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         }
     </script>
     <!-- #endregion -->
@@ -183,8 +203,23 @@
     <!-- #region Xóa khóa thi -->
     <script>
         function DeleteData(id) {
-            $("#deleteId").val(id)
-            $('#modalAlertDelete').modal('show')
+            let role = RoleAction.Delete
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        $("#deleteId").val(id)
+                        $('#modalAlertDelete').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         }
         $('#modalAlertDelete').on('hide.bs.modal', function (event) {
             $("#deleteId").val('')
@@ -217,6 +252,25 @@
     <!-- #region Sửa khóa thi -->
     <script>
         function EditData(id) {
+            let role = RoleAction.Edit
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        fillDataToModal(id)
+                        $('#createModal').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+        }
+        function fillDataToModal(id) {
 
             $.post("@Url.Action("getDataJS", "KetQua")",
         {
@@ -292,7 +346,7 @@
             </div>
             <div class="box-body" style="padding:0px !important; margin-bottom:5px;text-align:right">
 
-                <button type="button" class="btn btn-primary" onclick="ResetForm()" style="border-radius:10px;" data-toggle="modal" data-target="#createModal">
+                <button type="button" class="btn btn-primary" onclick="CreateAction()" style="border-radius:10px;" >
                     <i class="fa fa-plus"></i> Thêm bản ghi
                 </button>
                 <a class="btn btn-default" onclick="reload();" id="btnrefresh" title="Tải lại dữ liệu mới"><i class="fa fa-refresh"></i> Tải lại</a>
@@ -364,6 +418,7 @@
                                 <input type="text" id="Mo_Ta" placeholder="Nhập mô tả" value="" class="form-control">
                             </div>
                             <div class="clear"></div>
+                            <input id="txtID" hidden />
                         </div>
                         <!-- row -->
                         <div style="width:100%">

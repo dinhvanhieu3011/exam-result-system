@@ -25,7 +25,24 @@
         })
 
         $("#createModal").on('shown.bs.modal', function () {
-            resetForm()
+            let role = RoleAction.Create
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        resetForm()
+                    } else {
+                        hideMessage()
+                        showAlterMessage(result.Message)
+                        $("#createModal").modal('hide')
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         });
 
         function validateForm() {

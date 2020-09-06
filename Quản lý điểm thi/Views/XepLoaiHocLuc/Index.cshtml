@@ -19,11 +19,31 @@
 {
     <script src="~/dist/js/jquery.dataTables.js"></script>
     <script src="~/dist/js/dataTables.bootstrap4.js"></script>
+    <script src="~/scripts/Common/CheckRole.js"></script>
     <!-- #region RELOAD -->
     <script>
         function reload() {
             location.reload();
             document.getElementById('search').value = "";
+        }
+        function CreateAction() {
+            let role = RoleAction.Create
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        ResetForm()
+                        $('#createModal').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         }
     </script>
     <!-- #endregion -->
@@ -57,7 +77,7 @@
 
               { "width": "50px", "targets": 0 },
     { "width": "50px", "targets": 1 },
-    { "width": "200px", "targets":4 },
+    { "width": "200px", "targets": 4 },
  {
      "targets": [1],
      "searchable": false,
@@ -80,7 +100,7 @@
                       { "data": "Ghi_chu", "name": "Ghi_chu", "autoWidth": true },
                       {
                           "render": function (data, type, full, meta) {
-                              return '<button type="button" data-toggle="modal" onclick = "EditData(' + full.Id + ')" data-target="#createModal" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></button>' +
+                              return '<button type="button" data-toggle="modal" onclick = "EditData(' + full.Id + ')"  style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></button>' +
                                     '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>' +
                                      '<button type="button" data-toggle="modal" data-target="#createModal" onclick = "Detail(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-success"><i class="fa fa-eye"></i></button>';
                           }
@@ -186,8 +206,23 @@
     <!-- #region Xóa khóa thi -->
     <script>
         function DeleteData(id) {
-            $("#deleteId").val(id)
-            $('#modalAlertDelete').modal('show')
+            let role = RoleAction.Delete
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        $("#deleteId").val(id)
+                        $('#modalAlertDelete').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
         }
         $('#modalAlertDelete').on('hide.bs.modal', function (event) {
             $("#deleteId").val('')
@@ -219,6 +254,26 @@
     <!-- #region Sửa khóa thi -->
     <script>
         function EditData(id) {
+            let role = RoleAction.Edit
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        fillDataToModal(id)
+                        $('#createModal').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+        }
+
+        function fillDataToModal(id) {
 
             $.post("@Url.Action("getDataJS", "XepLoaiHocLuc")",
         {
@@ -242,6 +297,7 @@
             }
         });
         }
+
     </script>
 
     <!-- #endregion -->
@@ -282,7 +338,7 @@
 
 @section path{
     <li><a href="/Home/Index"><i class="fa fa-home"></i> Trang chủ</a></li>
- 
+
 }
 <div class="container">
     <div class="row">
@@ -294,7 +350,7 @@
             </div>
             <div class="box-body" style="padding:0px !important; margin-bottom:5px;text-align:right">
 
-                <button type="button" class="btn btn-primary" onclick="ResetForm()" style="border-radius:10px;" data-toggle="modal" data-target="#createModal">
+                <button type="button" class="btn btn-primary" onclick="CreateAction()" style="border-radius:10px;">
                     <i class="fa fa-plus"></i> Thêm bản ghi
                 </button>
                 <a class="btn btn-default" onclick="reload();" id="btnrefresh" title="Tải lại dữ liệu mới"><i class="fa fa-refresh"></i> Tải lại</a>
@@ -346,7 +402,7 @@
             <div class="modal-body">
                 <div class="row">
                     <div class="col-sm-12">
-                        <input type="text" id="txtID" hidden >
+                        <input type="text" id="txtID" hidden>
                         <!-- row -->
 
                         <div style="width:100%">
@@ -379,7 +435,7 @@
                             <div class="clear"></div>
                         </div>
                         <!---------------------------------------------------------------------------------------->
-  
+
 
                     </div>
                 </div>
