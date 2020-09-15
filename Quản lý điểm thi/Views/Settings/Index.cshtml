@@ -66,7 +66,7 @@
                           "render": function (data, type, full, meta)
 
                           {
-                              return '<a type="button" href ="/Settings/Edit/' + full.Id + '" data-target="#createModal" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></a>' +
+                              return '<a type="button"  onclick = "EditData(' + full.Id + ')" data-target="#createModal" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-info"><i class="fa fa-edit"></i></a>' +
                                     '<button type="button"  onclick = "DeleteData(' + full.Id + ')" style="padding:2px 6px;margin-left: 10px;border-radius: 10px !important;" class="btn btn-danger"><i class="fa fa-trash"></i></button>' ;
                           }
                       },
@@ -88,6 +88,50 @@
     </script>
     <!-- #endregion -->
     <script>
+        function AddData() {
+            let role = RoleAction.Create
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        window.location.href = '/Settings/Create/';
+                        @*//$.post("@Url.Action("Create", "Settings")",);*@
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+
+        }
+        function EditData(id) {
+            let role = RoleAction.Edit
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        @*$.post("@Url.Action("Edit", "Settings")",
+{
+    id: id
+});*@
+                        window.location.href = '/Settings/Edit/' + id;
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+
+        }
+
         function DeleteData(id) {
             let role = RoleAction.Delete
             $.ajax({
@@ -105,7 +149,7 @@
                     showAlterMessage(err.statusText);
                 }
             });
-          
+
         }
 
         function DeleteSetting(id) {
@@ -143,8 +187,8 @@
         <div class="col-sm-12">
             <div class="box-body" style="padding:0px !important; margin-bottom:5px;text-align:right">
 
-                <button type="button" class="btn btn-primary" onclick="ResetForm()" style="border-radius:10px;" @*data-toggle="modal" data-target="#createModal"*@>
-                    <i class="fa fa-plus"></i><a style="color:white" href="/Settings/Create"> Thêm mới</a>
+                <button type="button" class="btn btn-primary" onclick=" AddData();" style="border-radius:10px;" @*data-toggle="modal" data-target="#createModal"*@>
+                    <i class="fa fa-plus"></i><text style="color:white"> Thêm mới</text>
                 </button>
                 <a class="btn btn-default" onclick="reload();" id="btnrefresh" title="Tải lại dữ liệu mới"><i class="fa fa-refresh"></i> Tải lại</a>
 

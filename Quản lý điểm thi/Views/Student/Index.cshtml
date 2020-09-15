@@ -124,6 +124,47 @@
         }
     </script>
     <!-- #endregion -->
+    <script>
+        function AddData() {
+            let role = RoleAction.Create
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        window.location.href =' /Student/Createnew/'+ @id;
+                        @*//$.post("@Url.Action("Create", "Settings")",);*@
+                        } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+
+        }
+        function Upload() {
+            let role = RoleAction.Create
+            $.ajax({
+                url: '/Common/CheckRole',
+                type: "post",
+                data: { role},
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        $('#createModal').modal('show')
+                    } else {
+                        showAlterMessage(result.Message)
+                    }
+                },
+                error: function (err) {
+                    showAlterMessage(err.statusText);
+                }
+            });
+
+        }
+    </script>
     <!-- #region Tạo bảng dữ liệu -->
     <script>
         var id_Exam_Room = @id;
@@ -421,11 +462,13 @@
 
                     </div>
                 </div>
-                <a href="/Student/Createnew/@id"><button type="button" class="btn btn-primary" style="border-radius:10px;"><i class="fa fa-plus"></i> Thêm thí sinh</button></a>
+                <button type="button" class="btn btn-primary" onclick="AddData();" style="border-radius:10px;"><i class="fa fa-plus"></i> Thêm thí sinh</button>
 
                 <a class="btn btn-danger" onclick="deleteAll();" id="btndeleteAll" title="Xoá toàn bộ thí sinh"><i class="fa fa-remove"></i> Xoá toàn bộ thí sinh</a>
                 <a class="btn btn-default" id="test" onClick="fnExcelReport();" title=""><i class="fa fa-file-excel-o"></i> Tải excel mẫu</a>
-                <button type="button" class="btn btn-primary" style="border-radius:10px;" data-toggle="modal" data-target="#createModal">
+
+
+                <button type="button" onclick="Upload();" class="btn btn-primary" style="border-radius:10px;">
                     <i class="fa fa-file-excel-o"></i>Import dữ liệu từ Excel
                 </button>
 
@@ -434,8 +477,6 @@
             <div class="tab-content">
                 <div id="tab_1" class="tab-pane active">
                     <div class="box">
-
-
                         <div class="box-body" style="padding:0px !important; margin-bottom:10px">
                             <div id="tbldata_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
                                 <div class="row"><div class="col-sm-6"></div><div class="col-sm-6"></div></div><div class="row">

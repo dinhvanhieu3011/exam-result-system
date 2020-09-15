@@ -24,7 +24,7 @@ namespace Quản_lý_điểm_thi.Controllers
             string message = "";
             bool isSuccess = false;
             int intRole = 0;
-            if(Int32.TryParse(role, out intRole))
+            if (Int32.TryParse(role, out intRole))
             {
                 if (CheckRole(intRole))
                 {
@@ -42,7 +42,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 message = "không tìm thấy quyền của bạn, xin hãy thử lại với các hành động khác.";
                 isSuccess = false;
             }
-           
+
             return Json(new
             {
                 Message = message,
