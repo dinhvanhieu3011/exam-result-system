@@ -139,6 +139,15 @@
                                         <div class="form-group">
                                             <h2 class="h4 text-red" style="font-weight:bold"> Đăng nhập</h2>
                                         </div>
+                                      
+                                        <div class="no-print margin-bottom">
+                                            @if (ViewBag.LoginResult != null)
+                                            {
+                                                <div class="callout callout-danger" style="margin-bottom: 0!important;">
+                                                    @ViewBag.LoginResult
+                                                </div>
+                                            }
+                                        </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <label class="col-lg-5 Col-sm-5 col-xs-5  pull-left h5 text-bold" style="font-weight:bold">Tên đăng nhập</label>
@@ -202,10 +211,7 @@
                                 </div>
                         </div>
                     }
-                    @if (ViewBag.LoginResult != "")
-                    {
-                        <h3>@ViewBag.LoginResult</h3>
-                    }
+                    
                         </div>
                     </div>
                 </div>
