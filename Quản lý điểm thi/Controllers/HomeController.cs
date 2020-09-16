@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json;
 using OfficeOpenXml;
+using OfficeOpenXml.Style;
 using Quản_lý_điểm_thi.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -498,7 +500,7 @@ namespace Quản_lý_điểm_thi.Controllers
             QLDTEntities1 _context = new QLDTEntities1();
             string message = "";
             bool isSuccess = false;
-
+            int i = 0;
             try
             {
 
@@ -603,6 +605,29 @@ namespace Quản_lý_điểm_thi.Controllers
                         worksheet.Cells[startRowList - 1, 13].Value = "Niên khóa";
                         worksheet.Cells[startRowList - 1, 14].Value = "Quê quán";
 
+                        #region THeem diem
+                        if (!string.IsNullOrEmpty(exam))
+                        {
+                            i = 15;
+                            var _exam = _context.Exams.Where(e => e.Id.ToString() == exam).FirstOrDefault();
+                            List<MT_VALUE_NAME> lstmt = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == _exam.ID_MT_VALUE_NAME + "").ToList();
+
+                            foreach (MT_VALUE_NAME mt in lstmt)
+                            {
+                                if (mt.status != "hidden")
+                                {
+                                    worksheet.Cells[startRowList-1, i].Value = mt.mo_ta.ToString();
+                                    //worksheet.Cells[startRowList, i + 2].Value = GetPropValue(g, mt.name.ToString()).ToString();
+                                    i++;
+                                }
+
+                            }
+                            for (int j = 0; j < 20; j++)
+                            {
+                                worksheet.Cells[startRowList - 1, i + j + 1].Value = "";
+
+                            }
+                        }
 
                         foreach (var student in listStudents)
                         {
@@ -619,7 +644,7 @@ namespace Quản_lý_điểm_thi.Controllers
                                 string[] arr = student.ngay_sinh.Split('-');
                                 birthDay = arr[2] + "-" + arr[1] + "-" + arr[0];
                             }
-
+                            Grade g = db.Grades.Where(x => x.ID_Student == student.Id).FirstOrDefault();
                             worksheet.Cells[startRowList, 1].Value = stt++;
                             worksheet.Cells[startRowList, 2].Value = student.ho_ten;
                             worksheet.Cells[startRowList, 3].Value = student.sbd;
@@ -634,9 +659,45 @@ namespace Quản_lý_điểm_thi.Controllers
                             worksheet.Cells[startRowList, 12].Value = hdThi.value_1;
                             worksheet.Cells[startRowList, 13].Value = ex.value_1;
                             worksheet.Cells[startRowList, 14].Value = student.coquan_congtac;
+                            #region THeem diem
+                            if (!string.IsNullOrEmpty(exam))
+                            {
+                                i = 15;
+                                var _exam = _context.Exams.Where(e => e.Id.ToString() == exam).FirstOrDefault();
+                                List<MT_VALUE_NAME> lstmt = db.MT_VALUE_NAME.Where(x => x.ID_MT_VALUE_NAME == _exam.ID_MT_VALUE_NAME + "").ToList();
 
+                                foreach (MT_VALUE_NAME mt in lstmt)
+                                {
+                                    if (mt.status != "hidden")
+                                    {
+                                       // worksheet.Cells[startRowList - 1, i].Value = mt.mo_ta.ToString();
+                                        worksheet.Cells[startRowList, i].Value = GetPropValue(g, mt.name.ToString()).ToString();
+
+                                        i++;
+                                    }
+
+                                }
+                                for (int j = 0; j < 20; j++)
+                                {
+                                    worksheet.Cells[startRowList, i + j + 1].Value = "";
+
+                                }
+                            }
+                            #endregion
                             startRowList++;
                         }
+                        using (var range = worksheet.Cells["A9:AB9"])
+                        {
+                            // Set PatternType
+                            // range.Style.Fill.PatternType = ExcelFillStyle.DarkGray;
+                            // Set Màu cho Background
+                            // range.Style.Fill.BackgroundColor.SetColor(Color.Aqua);
+                            // Canh giữa cho các text
+                            range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+                            // Set Font cho text  trong Range hiện tại
+                            range.Style.Font.SetFromFont(new Font("Times New Roman", 12));
+                        }
+                        #endregion
                         excelPack.Save();
                         byte[] fileBytes = System.IO.File.ReadAllBytes(fileClonePath);
                         isSuccess = true;
@@ -660,6 +721,10 @@ namespace Quản_lý_điểm_thi.Controllers
                 Message = message,
                 IsSuccess = isSuccess
             });
+        }
+        public static object GetPropValue(object src, string propName)
+        {
+            return src.GetType().GetProperty(propName).GetValue(src, null);
         }
         public ActionResult DownloadExcel()
         {

@@ -586,15 +586,31 @@ $(document).ready(function(){
                         <div id="tab_2" style="margin-top:10px;height:740px; overflow: auto;width:100%">
                             @foreach (var item in lst_MT)
                             {
-                                <div style="width:100%;" @item.status>
-                                    <div style="width:42%; float:left">
-                                        <label style="margin-top: 5px">@item.mo_ta </label>
-                                    </div>
-                                    <div style="width:58%; float:left">
-                                        <input type="@item.type.Replace("/totnghiep","")" id="@item.name" class="form-control" placeholder="Nhập  @item.mo_ta">
-                                    </div>
-                                    <div class="clear"></div>
+                                if(@item.mo_ta != null)
+                                {                                <div style="width:100%;" @item.status>
+                                <div style="width:42%; float:left">
+                                    <label style="margin-top: 5px">@item.mo_ta </label>
                                 </div>
+                                <div style="width:58%; float:left">
+                                    <input type="@item.type.Replace("/totnghiep","")" id="@item.name" class="form-control" placeholder="Nhập  @item.mo_ta">
+                                </div>
+                                <div class="clear"></div>
+                            </div>
+
+                                }
+                                else
+                                {
+                                    <div style="width:100%;" @item.status>
+                                        <div style="width:42%; float:left">
+                                            <label style="margin-top: 5px"> </label>
+                                        </div>
+                                        <div style="width:58%; float:left">
+                                            <input  id="@item.name" class="form-control" placeholder="Nhập ">
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                }
+
                             }
                         </div>
                     </div>

@@ -428,11 +428,11 @@ namespace Quản_lý_điểm_thi.Controllers
                     path = HttpContext.Server.MapPath("~/PDF/" + id_Room + "/" + fileName + ".pdf");
                 }
             }
-            if (fileName == "blank.pdf")
+            if ((fileName == "blank.pdf"))
             {
                 path = HttpContext.Server.MapPath("~/PDF/" + fileName);
             }
-            else if (string.IsNullOrEmpty(fileName) || fileName == "PDF.pdf")
+            else if (string.IsNullOrEmpty(fileName) || fileName == "PDF.pdf" || (fileName.Contains("Chọn file")))
             {
                 path = HttpContext.Server.MapPath("~/PDF/error.pdf");
             }

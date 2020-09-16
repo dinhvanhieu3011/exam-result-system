@@ -27,53 +27,56 @@
 }
 
 @section path{
-    
+
     <li><a href="/Home/Index"><i class="fa fa-home"></i> Trang chủ</a></li>
     <li><a href="/exam/Index">Danh sách khoá thi</a></li>
     <li><a href="/HoiDongThi/Index/@ID_Exam">@TenExam</a></li>
     <li><a href="/ExamRoom/Index/@IDHoiDongThi">@TenHoiDongThi</a></li>
     <li><a href="/Student/Index/@IdPhong">@TenPhong</a></li>
-    <li><select style="border-style:none;font-size: 15px;" id="select-student" onchange="myFunction1();">
-    @for (int i = 0; i < lstStudent.Count; i++)
+    <li>
+        <select style="border-style:none;font-size: 15px;" id="select-student" onchange="myFunction1();">
+            @for (int i = 0; i < lstStudent.Count; i++)
     {
         if (lstStudent[i].Id == id_student)
         {
-            <option value="@lstStudent[i].Id" selected>@lstStudent[i].ho_ten - @lstStudent[i].sbd</option>
-        }
-        else
-        {
-            <option value="@lstStudent[i].Id">@lstStudent[i].ho_ten - @lstStudent[i].sbd</option>
-        }
+                    <option value="@lstStudent[i].Id" selected>@lstStudent[i].ho_ten - @lstStudent[i].sbd</option>
+                }
+                else
+                {
+                    <option value="@lstStudent[i].Id">@lstStudent[i].ho_ten - @lstStudent[i].sbd</option>
+                }
 
-    }
-</select></li>
-<button type="button" class="btn btn-success" style="border-radius:10px;float: right; margin-right:50px" onclick="ExportExcel();">
-    <i class="fa fa-file-excel-o"></i><text style="margin-left:2px">Xuất giấy chứng nhận tạm thời</text> 
-</button>
+            }
+        </select>
+    </li>
+    <button type="button" class="btn btn-success" style="border-radius:10px;float: right; margin-right:50px" onclick="ExportExcel();">
+        <i class="fa fa-file-excel-o"></i><text style="margin-left:2px">Xuất giấy chứng nhận tạm thời</text>
+    </button>
 }
 @section script
-{<script>
+{
+    <script>
     function showSuccessMessage(mess) {
         $('#modalSuccessMess').modal('show');
         $('#modalSuccessMess .message-content').text(mess);
     }
-</script>
-<script>
+    </script>
+    <script>
     function showAlterMessage(mess) {
         $('#modalErroMess').modal('show');
         $('#modalErroMess .message-content').text(mess);
     }
-</script>
-<script>
+    </script>
+    <script>
     function hideMessage() {
         $('#success-message').modal('hide');
         $('#success-message .message-content').text('');
         $('#modalErroMess').modal('hide');
         $('#modalErroMess .message-content').text('');
     }
-</script>
+    </script>
     <script src="~/dist/js/pdfobject.js"></script>
-<script src="~/dist/js/jquery.dataTables.js"></script>
+    <script src="~/dist/js/jquery.dataTables.js"></script>
     <script>
     function myFunction() {
     var x = document.getElementById("select-file").value;
@@ -663,10 +666,27 @@ $(document).ready(function(){
                             {
                                 <div style="width:100%;" @item.status>
                                     <div style="width:42%; float:left">
-                                        <label style="margin-top: 5px">@item.mo_ta </label>
+                                        @if (@item.mo_ta != null)
+                                        {
+                                            <label style="margin-top: 5px">@item.mo_ta </label>
+                                        }
+                                        else
+                                        {
+                                            <label style="margin-top: 5px"> </label>
+                                        }
+
+
                                     </div>
                                     <div style="width:58%; float:left">
-                                        <input type="@item.type.Replace("/totnghiep","")" id="@item.name" class="form-control" placeholder="Nhập @item.mo_ta">
+                                        @if (@item.mo_ta != null)
+                                        {
+                                            <input type="@item.type.Replace("/totnghiep","")" id="@item.name" class="form-control" placeholder="Nhập @item.mo_ta">
+                                        }
+                                        else
+                                        {
+                                            <input type="" id="@item.name" class="form-control" placeholder="Nhập ">
+                                        }
+
                                     </div>
                                     <div class="clear"></div>
                                 </div>
