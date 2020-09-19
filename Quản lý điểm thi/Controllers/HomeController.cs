@@ -55,7 +55,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 if (lstUser.Count <= 0)
                 {
                     ViewBag.LoginResult = "Tên đăng nhập hoặc mật khẩu không đúng";
-                    return RedirectToAction("Login", "Home");
+                    return View();
                 }
                 User loginUser = lstUser.FirstOrDefault();
                 if ((!string.IsNullOrEmpty(remeber) && remeber == "true") || (remeber == "on"))
