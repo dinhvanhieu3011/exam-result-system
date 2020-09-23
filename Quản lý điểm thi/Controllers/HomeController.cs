@@ -18,6 +18,16 @@ namespace Quản_lý_điểm_thi.Controllers
     public class HomeController : Controller
     {
         QLDTEntities1 db = new QLDTEntities1();
+        private static List<Student> Students;
+        private static List<Hoi_dong_thi> Hoi_dong_this;
+        private static List<ExamRoom> ExamRooms;
+        private static List<StudentModel> StudentModels;
+
+        public HomeController()
+        {
+
+        }
+
         // GET: Home
         public ActionResult Index()
         {
@@ -27,14 +37,36 @@ namespace Quản_lý_điểm_thi.Controllers
                 int rID = Convert.ToInt32(Session["RoleIDofUser"]);
                 ViewBag.rID = rID;
 
+                QLDTEntities1 _context = new QLDTEntities1();
+                Students = _context.Students.ToList<Student>();
+                Hoi_dong_this = _context.Hoi_dong_thi.ToList<Hoi_dong_thi>();
+                ExamRooms = _context.ExamRooms.ToList<ExamRoom>();
+                StudentModels = (from std in Students
+                                 join er in ExamRooms on std.ID_Exam_Room equals er.Id
+                                 join hdt in Hoi_dong_this on er.ID_Exam equals hdt.Id
+                                 select new StudentModel(std.Id, std.tt, std.sbd, std.ho_ten, std.ngay_sinh,
+                                                 std.gioi_tinh, std.coquan_congtac, std.truong_hoc, std.xeploai_hanhkiem, std.xeploai_hocluc,
+                                                 std.dien_uudai, std.tong_so, std.ketqua_thi, std.xeploai_totnghiep, std.ghichu, std.ID_Exam_Room,
+                                                 er.value_1, Int32.Parse(hdt.value_11), hdt.Id, hdt.value_1, std.create_date, std.create_user, std.pdf, std.dantoc)
+                                 ).ToList<StudentModel>();
                 return View();
             }
             else
             {
                 return RedirectToAction("Login", "Home");
             }
+        }
 
-
+        public ActionResult ReloadEnityList()
+        {
+            QLDTEntities1 _context = new QLDTEntities1();
+            Students = _context.Students.ToList<Student>();
+            Hoi_dong_this = _context.Hoi_dong_thi.ToList<Hoi_dong_thi>();
+            ExamRooms = _context.ExamRooms.ToList<ExamRoom>();
+            return Json(new
+            {
+                Message = "update complete",
+            });
         }
 
         #region Xu ly login, logout ---------------------------------------
@@ -382,26 +414,18 @@ namespace Quản_lý_điểm_thi.Controllers
             toBirthday = ConvertDate(toBirthday);
             fromTestDay = ConvertDate(fromTestDay);
 
-            var listHDThi = new List<Hoi_dong_thi>();
-            var listExamRoom = new List<ExamRoom>();
-            var listStudents = new List<Student>();
-            if (!string.IsNullOrEmpty(examCouncil) || !string.IsNullOrEmpty(exam))
-            {
-                listHDThi = GetListHDThi(examCouncil, exam, _context);
-            }
-            if (!string.IsNullOrEmpty(examRoom) || (listHDThi != null && listHDThi.Any()))
-            {
-                listExamRoom = GetListExamRoom(examRoom, listHDThi, _context);
-            }
-            if (!string.IsNullOrEmpty(fullName) || !string.IsNullOrEmpty(candidateNumber) || listExamRoom.Any() || !string.IsNullOrEmpty(fromBirthday) || !string.IsNullOrEmpty(toBirthday)
+            
+            var listStudents = new List<StudentModel>();
+          
+            if (!string.IsNullOrEmpty(fullName) || !string.IsNullOrEmpty(candidateNumber) || !string.IsNullOrEmpty(fromBirthday) || !string.IsNullOrEmpty(toBirthday)
                 || !string.IsNullOrEmpty(ketQua) || !string.IsNullOrEmpty(truong) || !string.IsNullOrEmpty(hanhKiem) || !string.IsNullOrEmpty(hocLuc) || !string.IsNullOrEmpty(gioiTinh)
                 || !string.IsNullOrEmpty(loaiTN) || !string.IsNullOrEmpty(dienUT) || !string.IsNullOrEmpty(exam) || !string.IsNullOrEmpty(examRoom) || !string.IsNullOrEmpty(examCouncil))
             {
-                listStudents = GetListSudent(exam, examCouncil, listExamRoom, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, _context);
+                listStudents = GetListSudent( examCouncil, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, exam, examCouncil, examRoom);
             }
             else
             {
-                listStudents = new List<Student>();
+                listStudents = new List<StudentModel>();
             }
 
             totalRecord = listStudents.Count();
@@ -431,8 +455,7 @@ namespace Quản_lý_điểm_thi.Controllers
         {
             int idExamRoom = 0;
             Int32.TryParse(examRoom, out idExamRoom);
-            context.ExamRooms.Load();
-            return context.ExamRooms.Local.Where(r => (listHDThi == null || !listHDThi.Any() || (listHDThi.Any(e => e.Id == r.ID_Exam)))
+            return ExamRooms.Where(r => (listHDThi == null || !listHDThi.Any() || (listHDThi.Any(e => e.Id == r.ID_Exam)))
                                                 && (string.IsNullOrEmpty(examRoom) || r.Id == idExamRoom)
                                          ).ToList<ExamRoom>();
         }
@@ -443,19 +466,18 @@ namespace Quản_lý_điểm_thi.Controllers
             string _exam = string.IsNullOrEmpty(exam) ? "" : exam.ToLower();
             int intHDT = 0;
             Int32.TryParse(hoiDongThi, out intHDT);
-            return context.Hoi_dong_thi.Where(a => (string.IsNullOrEmpty(_exam)
+            return Hoi_dong_this.Where(a => (string.IsNullOrEmpty(_exam)
                                                   || a.value_11.ToLower().Contains(_exam)
                                                   || a.Id == intHDT)).ToList<Hoi_dong_thi>();
         }
 
-        private List<Student> GetListSudent(string exam, string hoiDongThi, List<ExamRoom> listExamRoom, string fullName, string candidateNumber, string toBirthday, string fromBirday,
-            string ketQua, string truong, string gioiTinh, string loaiTN, string hanhKiem, string hocLuc, string dienUT, QLDTEntities1 context)
+        private List<StudentModel> GetListSudent( string hoiDongThi, string fullName, string candidateNumber, string toBirthday, string fromBirday,
+            string ketQua, string truong, string gioiTinh, string loaiTN, string hanhKiem, string hocLuc, string dienUT, string examId, string hoiDHId, string examRoomId)
         {
-            List<int> listExamRoomId = (listExamRoom != null && listExamRoom.Any()) ? listExamRoom.Select(a => a.Id).ToList() : null;
 
-            context.Students.Load();
-
-            return context.Students.Local.Where(a => (listExamRoomId == null && string.IsNullOrEmpty(exam) && string.IsNullOrEmpty(hoiDongThi) || (listExamRoom.Any() && listExamRoomId.Contains(a.ID_Exam_Room)))
+            return StudentModels.Where(a => (string.IsNullOrEmpty(examId) || a.ID_Exam == Int32.Parse(examId))
+                       && (string.IsNullOrEmpty(hoiDHId) || a.ID_HD_Thi == Int32.Parse(hoiDHId))
+                       && (string.IsNullOrEmpty(examRoomId) || a.ID_Exam_Room == Int32.Parse(examRoomId))
                        && (string.IsNullOrEmpty(fullName) || a.ho_ten.ToLower().Contains(fullName.ToLower()))
                        && (string.IsNullOrEmpty(candidateNumber) || a.sbd.ToLower().Contains(candidateNumber.ToLower()))
                        && (string.IsNullOrEmpty(fromBirday) || (!string.IsNullOrEmpty(a.ngay_sinh) && DateTime.Parse(a.ngay_sinh) > DateTime.Parse(fromBirday)))
@@ -467,7 +489,7 @@ namespace Quản_lý_điểm_thi.Controllers
                        && (string.IsNullOrEmpty(hocLuc) || (!string.IsNullOrEmpty(a.xeploai_hocluc) && a.xeploai_hocluc.ToLower().Contains(hocLuc.ToLower())))
                        && (string.IsNullOrEmpty(ketQua) || (!string.IsNullOrEmpty(a.ketqua_thi) && a.ketqua_thi.ToLower().Contains(ketQua.ToLower())))
                        && (string.IsNullOrEmpty(dienUT) || (!string.IsNullOrEmpty(a.dien_uudai) && a.dien_uudai.ToLower().Contains(dienUT.ToLower())))
-             ).ToList<Student>();
+             ).ToList<StudentModel>();
         }
 
         [HttpPost]
@@ -475,8 +497,7 @@ namespace Quản_lý_điểm_thi.Controllers
         {
             QLDTEntities1 _context = new QLDTEntities1();
             List<Hoi_dong_thi> listHD = new List<Hoi_dong_thi>();
-            _context.Hoi_dong_thi.Load();
-            listHD = _context.Hoi_dong_thi.Local.Where(a => id == null || a.value_11 == id.Value.ToString()).ToList<Hoi_dong_thi>();
+            listHD = Hoi_dong_this.Where(a => id == null || a.value_11 == id.Value.ToString()).ToList<Hoi_dong_thi>();
 
             return Json(new { arrs = listHD });
         }
@@ -484,10 +505,9 @@ namespace Quản_lý_điểm_thi.Controllers
         [HttpPost]
         public ActionResult GetExamRoom(int? id)
         {
-            QLDTEntities1 _context = new QLDTEntities1();
             List<ExamRoom> listExamRoom = new List<ExamRoom>();
 
-            listExamRoom = _context.ExamRooms.Where(a => id == null || a.ID_Exam == id.Value).ToList<ExamRoom>();
+            listExamRoom = ExamRooms.Where(a => id == null || a.ID_Exam == id.Value).ToList<ExamRoom>();
 
             return Json(new { arrs = listExamRoom });
         }
@@ -511,7 +531,7 @@ namespace Quản_lý_điểm_thi.Controllers
 
                 var listHDThi = new List<Hoi_dong_thi>();
                 var listExamRoom = new List<ExamRoom>();
-                var listStudents = new List<Student>();
+                var listStudents = new List<StudentModel>();
                 if (!string.IsNullOrEmpty(examCouncil) || !string.IsNullOrEmpty(exam))
                 {
                     listHDThi = GetListHDThi(examCouncil, exam, _context);
@@ -524,14 +544,12 @@ namespace Quản_lý_điểm_thi.Controllers
                     || !string.IsNullOrEmpty(ketQua) || !string.IsNullOrEmpty(truong) || !string.IsNullOrEmpty(hanhKiem) || !string.IsNullOrEmpty(hocLuc) || !string.IsNullOrEmpty(gioiTinh)
                     || !string.IsNullOrEmpty(loaiTN) || !string.IsNullOrEmpty(dienUT) || !string.IsNullOrEmpty(exam) || !string.IsNullOrEmpty(examRoom) || !string.IsNullOrEmpty(examCouncil))
                 {
-                    listStudents = GetListSudent(exam, examCouncil, listExamRoom, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, _context);
+                    listStudents = GetListSudent( examCouncil, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, exam, examCouncil, examRoom);
                 }
                 else
                 {
-                    listStudents = new List<Student>();
+                    listStudents = new List<StudentModel>();
                 }
-
-
 
                 if (listStudents.Any())
                 {
@@ -616,7 +634,7 @@ namespace Quản_lý_điểm_thi.Controllers
                             {
                                 if (mt.status != "hidden")
                                 {
-                                    worksheet.Cells[startRowList-1, i].Value = mt.mo_ta.ToString();
+                                    worksheet.Cells[startRowList - 1, i].Value = mt.mo_ta.ToString();
                                     //worksheet.Cells[startRowList, i + 2].Value = GetPropValue(g, mt.name.ToString()).ToString();
                                     i++;
                                 }
@@ -631,11 +649,11 @@ namespace Quản_lý_điểm_thi.Controllers
 
                         foreach (var student in listStudents)
                         {
-                           if( startRowList > 200)
+                            if (startRowList > 200)
                             {
                                 break;
                             }
-                               ExamRoom exRoom = listExamRoom.Where(a => a.Id == student.ID_Exam_Room).FirstOrDefault();
+                            ExamRoom exRoom = listExamRoom.Where(a => a.Id == student.ID_Exam_Room).FirstOrDefault();
                             Hoi_dong_thi hdThi = listHDThi.Where(a => a.Id == exRoom.ID_Exam).FirstOrDefault();
                             Exam ex = _context.Exams.Where(a => a.Id.ToString() == hdThi.value_11).FirstOrDefault();
                             string birthDay = "";
@@ -670,7 +688,7 @@ namespace Quản_lý_điểm_thi.Controllers
                                 {
                                     if (mt.status != "hidden")
                                     {
-                                       // worksheet.Cells[startRowList - 1, i].Value = mt.mo_ta.ToString();
+                                        // worksheet.Cells[startRowList - 1, i].Value = mt.mo_ta.ToString();
                                         worksheet.Cells[startRowList, i].Value = GetPropValue(g, mt.name.ToString()).ToString();
 
                                         i++;
