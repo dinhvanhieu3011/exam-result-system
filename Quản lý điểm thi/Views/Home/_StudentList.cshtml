@@ -1,4 +1,5 @@
-﻿@using Quản_lý_điểm_thi.Models
+﻿@using Quản_lý_điểm_thi.Models;
+@using Newtonsoft.Json;
 @{
     Layout = null;
     List<Exam> listExam = ViewBag.ListKhoaThi as List<Exam>;
@@ -278,6 +279,11 @@
                 </div><div class="row"><div class="col-sm-5"></div><div class="col-sm-7"></div></div>
             </div>
         </div>
+    </div>
+    <div style="display:none">
+        <input type="hidden" id="ipListPthi" value="@JsonConvert.SerializeObject(listExamRoom)" />
+        <input type= "hidden" id="ipListHDThi" value="@JsonConvert.SerializeObject(listHDThi)" />
+        <input type="hidden" id="ipTruongHoc" value="@JsonConvert.SerializeObject(listTruong)" />
     </div>
 </div>
 

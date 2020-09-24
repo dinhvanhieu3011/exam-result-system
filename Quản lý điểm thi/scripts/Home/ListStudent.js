@@ -8,7 +8,7 @@
             "serverSide": true, // for process server side
             "filter": true, // this is for disable filter (search box)
             "orderMulti": false, // for disable multiple column at once
-            "pageLength": 50,
+            "pageLength": 30,
             "searching": false,
             "lengthChange": false,
             "ajax": {
@@ -82,7 +82,11 @@
         })
     }
     let _RefeshSelect2Control = function () {
-        function getSelectData(urlApi, id, selectControl, textHolder) {
+        const hoiDongThis = JSON.parse($('#ipListHDThi').val())
+        const truongHocs = JSON.parse($('#ipTruongHoc').val())
+        const phongThis = JSON.parse($('#ipListPthi').val())
+
+        function getSelectData( data, id, selectControl, textHolder) {
             $.post(urlApi, { id: id },
                  function (data) {
                      appendOption(data, selectControl, textHolder)
@@ -90,15 +94,11 @@
             );
         }
 
-        function appendOption(data, selectControl, textHolder) {
+        function appendOption(datas, selectControl, textHolder) {
             $(selectControl).empty().trigger('change')
-            console.log({ data })
-            const arrs = data.arrs
-            console.log({ arrs })
-
             let newOption = new Option(textHolder, '', true, true)
             $(selectControl).append(newOption).trigger('change')
-            arrs.forEach(function (data) {
+            datas.forEach(function (data) {
                 var newOption = new Option(data.value_1, data.Id, false, false)
                 $(selectControl).append(newOption).trigger('change')
             })
@@ -106,12 +106,14 @@
 
         $('#selExam').on('change', function () {
             let id = $(this).val()
-            getSelectData('/Home/GetHDongThi', id, $('#selExamCouncil'), '-Chọn hội đồng-')
+            let datas = hoiDongThis.filter(item => item.value_11==id)
+            appendOption(datas, $('#selExamCouncil'), '-Chọn hội đồng-')
         })
 
         $('#selExamCouncil').on('change', function () {
             let id = $(this).val()
-            getSelectData('/Home/GetExamRoom', id, $('#selExamRoom'), '-Chọn phòng thi-')
+            let datas = hoiDongThis.filter(item => item.value_11 == id)
+            appendOption(datas, $('#selExamRoom'), '-Chọn phòng thi-')
         })
     }
     return {

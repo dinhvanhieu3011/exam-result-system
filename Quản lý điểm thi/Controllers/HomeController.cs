@@ -22,6 +22,7 @@ namespace Quản_lý_điểm_thi.Controllers
         private static List<Hoi_dong_thi> Hoi_dong_this;
         private static List<ExamRoom> ExamRooms;
         private static List<StudentModel> StudentModels;
+        private static Dictionary<int, List<StudentModel>> dictionaryExam = new Dictionary<int, List<StudentModel>>();
 
         public HomeController()
         {
@@ -41,6 +42,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 Students = _context.Students.ToList<Student>();
                 Hoi_dong_this = _context.Hoi_dong_thi.ToList<Hoi_dong_thi>();
                 ExamRooms = _context.ExamRooms.ToList<ExamRoom>();
+                List<int> listExamId = Hoi_dong_this.Select(a => Int32.Parse(a.value_11)).Distinct().ToList<int>();
                 StudentModels = (from std in Students
                                  join er in ExamRooms on std.ID_Exam_Room equals er.Id
                                  join hdt in Hoi_dong_this on er.ID_Exam equals hdt.Id
@@ -49,6 +51,12 @@ namespace Quản_lý_điểm_thi.Controllers
                                                  std.dien_uudai, std.tong_so, std.ketqua_thi, std.xeploai_totnghiep, std.ghichu, std.ID_Exam_Room,
                                                  er.value_1, Int32.Parse(hdt.value_11), hdt.Id, hdt.value_1, std.create_date, std.create_user, std.pdf, std.dantoc)
                                  ).ToList<StudentModel>();
+                dictionaryExam.Clear();
+                foreach (var id in listExamId)
+                {
+                    List<StudentModel> listStudentModel = StudentModels.Where(a => a.ID_Exam == id).ToList<StudentModel>();
+                    dictionaryExam.Add(id, listStudentModel);
+                }
                 return View();
             }
             else
@@ -399,7 +407,6 @@ namespace Quản_lý_điểm_thi.Controllers
             string examCouncil, string fullName, string toTestDay, string fromTestDay, string toBirthday, string fromBirthday, string exam, string ketQua,
             string truong, string gioiTinh, string loaiTN, string hanhKiem, string hocLuc, string dienUT)
         {
-            QLDTEntities1 _context = new QLDTEntities1();
             int startPage = 0, drawPage = 0, totalRecord = 0;
             int lenghtPage = 0;
             Int32.TryParse(draw, out drawPage);
@@ -414,14 +421,18 @@ namespace Quản_lý_điểm_thi.Controllers
             toBirthday = ConvertDate(toBirthday);
             fromTestDay = ConvertDate(fromTestDay);
 
-            
             var listStudents = new List<StudentModel>();
-          
-            if (!string.IsNullOrEmpty(fullName) || !string.IsNullOrEmpty(candidateNumber) || !string.IsNullOrEmpty(fromBirthday) || !string.IsNullOrEmpty(toBirthday)
-                || !string.IsNullOrEmpty(ketQua) || !string.IsNullOrEmpty(truong) || !string.IsNullOrEmpty(hanhKiem) || !string.IsNullOrEmpty(hocLuc) || !string.IsNullOrEmpty(gioiTinh)
-                || !string.IsNullOrEmpty(loaiTN) || !string.IsNullOrEmpty(dienUT) || !string.IsNullOrEmpty(exam) || !string.IsNullOrEmpty(examRoom) || !string.IsNullOrEmpty(examCouncil))
+            int intExamID = 0;
+            Int32.TryParse(exam, out intExamID);
+            if (!string.IsNullOrEmpty(exam))
             {
-                listStudents = GetListSudent( examCouncil, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, exam, examCouncil, examRoom);
+                listStudents = dictionaryExam[intExamID];
+            }
+            else if ( !string.IsNullOrEmpty(exam) || !string.IsNullOrEmpty(examRoom) || !string.IsNullOrEmpty(examCouncil) || !string.IsNullOrEmpty(fullName) || !string.IsNullOrEmpty(candidateNumber) || !string.IsNullOrEmpty(fromBirthday) || !string.IsNullOrEmpty(toBirthday)
+                || !string.IsNullOrEmpty(ketQua) || !string.IsNullOrEmpty(truong) || !string.IsNullOrEmpty(hanhKiem) || !string.IsNullOrEmpty(hocLuc) || !string.IsNullOrEmpty(gioiTinh)
+                || !string.IsNullOrEmpty(loaiTN) || !string.IsNullOrEmpty(dienUT) )
+            {
+                listStudents = GetListSudent(examCouncil, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, exam, examCouncil, examRoom);
             }
             else
             {
@@ -460,22 +471,44 @@ namespace Quản_lý_điểm_thi.Controllers
                                          ).ToList<ExamRoom>();
         }
 
-        private List<Hoi_dong_thi> GetListHDThi(string hoiDongThi, string exam, QLDTEntities1 context)
+        private List<Hoi_dong_thi> GetListHDThi(string hoiDongThi, string exam)
         {
             string _hoiDThi = string.IsNullOrEmpty(hoiDongThi) ? "" : hoiDongThi.ToLower();
             string _exam = string.IsNullOrEmpty(exam) ? "" : exam.ToLower();
             int intHDT = 0;
             Int32.TryParse(hoiDongThi, out intHDT);
             return Hoi_dong_this.Where(a => (string.IsNullOrEmpty(_exam)
-                                                  || a.value_11.ToLower().Contains(_exam)
+                                                  || a.value_11 == _exam
                                                   || a.Id == intHDT)).ToList<Hoi_dong_thi>();
         }
 
-        private List<StudentModel> GetListSudent( string hoiDongThi, string fullName, string candidateNumber, string toBirthday, string fromBirday,
-            string ketQua, string truong, string gioiTinh, string loaiTN, string hanhKiem, string hocLuc, string dienUT, string examId, string hoiDHId, string examRoomId)
+        private List<StudentModel> GetListSudent(string hoiDongThi, string fullName, string candidateNumber, string toBirthday, string fromBirday,
+        string ketQua, string truong, string gioiTinh, string loaiTN, string hanhKiem, string hocLuc, string dienUT, string examId, string hoiDHId, string examRoomId, List<int> listHDId)
         {
 
-            return StudentModels.Where(a => (string.IsNullOrEmpty(examId) || a.ID_Exam == Int32.Parse(examId))
+            return StudentModels.Where(a => ((listHDId != null && listHDId.Any()) || listHDId.Contains(a.ID_HD_Thi))
+                       && (string.IsNullOrEmpty(examRoomId) || a.ID_Exam_Room == Int32.Parse(examRoomId))
+                       && (string.IsNullOrEmpty(fullName) || a.ho_ten.ToLower().Contains(fullName.ToLower()))
+                       && (string.IsNullOrEmpty(candidateNumber) || a.sbd.ToLower().Contains(candidateNumber.ToLower()))
+                       && (string.IsNullOrEmpty(fromBirday) || (!string.IsNullOrEmpty(a.ngay_sinh) && DateTime.Parse(a.ngay_sinh) > DateTime.Parse(fromBirday)))
+                       && (string.IsNullOrEmpty(toBirthday) || (!string.IsNullOrEmpty(a.ngay_sinh) && DateTime.Parse(a.ngay_sinh) < DateTime.Parse(toBirthday)))
+                       && (string.IsNullOrEmpty(truong) || (!string.IsNullOrEmpty(a.truong_hoc) && a.truong_hoc.ToLower().Contains(truong.ToLower())))
+                       && (string.IsNullOrEmpty(gioiTinh) || (!string.IsNullOrEmpty(a.gioi_tinh) && a.gioi_tinh.ToLower().Contains(gioiTinh.ToLower())))
+                       && (string.IsNullOrEmpty(loaiTN) || (!string.IsNullOrEmpty(a.xeploai_totnghiep) && a.xeploai_totnghiep.ToLower().Contains(loaiTN.ToLower())))
+                       && (string.IsNullOrEmpty(hanhKiem) || (!string.IsNullOrEmpty(a.xeploai_hanhkiem) && a.xeploai_hanhkiem.ToLower().Contains(hanhKiem.ToLower())))
+                       && (string.IsNullOrEmpty(hocLuc) || (!string.IsNullOrEmpty(a.xeploai_hocluc) && a.xeploai_hocluc.ToLower().Contains(hocLuc.ToLower())))
+                       && (string.IsNullOrEmpty(ketQua) || (!string.IsNullOrEmpty(a.ketqua_thi) && a.ketqua_thi.ToLower().Contains(ketQua.ToLower())))
+                       && (string.IsNullOrEmpty(dienUT) || (!string.IsNullOrEmpty(a.dien_uudai) && a.dien_uudai.ToLower().Contains(dienUT.ToLower())))
+             ).ToList<StudentModel>();
+        }
+
+
+        private List<StudentModel> GetListSudent(string hoiDongThi, string fullName, string candidateNumber, string toBirthday, string fromBirday,
+            string ketQua, string truong, string gioiTinh, string loaiTN, string hanhKiem, string hocLuc, string dienUT, string examId, string hoiDHId, string examRoomId)
+        {
+            var intExamID = 0;
+       
+            return StudentModels.Where(a => (string.IsNullOrEmpty(examId) || a.ID_Exam.ToString().Contains(examId))
                        && (string.IsNullOrEmpty(hoiDHId) || a.ID_HD_Thi == Int32.Parse(hoiDHId))
                        && (string.IsNullOrEmpty(examRoomId) || a.ID_Exam_Room == Int32.Parse(examRoomId))
                        && (string.IsNullOrEmpty(fullName) || a.ho_ten.ToLower().Contains(fullName.ToLower()))
@@ -534,7 +567,7 @@ namespace Quản_lý_điểm_thi.Controllers
                 var listStudents = new List<StudentModel>();
                 if (!string.IsNullOrEmpty(examCouncil) || !string.IsNullOrEmpty(exam))
                 {
-                    listHDThi = GetListHDThi(examCouncil, exam, _context);
+                    listHDThi = GetListHDThi(examCouncil, exam);
                 }
                 if (!string.IsNullOrEmpty(examRoom) || (listHDThi != null && listHDThi.Any()))
                 {
@@ -544,7 +577,7 @@ namespace Quản_lý_điểm_thi.Controllers
                     || !string.IsNullOrEmpty(ketQua) || !string.IsNullOrEmpty(truong) || !string.IsNullOrEmpty(hanhKiem) || !string.IsNullOrEmpty(hocLuc) || !string.IsNullOrEmpty(gioiTinh)
                     || !string.IsNullOrEmpty(loaiTN) || !string.IsNullOrEmpty(dienUT) || !string.IsNullOrEmpty(exam) || !string.IsNullOrEmpty(examRoom) || !string.IsNullOrEmpty(examCouncil))
                 {
-                    listStudents = GetListSudent( examCouncil, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, exam, examCouncil, examRoom);
+                    listStudents = GetListSudent(examCouncil, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, exam, examCouncil, examRoom);
                 }
                 else
                 {
