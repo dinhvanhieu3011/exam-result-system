@@ -424,13 +424,10 @@ namespace Quản_lý_điểm_thi.Controllers
             var listStudents = new List<StudentModel>();
             int intExamID = 0;
             Int32.TryParse(exam, out intExamID);
-            if (!string.IsNullOrEmpty(exam))
-            {
-                listStudents = dictionaryExam[intExamID];
-            }
-            else if ( !string.IsNullOrEmpty(exam) || !string.IsNullOrEmpty(examRoom) || !string.IsNullOrEmpty(examCouncil) || !string.IsNullOrEmpty(fullName) || !string.IsNullOrEmpty(candidateNumber) || !string.IsNullOrEmpty(fromBirthday) || !string.IsNullOrEmpty(toBirthday)
+            
+            if (!string.IsNullOrEmpty(exam) || !string.IsNullOrEmpty(examRoom) || !string.IsNullOrEmpty(examCouncil) || !string.IsNullOrEmpty(fullName) || !string.IsNullOrEmpty(candidateNumber) || !string.IsNullOrEmpty(fromBirthday) || !string.IsNullOrEmpty(toBirthday)
                 || !string.IsNullOrEmpty(ketQua) || !string.IsNullOrEmpty(truong) || !string.IsNullOrEmpty(hanhKiem) || !string.IsNullOrEmpty(hocLuc) || !string.IsNullOrEmpty(gioiTinh)
-                || !string.IsNullOrEmpty(loaiTN) || !string.IsNullOrEmpty(dienUT) )
+                || !string.IsNullOrEmpty(loaiTN) || !string.IsNullOrEmpty(dienUT))
             {
                 listStudents = GetListSudent(examCouncil, fullName, candidateNumber, fromBirthday, toBirthday, ketQua, truong, gioiTinh, loaiTN, hanhKiem, hocLuc, dienUT, exam, examCouncil, examRoom);
             }
@@ -773,6 +770,9 @@ namespace Quản_lý_điểm_thi.Controllers
                 IsSuccess = isSuccess
             });
         }
+
+        
+
         public static object GetPropValue(object src, string propName)
         {
             return src.GetType().GetProperty(propName).GetValue(src, null);
