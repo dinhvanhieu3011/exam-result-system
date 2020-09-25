@@ -112,7 +112,7 @@
 
         $('#selExamCouncil').on('change', function () {
             let id = $(this).val()
-            let datas = hoiDongThis.filter(item => item.value_11 == id)
+            let datas = phongThis.filter(item => item.ID_Exam == id)
             appendOption(datas, $('#selExamRoom'), '-Chọn phòng thi-')
         })
     }
