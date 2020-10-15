@@ -37,7 +37,7 @@ namespace Quản_lý_điểm_thi.Controllers
             Int32.TryParse(start, out startPage);
             Int32.TryParse(length, out lenghtPage);
 
-            var listData = (from a in _context.Users
+          var listData = (from a in _context.Users
                             where string.IsNullOrEmpty(searchValue)
                                 || a.FullName.ToLower().Contains(searchValue.ToLower())
                                 || a.Username.ToLower().Contains(searchValue.ToLower())
