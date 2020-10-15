@@ -9,7 +9,10 @@
             "ajax": {
                 "url": "/User/GetListUser",
                 "type": "POST",
-                "datatype": "json"
+                "datatype": "json",
+                "data": function (data) {
+                    data.searchValue = () =>($('#search').val())
+                },
             },
             "columns": [
                   { "data": "Id" },
