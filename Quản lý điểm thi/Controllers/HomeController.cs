@@ -528,7 +528,7 @@ namespace Quản_lý_điểm_thi.Controllers
         private DateTime GetDatetime(string dateTime)
         {
             DateTime _dateTime = new DateTime();
-
+            string[] arrDateTime = dateTime.Split('-');
             try
             {
                 if (!string.IsNullOrEmpty(dateTime))
@@ -537,8 +537,28 @@ namespace Quản_lý_điểm_thi.Controllers
                     {
                         dateTime = dateTime.Replace("-", "/");
                     }
+                    
+                    if(arrDateTime.Length == 3)
+                    {
+                        _dateTime = DateTime.ParseExact(dateTime, new string[] { "yyyy/MM/dd", "dd/MM/yyyy", "MM/dd/yyyy" }, CultureInfo.InvariantCulture, DateTimeStyles.None);
+                    }
+                    else if (arrDateTime.Length == 2)
+                    {
+                        int month = 1, year = 1;
 
-                    _dateTime = DateTime.ParseExact(dateTime, new string[] { "yyyy/MM/dd", "dd/MM/yyyy", "MM/dd/yyyy" }, CultureInfo.InvariantCulture, DateTimeStyles.None);
+                        year = arrDateTime[1].Length > 2 ? Int32.Parse(arrDateTime[1]) : Int32.Parse(arrDateTime[0]);
+                        month = arrDateTime[1].Length <= 2 ? Int32.Parse(arrDateTime[1]) : Int32.Parse(arrDateTime[0]);
+
+                        _dateTime = new DateTime(year, month, 01);
+                    }
+                    else
+                    {
+                        int year = 1;
+
+                        year = Int32.Parse(arrDateTime[0]);
+                        _dateTime = new DateTime(year, 01, 01);
+                    }
+
                 }
             }
             catch { }
