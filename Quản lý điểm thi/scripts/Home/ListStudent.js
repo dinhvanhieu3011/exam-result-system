@@ -62,7 +62,21 @@
                         }
                     },
                     { "data": "sbd", "name": "sbd", "autoWidth": true },
-                    { "data": "ngay_sinh", "name": "ngay_sinh", "autoWidth": true },
+                    {
+                        "render": function (data, type, full, meta) {
+                            var ddMMyyyy = full.ngay_sinh.split("-");
+                            var result = "";
+
+                            for (var i = 0; i < ddMMyyyy.length; i++) {
+                                if (typeof ddMMyyyy[i] !== "undefined") {
+                                    result = "/" + ddMMyyyy[i] + result;
+                                }
+                            }
+
+                            result = result.substring(1);
+                            return result
+                        }
+                    },
                     { "data": "ketqua_thi", "name": "ketqua_thi", "autoWidth": true },
                     //{
                     //    "render": function (data, type, full, meta) {

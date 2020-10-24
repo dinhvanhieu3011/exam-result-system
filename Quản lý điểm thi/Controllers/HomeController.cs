@@ -503,15 +503,18 @@ namespace Quản_lý_điểm_thi.Controllers
         private List<StudentModel> GetListSudent(string hoiDongThi, string fullName, string candidateNumber, string toBirthday, string fromBirday,
             string ketQua, string truong, string gioiTinh, string loaiTN, string hanhKiem, string hocLuc, string dienUT, string examId, string hoiDHId, string examRoomId)
         {
-            var intExamID = 0;
-       
+            DateTime _toBirthday = new DateTime(), _fromBirthday = new DateTime();
+            DateTime.TryParse(toBirthday, out _toBirthday);
+            DateTime.TryParse(fromBirday, out _fromBirthday);
+
+
             return StudentModels.Where(a => (string.IsNullOrEmpty(examId) || a.ID_Exam.ToString().Contains(examId))
                        && (string.IsNullOrEmpty(hoiDHId) || a.ID_HD_Thi == Int32.Parse(hoiDHId))
                        && (string.IsNullOrEmpty(examRoomId) || a.ID_Exam_Room == Int32.Parse(examRoomId))
                        && (string.IsNullOrEmpty(fullName) || a.ho_ten.ToLower().Contains(fullName.ToLower()))
                        && (string.IsNullOrEmpty(candidateNumber) || a.sbd.ToLower().Contains(candidateNumber.ToLower()))
-                       && (string.IsNullOrEmpty(fromBirday) || (!string.IsNullOrEmpty(a.ngay_sinh) && DateTime.Parse(a.ngay_sinh) > DateTime.Parse(fromBirday)))
-                       && (string.IsNullOrEmpty(toBirthday) || (!string.IsNullOrEmpty(a.ngay_sinh) && DateTime.Parse(a.ngay_sinh) < DateTime.Parse(toBirthday)))
+                       && (string.IsNullOrEmpty(fromBirday) || (!string.IsNullOrEmpty(a.ngay_sinh) && GetDatetime(a.ngay_sinh) > _fromBirthday))
+                       && (string.IsNullOrEmpty(toBirthday) || (!string.IsNullOrEmpty(a.ngay_sinh) && GetDatetime(a.ngay_sinh) < _toBirthday))
                        && (string.IsNullOrEmpty(truong) || (!string.IsNullOrEmpty(a.truong_hoc) && a.truong_hoc.ToLower().Contains(truong.ToLower())))
                        && (string.IsNullOrEmpty(gioiTinh) || (!string.IsNullOrEmpty(a.gioi_tinh) && a.gioi_tinh.ToLower().Contains(gioiTinh.ToLower())))
                        && (string.IsNullOrEmpty(loaiTN) || (!string.IsNullOrEmpty(a.xeploai_totnghiep) && a.xeploai_totnghiep.ToLower().Contains(loaiTN.ToLower())))
@@ -520,6 +523,27 @@ namespace Quản_lý_điểm_thi.Controllers
                        && (string.IsNullOrEmpty(ketQua) || (!string.IsNullOrEmpty(a.ketqua_thi) && a.ketqua_thi.ToLower().Contains(ketQua.ToLower())))
                        && (string.IsNullOrEmpty(dienUT) || (!string.IsNullOrEmpty(a.dien_uudai) && a.dien_uudai.ToLower().Contains(dienUT.ToLower())))
              ).ToList<StudentModel>();
+        }
+
+        private DateTime GetDatetime(string dateTime)
+        {
+            DateTime _dateTime = new DateTime();
+
+            try
+            {
+                if (!string.IsNullOrEmpty(dateTime))
+                {
+                    if (dateTime.Contains("-"))
+                    {
+                        dateTime = dateTime.Replace("-", "/");
+                    }
+
+                    _dateTime = DateTime.ParseExact(dateTime, new string[] { "yyyy/MM/dd", "dd/MM/yyyy", "MM/dd/yyyy" }, CultureInfo.InvariantCulture, DateTimeStyles.None);
+                }
+            }
+            catch { }
+           
+            return _dateTime;
         }
 
         [HttpPost]
